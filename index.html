@@ -1,0 +1,2268 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style><meta name="theme-color" content="#13100e">
+<meta name="description" content="Croise deux ondes au même instant pour allumer les nœuds. Un jeu de réflexion tactile, jouable hors ligne.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Résonance">
+<link rel="manifest" href="resonance.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon-48.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+</head><body>
+<title>Résonance</title>
+<style>@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}</style>
+<style>
+/* Layout: plein écran, canvas sous un HUD fin ; palettes à débloquer, « Seiche » par défaut. */
+:root{
+  --ink:#13100e; --bone:#efe3cf; --saffron:#f2a541; --rose:#d9776b; --dust:#8a7d6c; --p2:#6fc2c0;
+  --f-display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:dark;
+}
+html,body{height:100%;margin:0;background:var(--ink);color:var(--bone);overflow:hidden;
+  overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+button{font:inherit}
+.hud{position:fixed;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 0;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;pointer-events:none;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust)}
+.hud b{display:block;font-family:var(--f-display);font-weight:700;font-size:19px;letter-spacing:0;color:var(--bone);
+  font-variant-numeric:tabular-nums;text-transform:none;white-space:nowrap}
+.hud .l{display:flex;align-items:center;gap:12px;min-width:0}
+.hud .r{text-align:right}
+.menubtn{pointer-events:auto;width:38px;height:38px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--bone) 35%,transparent);
+  background:transparent;color:var(--bone);display:grid;place-items:center;cursor:pointer;flex:none;padding:0}
+.menubtn:focus-visible{outline:2px solid var(--saffron);outline-offset:2px}
+.menubtn svg{width:16px;height:16px}
+.pulses{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;max-width:40vw}
+.pulses i{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;display:block;color:var(--bone)}
+.pulses i.on{background:currentColor}
+.pulses .inf{font-family:var(--f-display);font-size:20px;color:var(--bone);letter-spacing:0}
+.duel{position:fixed;left:0;right:0;padding:0 16px;display:flex;align-items:center;gap:12px;pointer-events:none;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust)}
+.duel b{font-family:var(--f-display);font-size:18px;letter-spacing:0;font-variant-numeric:tabular-nums}
+.duel .pulses{justify-content:flex-start;max-width:none;flex:1}
+.duel.bot{bottom:0;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 14px)}
+.duel.top{top:0;padding-bottom:calc(env(safe-area-inset-top,0px) + 14px);transform:rotate(180deg)}
+.duel.bot b,.duel.bot .pulses i{color:var(--saffron)}
+.duel.top b,.duel.top .pulses i{color:var(--p2)}
+.freezebtn{position:fixed;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 18px);font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;
+  padding:10px 14px;border-radius:999px;border:1.5px solid var(--p2);background:transparent;color:var(--p2);cursor:pointer}
+.freezebtn b{font-family:var(--f-display);margin-left:4px}
+.freezebtn.armed{background:var(--p2);color:var(--ink)}
+.tip{position:fixed;left:18px;right:18px;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);text-align:center;
+  font-family:var(--f-mono);font-size:13px;line-height:1.5;color:var(--dust);pointer-events:none;
+  max-width:36ch;margin:0 auto;transition:opacity .6s}
+.tip.mid{bottom:auto;top:50%;transform:translateY(-50%)}
+.tip.high{bottom:calc(env(safe-area-inset-bottom,0px) + 70px)}
+.tip.strong{color:var(--bone)}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 62px);transform:translate(-50%,-12px);opacity:0;
+  background:var(--saffron);color:var(--ink);font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;padding:8px 14px;border-radius:999px;
+  pointer-events:none;transition:opacity .3s, transform .3s;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis;z-index:30}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+  padding:calc(env(safe-area-inset-top,0px) + 24px) 20px calc(env(safe-area-inset-bottom,0px) + 28px);gap:16px;overflow-y:auto;
+  background:linear-gradient(to top, color-mix(in srgb,var(--ink) 97%,transparent) 60%, color-mix(in srgb,var(--ink) 60%,transparent) 85%, transparent)}
+.overlay.solid{background:var(--ink)}
+.overlay > :first-child{margin-top:auto}
+.overlay h1{font-family:var(--f-display);font-weight:900;font-size:clamp(44px,15vw,92px);line-height:.9;margin:0;letter-spacing:-.03em;text-wrap:balance}
+.overlay h1 em{font-style:normal;color:var(--saffron)}
+.overlay h2{font-family:var(--f-display);font-weight:700;font-size:20px;margin:8px 0 0}
+.overlay .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--saffron)}
+.overlay p{font-family:var(--f-mono);font-size:14px;line-height:1.6;color:var(--bone);margin:0;max-width:38ch;opacity:.85}
+.rules{font-family:var(--f-mono);font-size:13px;line-height:1.55;color:var(--bone);opacity:.8;max-width:40ch;margin:0}
+.modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;width:100%;max-width:620px}
+.mode{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;cursor:pointer;min-width:0;
+  padding:11px 14px;border-radius:16px;border:1.5px solid color-mix(in srgb,var(--bone) 25%,transparent);background:transparent;color:var(--bone)}
+.mode strong{font-family:var(--f-display);font-weight:700;font-size:14px}
+.mode small{font-family:var(--f-mono);font-size:11px;color:var(--dust);letter-spacing:.04em}
+.mode small b{color:var(--bone);font-weight:500;font-variant-numeric:tabular-nums}
+.mode.primary{background:var(--saffron);border-color:var(--saffron);color:var(--ink)}
+.mode.primary small,.mode.primary small b{color:var(--ink)}
+.mode:focus-visible,.btn:focus-visible,.sw:focus-visible,.tool:focus-visible,.linkbtn:focus-visible,.seg button:focus-visible,.cell:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+.themes{display:flex;flex-direction:column;gap:8px;width:100%;max-width:620px}
+.lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.sw{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;cursor:pointer;padding:2px;color:var(--dust);
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.06em}
+.sw span{width:40px;height:40px;border-radius:50%;display:block;border:2px solid transparent}
+.sw.sel span{border-color:var(--bone)}
+.sw.locked span{opacity:.35}
+.sw.locked{cursor:default}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.linkbtn{background:none;border:0;color:var(--bone);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  padding:8px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.btn{font-family:var(--f-display);font-weight:700;font-size:15px;padding:14px 24px;border:0;border-radius:999px;background:var(--saffron);color:var(--ink);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--bone);border:1.5px solid var(--bone)}
+.btn.small{font-size:13px;padding:10px 16px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.share{width:100%;max-width:420px;min-height:130px;font-family:var(--f-mono);font-size:13px;line-height:1.5;box-sizing:border-box;
+  background:color-mix(in srgb,var(--bone) 8%,var(--ink));color:var(--bone);border:1px solid color-mix(in srgb,var(--bone) 25%,transparent);
+  border-radius:12px;padding:12px;resize:none;-webkit-user-select:text;user-select:text;word-break:break-all}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px 16px;width:100%;max-width:620px}
+.stats div{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dust)}
+.stats b{display:block;font-family:var(--f-display);font-size:20px;letter-spacing:0;color:var(--bone);font-variant-numeric:tabular-nums}
+.ach{display:grid;gap:6px;width:100%;max-width:620px;margin:0;padding:0;list-style:none}
+.ach li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-family:var(--f-mono);font-size:13px;line-height:1.4;color:var(--dust)}
+.ach li i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--dust);margin-top:2px;font-style:normal}
+.ach li.on{color:var(--bone)}
+.ach li.on i{background:var(--saffron);border-color:var(--saffron)}
+.ach li span b{font-weight:500;color:inherit}
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:16px;width:100%;max-width:520px;flex-wrap:wrap;
+  padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--bone) 12%,transparent)}
+.setrow > div{font-family:var(--f-mono);font-size:14px;color:var(--bone);min-width:0}
+.setrow small{display:block;font-size:11.5px;color:var(--dust);margin-top:2px;max-width:34ch}
+.seg{display:flex;border:1.5px solid color-mix(in srgb,var(--bone) 30%,transparent);border-radius:999px;overflow:hidden}
+.seg button{background:transparent;border:0;color:var(--bone);font-family:var(--f-mono);font-size:12px;padding:8px 12px;cursor:pointer}
+.seg button.on{background:var(--bone);color:var(--ink)}
+.world{width:100%;max-width:620px;display:grid;gap:8px;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--bone) 12%,transparent)}
+.world h3{margin:0;font-family:var(--f-display);font-size:18px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.world h3 span{font-family:var(--f-mono);font-size:12px;color:var(--dust);font-weight:400}
+.world p{font-size:12.5px;margin:0;color:var(--dust);opacity:1}
+.cells{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.cell{aspect-ratio:1.15;max-width:100%;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--bone) 25%,transparent);background:transparent;
+  color:var(--bone);font-family:var(--f-display);font-size:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;padding:0}
+.cell small{font-family:var(--f-mono);font-size:10px;color:var(--saffron);letter-spacing:.05em}
+.cell.boss{border-color:var(--rose);color:var(--rose)}
+.cell.locked{opacity:.3;cursor:default}
+.cell.done{border-color:var(--saffron)}
+.world.locked{opacity:.45}
+.edtools{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(env(safe-area-inset-bottom,0px) + 12px);display:flex;gap:6px;overflow-x:auto;
+  background:color-mix(in srgb,var(--ink) 92%,transparent);border-top:1px solid color-mix(in srgb,var(--bone) 15%,transparent)}
+.tool{flex:none;font-family:var(--f-mono);font-size:12px;padding:9px 12px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--bone) 30%,transparent);
+  background:transparent;color:var(--bone);cursor:pointer;white-space:nowrap}
+.tool.sel{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.edtop{position:fixed;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.edtop .grow{flex:1;min-width:0;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dust)}
+.edtop .grow b{display:block;font-family:var(--f-display);font-size:16px;letter-spacing:0;color:var(--bone);text-transform:none}
+.stepper{display:flex;align-items:center;gap:4px;font-family:var(--f-mono);font-size:12px;color:var(--bone)}
+.stepper button{width:30px;height:30px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--bone) 30%,transparent);background:transparent;color:var(--bone);cursor:pointer;padding:0}
+.banner{position:fixed;left:16px;right:16px;top:42%;text-align:center;font-family:var(--f-display);font-weight:900;
+  font-size:clamp(30px,10vw,56px);color:var(--saffron);pointer-events:none;letter-spacing:-.02em;opacity:0;transform:scale(.9);transition:opacity .35s, transform .35s}
+.banner.show{opacity:1;transform:scale(1)}
+.banner small{display:block;font-family:var(--f-mono);font-weight:400;font-size:13px;letter-spacing:.14em;color:var(--bone);text-transform:uppercase;margin-top:8px}
+.fade{position:fixed;inset:0;background:var(--ink);opacity:0;pointer-events:none;transition:opacity .22s;z-index:40}
+.fade.on{opacity:1}
+.splash{position:fixed;inset:0;background:var(--ink);display:grid;place-items:center;z-index:50;transition:opacity .5s;cursor:pointer}
+.splash.hide{opacity:0;pointer-events:none}
+.sp-stage{position:relative;width:min(70vw,320px);aspect-ratio:1;display:grid;place-items:center}
+.sp-stage i{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--bone);opacity:0;animation:sp 2.4s cubic-bezier(.2,.6,.3,1) infinite}
+.sp-stage i:nth-child(2){animation-delay:.6s;border-color:var(--saffron)}
+.sp-stage i:nth-child(3){animation-delay:1.2s;border-color:var(--rose)}
+.sp-title{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,11vw,60px);letter-spacing:-.03em;position:relative}
+.sp-title em{font-style:normal;color:var(--saffron)}
+@keyframes sp{0%{transform:scale(.1);opacity:.9}100%{transform:scale(1.25);opacity:0}}
+@media (prefers-reduced-motion: reduce){ .banner,.tip,.toast,.fade,.splash{transition:none} .sp-stage i{animation:none;opacity:.4} }
+.seg.wrap{flex-wrap:wrap;border-radius:16px}
+.seg.wrap button{flex:1 0 auto}
+</style>
+
+<canvas id="c" data-ia="a_canvas"></canvas>
+
+<div class="hud" id="hud" hidden>
+  <div class="l">
+    <button class="menubtn" id="toMenu" data-ia="a_menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 4h10M3 8h10M3 12h10"/></svg></button>
+    <div><span id="lvlLabel"></span><b id="lvl">1</b></div>
+  </div>
+  <div class="pulses" id="pulses" data-ia="a_pulses"></div>
+  <div class="r"><span id="scoreLabel"></span><b id="score">0</b></div>
+</div>
+<button class="freezebtn" id="freezeBtn" hidden data-ia="a_freeze"><span data-i="freeze"></span><b id="freezeN">0</b></button>
+
+<div class="duel top" id="duelTop" hidden><span data-i="p2"></span><b id="d2">0</b><div class="pulses" id="dp2"></div></div>
+<div class="duel bot" id="duelBot" hidden>
+  <button class="menubtn" id="toMenu2" data-ia="a_menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 4h10M3 8h10M3 12h10"/></svg></button>
+  <span data-i="p1"></span><b id="d1">0</b><div class="pulses" id="dp1"></div>
+</div>
+
+<div class="edtop" id="edTop" hidden>
+  <button class="menubtn" id="toMenu3" data-ia="a_menu"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 4h10M3 8h10M3 12h10"/></svg></button>
+  <div class="grow"><span data-i="ed_title"></span><b id="edCount"></b></div>
+  <div class="stepper" data-ia="a_pulses_ed"><button id="pMinus" data-ia="a_minus">−</button><span id="pVal">3</span><button id="pPlus" data-ia="a_plus">+</button></div>
+  <button class="btn small" id="edTest" data-i="ed_test"></button>
+  <button class="btn small ghost" id="edCode" data-i="ed_code"></button>
+</div>
+<div class="edtools" id="edTools" hidden></div>
+
+<div class="tip" id="tip" hidden></div>
+<div class="banner" id="banner"></div>
+<div class="toast" id="toast" role="status"></div>
+
+<div class="overlay" id="menu" hidden>
+  <div class="kicker" data-i="kicker"></div>
+  <h1>Réso<em>nance</em></h1>
+  <p class="rules" data-i="rules"></p>
+  <div class="modes">
+    <button class="mode" id="mTuto"><strong data-i="m_tuto"></strong><small id="tutoLine"></small></button>
+    <button class="mode" id="mCamp"><strong data-i="m_camp"></strong><small><span data-i="stars"></span> <b id="campStars">0</b></small></button>
+    <button class="mode" id="mArcade"><strong data-i="m_arcade"></strong><small><span data-i="record"></span> <b id="bestArcade">0</b></small></button>
+    <button class="mode" id="mDaily"><strong data-i="m_daily"></strong><small id="dailyLine"></small></button>
+    <button class="mode" id="mPuzzle"><strong data-i="m_puzzle"></strong><small><span data-i="solved"></span> <b id="puzCount">0</b></small></button>
+    <button class="mode" id="mChrono"><strong data-i="m_chrono"></strong><small><span data-i="record"></span> <b id="bestChrono">0</b></small></button>
+    <button class="mode" id="mSurv"><strong data-i="m_surv"></strong><small><span data-i="record"></span> <b id="bestSurv">0 s</b></small></button>
+    <button class="mode" id="mRhythm"><strong data-i="m_rhythm"></strong><small><span data-i="record"></span> <b id="bestRhythm">0</b></small></button>
+    <button class="mode" id="mMelody"><strong data-i="m_melody"></strong><small><span data-i="record"></span> <b id="bestMelody">0</b></small></button>
+    <button class="mode" id="mCoop"><strong data-i="m_coop"></strong><small><span data-i="level"></span> <b id="bestCoop">0</b></small></button>
+    <button class="mode" id="mDuel"><strong data-i="m_duel"></strong><small data-i="duel_sub"></small></button>
+    <button class="mode" id="mZen"><strong data-i="m_zen"></strong><small><span data-i="nodes"></span> <b id="zenCount">0</b></small></button>
+    <button class="mode" id="mEditor"><strong data-i="m_editor"></strong><small data-i="editor_sub"></small></button>
+  </div>
+  <div class="themes">
+    <div class="lbl" id="totalLine"></div>
+    <div class="swatches" id="swatches"></div>
+  </div>
+  <div class="links">
+    <button class="linkbtn" id="openStats"><span data-i="link_ach"></span> · <span id="achCount">0</span></button>
+    <button class="linkbtn" id="openSet" data-i="link_set"></button>
+  </div>
+</div>
+
+<div class="overlay solid" id="campView" hidden>
+  <div class="kicker" data-i="m_camp"></div>
+  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="camp_title"></h1>
+  <p id="campSum"></p>
+  <div id="campWorlds" style="display:grid;gap:4px;width:100%;max-width:620px"></div>
+  <div class="row"><button class="btn" id="closeCamp" data-i="menu"></button></div>
+</div>
+
+<div class="overlay solid" id="setView" hidden>
+  <div class="kicker" data-i="link_set"></div>
+  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="set_title"></h1>
+  <div class="setrow"><div data-i="set_lang"></div><div class="seg wrap" data-k="lang" id="langSeg"></div></div>
+  <div class="setrow"><div data-i="set_sound"></div><div class="seg" data-k="sound"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
+  <div class="setrow"><div data-i="set_vib"></div><div class="seg" data-k="vib"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
+  <div class="setrow"><div><span data-i="set_speed"></span><small data-i="set_speed_note"></small></div>
+    <div class="seg" data-k="speed"><button data-v="0.8" data-i="slow"></button><button data-v="1" data-i="normal"></button><button data-v="1.2" data-i="fast"></button></div></div>
+  <div class="setrow"><div><span data-i="set_cb"></span><small data-i="set_cb_note"></small></div>
+    <div class="seg" data-k="cb"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
+  <div class="row"><button class="btn" id="closeSet" data-i="back"></button></div>
+</div>
+
+<div class="overlay solid" id="statsView" hidden>
+  <div class="kicker" data-i="stats_kicker"></div>
+  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="stats_title"></h1>
+  <div class="stats" id="statsGrid"></div>
+  <h2 id="achHead"></h2>
+  <ul class="ach" id="achList"></ul>
+  <div class="row"><button class="btn" id="closeStats" data-i="back"></button></div>
+</div>
+
+<div class="overlay" id="end" hidden>
+  <div class="kicker" id="endKicker"></div>
+  <h1 id="endTitle" style="font-size:clamp(36px,11vw,64px)"></h1>
+  <p id="endMsg"></p>
+  <textarea class="share" id="shareBox" hidden data-ia="a_text"></textarea>
+  <div class="row" id="endBtns"></div>
+</div>
+
+<div class="fade" id="fade"></div>
+<div class="splash" id="splash" role="button" data-ia="a_splash">
+  <div class="sp-stage"><i></i><i></i><i></i><div class="sp-title">Réso<em>nance</em></div></div>
+</div>
+
+<script>
+/*ENGINE*/
+const TAU=Math.PI*2, K_MUD=2.2, ANG=0.6;
+const angDiff=(a,b)=>{ let d=Math.abs(a-b)%TAU; return d>Math.PI?TAU-d:d; };
+const E = {
+  pos(G,o){ return { x:G.env.x0+o.nx*G.env.w, y:G.env.y0+o.ny*G.env.h }; },
+  mkTarget(t){
+    return { nx:t.nx, ny:t.ny, need:t.need||2, twin:(t.twin==null?null:t.twin), fragile:!!t.fragile, vx:t.vx||0, vy:t.vy||0,
+      freq:t.freq||null, battery:!!t.battery, decay:t.decay||0, seq:(t.seq==null?null:t.seq), chroma:!!t.chroma, coop:!!t.coop, boss:!!t.boss,
+      hits:[], lit:false, litT:0, depth:0, owner:0, dirs:0, armedT:null, frozenUntil:0 };
+  },
+  layout(G){
+    for(const w of G.walls){ const c=E.pos(G,w), h=w.len*G.env.U/2; w.e=[c.x-Math.cos(w.a)*h,c.y-Math.sin(w.a)*h,c.x+Math.cos(w.a)*h,c.y+Math.sin(w.a)*h]; }
+    for(const m of [...G.muds,...G.jammers,...G.currents]){ const c=E.pos(G,m); m.x=c.x; m.y=c.y; m.rr=m.r*G.env.U; }
+    for(const o of [...G.prisms,...G.gates,...G.targets,...G.delays,...G.beacons]){ const c=E.pos(G,o); o.x=c.x; o.y=c.y; }
+  },
+  create(L, env, speed, win){
+    const gates=[];
+    for(const p of (L.portals||[])){ const a={nx:p.a.nx,ny:p.a.ny,lastT:-9}, b={nx:p.b.nx,ny:p.b.ny,lastT:-9}; a.mate=b; b.mate=a; gates.push(a,b); }
+    const G={ env, speed, win, t:0, stepN:0, rings:[], gates, pending:[],
+      targets:L.targets.map(E.mkTarget),
+      walls:(L.walls||[]).map(w=>({ nx:w.nx, ny:w.ny, a:w.a, len:w.len, mirror:!!w.mirror })),
+      prisms:(L.prisms||[]).map(p=>({ nx:p.nx, ny:p.ny, lastT:-9, hue:(p.hue==null?null:p.hue) })),
+      muds:(L.muds||[]).map(m=>({ nx:m.nx, ny:m.ny, r:m.r })),
+      jammers:(L.jammers||[]).map(j=>({ nx:j.nx, ny:j.ny, r:j.r, vx:j.vx||0, vy:j.vy||0 })),
+      currents:(L.currents||[]).map(c=>({ nx:c.nx, ny:c.ny, r:c.r, vx:c.vx, vy:c.vy })),
+      delays:(L.delays||[]).map(d=>({ nx:d.nx, ny:d.ny, lastT:-9 })),
+      beacons:(L.beacons||[]).map(b=>({ nx:b.nx, ny:b.ny, active:false, next:0, period:b.period||0.7, owner:0 })) };
+    G.drift = G.targets.some(t=>t.vx||t.vy) || G.jammers.length>0 || G.currents.length>0;
+    G.hasFreq = G.targets.some(t=>t.freq);
+    E.layout(G); return G;
+  },
+  addTarget(G,t){ const o=E.mkTarget(t), c=E.pos(G,o); o.x=c.x; o.y=c.y; G.targets.push(o); return o; },
+  inter(ax,ay,bx,by,cx,cy,dx,dy){
+    const d=(bx-ax)*(dy-cy)-(by-ay)*(dx-cx); if(Math.abs(d)<1e-9) return null;
+    const u=((cx-ax)*(dy-cy)-(cy-ay)*(dx-cx))/d, v=((cx-ax)*(by-ay)-(cy-ay)*(bx-ax))/d;
+    return (u>1e-3&&u<1-1e-3&&v>=0&&v<=1) ? { x:ax+u*(bx-ax), y:ay+u*(by-ay) } : null;
+  },
+  blocked(G,ax,ay,bx,by,except){
+    for(const w of G.walls){ if(w===except) continue; const e=w.e; if(E.inter(ax,ay,bx,by,e[0],e[1],e[2],e[3])) return true; }
+    return false;
+  },
+  segCirc(ax,ay,bx,by,cx,cy,r){
+    const dx=bx-ax, dy=by-ay, L2=dx*dx+dy*dy; const k=L2?Math.max(0,Math.min(1,((cx-ax)*dx+(cy-ay)*dy)/L2)):0;
+    return Math.hypot(ax+k*dx-cx, ay+k*dy-cy) < r;
+  },
+  mudOverlap(G,ox,oy,px,py){
+    const dx=px-ox, dy=py-oy, d=Math.hypot(dx,dy); if(!d) return 0;
+    const ux=dx/d, uy=dy/d; let s=0;
+    for(const m of G.muds){
+      const fx=ox-m.x, fy=oy-m.y, b=fx*ux+fy*uy, c=fx*fx+fy*fy-m.rr*m.rr, disc=b*b-c;
+      if(disc<=0) continue; const q=Math.sqrt(disc);
+      const t1=Math.max(-b-q,0), t2=Math.min(-b+q,d); if(t2>t1) s+=t2-t1;
+    }
+    return s;
+  },
+  eff(G,r,px,py){
+    const d=Math.hypot(px-r.x,py-r.y);
+    return (r.via||!G.muds.length) ? d : d+(K_MUD-1)*E.mudOverlap(G,r.x,r.y,px,py);
+  },
+  reach(G,r,px,py){
+    let ax=r.x, ay=r.y;
+    if(r.via){
+      const e=r.via.e, X=E.inter(r.x,r.y,px,py,e[0],e[1],e[2],e[3]);
+      if(!X || E.blocked(G,X.x,X.y,px,py,r.via)) return false; ax=X.x; ay=X.y;
+    } else if(E.blocked(G,ax,ay,px,py,null)) return false;
+    for(const j of G.jammers) if(E.segCirc(ax,ay,px,py,j.x,j.y,j.rr)) return false;
+    return true;
+  },
+  ring(G,x,y,kind,src,depth,owner,freq,portaled,ex){
+    ex=ex||{};
+    const mk=(x,y,via)=>({ x, y, r:0, kind, src, depth, owner, freq:freq||null, portaled:!!portaled, via, trig:new Set(),
+      hue:(ex.hue==null?null:ex.hue), tag:ex.tag||null, freeze:!!ex.freeze, delayed:!!ex.delayed });
+    const out=[mk(x,y,null)];
+    for(const w of G.walls){
+      if(!w.mirror) continue;
+      const [ax,ay,bx,by]=w.e, dx=bx-ax, dy=by-ay, t=((x-ax)*dx+(y-ay)*dy)/(dx*dx+dy*dy);
+      const px=ax+t*dx, py=ay+t*dy; if(Math.hypot(x-px,y-py)<2) continue;
+      out.push(mk(2*px-x, 2*py-y, w));
+    }
+    const extra = 0.25*G.env.U + (G.drift?0.35*G.env.U:0);
+    for(const r of out){
+      let m=0;
+      for(const o of G.targets) m=Math.max(m,E.eff(G,r,o.x,o.y));
+      for(const o of G.prisms) m=Math.max(m,E.eff(G,r,o.x,o.y));
+      for(const o of G.gates) m=Math.max(m,E.eff(G,r,o.x,o.y));
+      for(const o of G.delays) m=Math.max(m,E.eff(G,r,o.x,o.y));
+      r.lim=m+extra;
+    }
+    return out;
+  },
+  tap(G,x,y,owner,freq,ex){ G.rings.push(...E.ring(G,x,y,'tap',null,0,owner||0,freq||null,false,ex)); },
+  active(G){ return G.rings.some(r=>r.r<=r.lim) || G.pending.length>0 || G.beacons.some(b=>b.active) || G.targets.some(t=>t.armedT!=null&&!t.lit); },
+  allLit(G){ return G.targets.every(t=>t.lit); },
+  ready(t){
+    if(t.dirs<t.need) return false;
+    if(t.chroma){ const s=new Set(); for(const h of t.hits) if(h.hue!=null) s.add(h.hue); if(s.size<2) return false; }
+    if(t.coop){ const s=new Set(t.hits.map(h=>h.owner)); if(!s.has(1)||!s.has(2)) return false; }
+    return true;
+  },
+  hitInfo(hs){
+    let depth=0; const cnt={};
+    for(const h of hs){ depth=Math.max(depth,h.depth); if(h.owner) cnt[h.owner]=(cnt[h.owner]||0)+1; }
+    let owner=0, best=-1;
+    for(const k in cnt){ if(cnt[k]>best){ best=cnt[k]; owner=+k; } else if(cnt[k]===best){ owner=hs[hs.length-1].owner; } }
+    return { depth, owner };
+  },
+  light(G,t,born,ev){
+    const info=E.hitInfo(t.hits);
+    const depth=Math.max(info.depth, t.armedT!=null?(t.armDepth||0):0)+1;
+    t.byVia=t.hits.some(h=>h.via); t.byPortal=t.hits.some(h=>h.portal); t.onBeat=t.hits.some(h=>h.tag==='beat');
+    const dh=t.hits.filter(h=>h.direct);
+    t.spread=dh.length>1 ? Math.max(...dh.map(h=>h.t))-Math.min(...dh.map(h=>h.t)) : null;
+    t.lit=true; t.litT=G.t; t.depth=depth; t.owner=info.owner||t.armOwner||0; t.armedT=null; t.hits=[];
+    born.push(...E.ring(G,t.x,t.y,'chain',t,depth,t.owner,t.freq,false,{}));
+    ev('light',t);
+  },
+  step(G,dt,ev){
+    G.t+=dt; G.stepN++;
+    const moved=new Set();
+    for(const o of [...G.targets,...G.jammers]){
+      if(!(o.vx||o.vy) || (o.frozenUntil && G.t<o.frozenUntil)) continue;
+      o.nx+=o.vx*dt; o.ny+=o.vy*dt;
+      if(o.nx<0.03||o.nx>0.97){ o.vx*=-1; o.nx=Math.min(Math.max(o.nx,0.03),0.97); }
+      if(o.ny<0.03||o.ny>0.97){ o.vy*=-1; o.ny=Math.min(Math.max(o.ny,0.03),0.97); }
+      moved.add(o);
+    }
+    if(G.currents.length) for(const t of G.targets){
+      if(t.frozenUntil && G.t<t.frozenUntil) continue;
+      for(const c of G.currents) if(Math.hypot(t.x-c.x,t.y-c.y)<c.rr){
+        t.nx=Math.min(Math.max(t.nx+c.vx*dt,0.03),0.97); t.ny=Math.min(Math.max(t.ny+c.vy*dt,0.03),0.97); moved.add(t); }
+    }
+    for(const o of moved){ const c=E.pos(G,o); o.x=c.x; o.y=c.y; }
+    const born=[];
+    for(const b of G.beacons) if(b.active && G.t>=b.next){ b.next=G.t+b.period; born.push(...E.ring(G,b.x,b.y,'beacon',null,0,b.owner,null,false,{})); ev('beacon',b); }
+    if(G.pending.length){
+      const due=G.pending.filter(p=>p.t<=G.t);
+      if(due.length){ G.pending=G.pending.filter(p=>p.t>G.t); for(const p of due){ born.push(...E.ring(G,...p.a)); ev('echo',p); } }
+    }
+    for(const r of G.rings){
+      const prev=r.r; r.r+=G.speed*dt;
+      if(prev>r.lim) continue;
+      for(const t of G.targets){
+        if(t===r.src) continue;
+        if(r.freeze){
+          if(!t.lit && (t.vx||t.vy||G.currents.length)){ const e=E.eff(G,r,t.x,t.y); if(prev<e&&e<=r.r&&E.reach(G,r,t.x,t.y)){ t.frozenUntil=G.t+3; ev('freeze',t); } }
+          continue;
+        }
+        if(t.lit&&!t.fragile) continue;
+        if(t.freq && r.freq && r.freq!==t.freq) continue;
+        const e=E.eff(G,r,t.x,t.y);
+        if(prev<e && e<=r.r && E.reach(G,r,t.x,t.y))
+          t.hits.push({ t:G.t, a:Math.atan2(r.y-t.y,r.x-t.x), depth:r.depth, kind:r.kind, owner:r.owner,
+            direct:r.kind==='tap'&&!r.via&&!r.portaled, via:!!r.via, portal:r.portaled, hue:r.hue, tag:r.tag });
+      }
+      if(r.freeze) continue;
+      const ex={ hue:r.hue, tag:r.tag, delayed:r.delayed };
+      if(r.kind!=='prism') for(const p of G.prisms){
+        if(r.trig.has(p)) continue;
+        const e=E.eff(G,r,p.x,p.y);
+        if(prev<e && e<=r.r && E.reach(G,r,p.x,p.y) && G.t-p.lastT>0.15){
+          r.trig.add(p); p.lastT=G.t;
+          born.push(...E.ring(G,p.x,p.y,'prism',p,r.depth,r.owner,r.freq,r.portaled,{...ex, hue:(p.hue!=null?p.hue:r.hue)})); ev('prism',p);
+        }
+      }
+      if(!r.portaled) for(const g of G.gates){
+        if(r.trig.has(g)) continue;
+        const e=E.eff(G,r,g.x,g.y);
+        if(prev<e && e<=r.r && E.reach(G,r,g.x,g.y) && G.t-g.lastT>0.15){
+          r.trig.add(g); g.lastT=g.mate.lastT=G.t;
+          born.push(...E.ring(G,g.mate.x,g.mate.y,r.kind,r.src,r.depth,r.owner,r.freq,true,ex)); ev('portal',g);
+        }
+      }
+      if(!r.delayed) for(const d of G.delays){
+        if(r.trig.has(d)) continue;
+        const e=E.eff(G,r,d.x,d.y);
+        if(prev<e && e<=r.r && E.reach(G,r,d.x,d.y) && G.t-d.lastT>0.15){
+          r.trig.add(d); d.lastT=G.t;
+          G.pending.push({ t:G.t+1, d, a:[d.x,d.y,'delay',d,r.depth,r.owner,r.freq,r.portaled,{...ex, delayed:true}] }); ev('delay',d);
+        }
+      }
+    }
+    for(const t of G.targets){
+      if(t.lit && t.decay && G.t-t.litT>t.decay){ t.lit=false; t.hits=[]; t.armedT=null; ev('fade',t); continue; }
+      if(!t.lit){
+        t.hits=t.hits.filter(h=>G.t-h.t<=G.win);
+        const dirs=[]; for(const h of t.hits) if(dirs.every(a=>angDiff(a,h.a)>ANG)) dirs.push(h.a);
+        t.dirs=dirs.length;
+        if(E.ready(t)){
+          if(t.twin==null) E.light(G,t,born,ev);
+          else{
+            if(t.armedT==null){ const i=E.hitInfo(t.hits); t.armedT=G.t; t.armDepth=i.depth; t.armOwner=i.owner; ev('arm',t); }
+            const tw=G.targets[t.twin];
+            if(tw && !tw.lit && tw.armedT!=null){ E.light(G,t,born,ev); E.light(G,tw,born,ev); }
+          }
+        }
+        if(!t.lit && t.armedT!=null && G.t-t.armedT>G.win) t.armedT=null;
+      } else if(t.fragile){
+        for(const h of t.hits){
+          if(h.done || !h.direct || G.t-h.t<=G.win) continue;
+          h.done=true;
+          if(!t.hits.some(o=>o!==h && Math.abs(o.t-h.t)<=G.win && angDiff(o.a,h.a)>ANG)){
+            t.lit=false; t.hits=[]; t.armedT=null; ev('break',t); break;
+          }
+        }
+        t.hits=t.hits.filter(h=>G.t-h.t<=2*G.win);
+      }
+    }
+    G.rings.push(...born);
+  }
+};
+/*/ENGINE*/
+</script>
+
+<script>
+const I18N = {
+fr:{
+ _name:"Français",
+ kicker:"Jeu d'ondes · tactile",
+ rules:"Touche l'écran pour lancer une onde. Deux ondes venues de directions différentes, au même instant, allument un nœud, qui émet à son tour une onde.",
+ m_tuto:"Tutoriel", m_camp:"Campagne", m_arcade:"Arcade", m_daily:"Défi du jour", m_puzzle:"Puzzles", m_chrono:"Contre-la-montre", m_surv:"Survie", m_rhythm:"Rythme", m_melody:"Mélodie", m_coop:"Coop", m_duel:"Duel", m_zen:"Zen", m_editor:"Éditeur",
+ record:"Record", stars:"Étoiles", solved:"Résolus", level:"Niveau", nodes:"Nœuds", duel_sub:"2 joueurs, 1 écran", editor_sub:"Crée et partage",
+ tuto_todo:"Commence par ici", tuto_done:"Terminé · à revoir", daily_todo:"{d} · à faire", daily_today:"Aujourd'hui",
+ palettes:"Palettes · {n} points cumulés", link_ach:"Succès", link_set:"Réglages",
+ camp_title:"Cinq mers.", camp_sum:"{n} étoile sur {m}.|{n} étoiles sur {m}.", camp_sum2:"Chaque mer s'ouvre quand le gardien de la précédente est vaincu.",
+ menu:"Menu", back:"Retour",
+ set_title:"Réglages.", set_sound:"Son", set_vib:"Vibrations", on:"Activé", off:"Coupé", set_speed:"Vitesse des ondes",
+ set_speed_note:"Sans effet sur la campagne, les puzzles, le défi et le tutoriel, pour garder leurs solutions.", slow:"Lente", normal:"Normale", fast:"Rapide",
+ set_cb:"Mode daltonien", set_cb_note:"Couleurs distinguables et repères écrits sur les joueurs et les prismes colorés.", set_lang:"Langue",
+ stats_kicker:"Ton parcours", stats_title:"Succès.", ach_head:"Succès · {n}/{m}",
+ st_waves:"Ondes lancées", st_lit:"Nœuds allumés", st_chain:"Plus longue chaîne", st_prec:"Précision moyenne", st_time:"Temps de jeu", st_min:"{n} min", st_batt:"Impulsions rendues", st_stars:"Étoiles", st_arcade:"Record arcade",
+ lb_arcade:"Niveau", lb_daily:"Défi", lb_zen:"Zen", lb_chrono:"Temps", lb_puzzle:"Puzzle", lb_duel:"Duel", lb_replay:"Rejeu", lb_surv:"Temps", lb_melody:"Mélodie", lb_custom:"Grille", lb_camp:"Campagne", lb_tuto:"Tutoriel", lb_coop:"Coop", lb_rhythm:"Vies",
+ sc_score:"Score", sc_nodes:"Nœuds", sc_try:"Essai", sc_off:"Éteints", sc_step:"Étape",
+ freeze:"Gel", a_freeze:"Préparer une onde de gel", a_menu:"Retour au menu", a_pulses:"Impulsions restantes", a_canvas:"Zone de jeu", a_splash:"Entrer dans le jeu", p1:"J1", p2:"J2", hold_high:"aigu", hold_low:"grave",
+ ed_title:"Éditeur", ed_nodes:"{n} nœud|{n} nœuds", ed_test:"Tester", ed_code:"Code", a_minus:"Moins d'impulsions", a_plus:"Plus d'impulsions", a_pulses_ed:"Impulsions accordées",
+ tl_node:"Nœud", tl_prism:"Prisme", tl_wall:"Mur", tl_mirror:"Miroir", tl_mud:"Vase", tl_portal:"Portail", tl_erase:"Gomme",
+ et_node:"Touche pour poser un nœud. Touche un nœud posé pour changer son type.", et_prism:"Touche pour poser un prisme.", et_wall:"Touche pour poser un mur. Touche un mur pour le tourner.", et_mirror:"Touche pour poser un miroir. Touche-le pour le tourner.", et_mud:"Touche pour poser une flaque de vase.", et_portal_a:"Touche pour poser l'entrée d'un portail.", et_portal_b:"Touche l'emplacement de la sortie du portail.", et_erase:"Touche un élément pour l'effacer.",
+ nt:["Nœud simple","Nœud à trois arcs","Batterie","Nœud aigu","Nœud grave","Nœud fragile","Nœud à rebours"],
+ max_nodes:"14 nœuds au maximum", max_mud:"4 flaques au maximum", max_portal:"3 portails au maximum", need_node:"Pose au moins un nœud", loaded:"Grille chargée", ach_toast:"Succès · {n}",
+ code_k:"Code de la grille", code_t:"Partage.", code_msg:"Copie ce code pour partager ta grille, ou colle un code reçu puis touche Charger.", copy:"Copier", load:"Charger", close:"Fermer", copied:"Copié", selected:"Sélectionné, copie-le", bad_code:"Code illisible", a_text:"Texte",
+ mk_pulse:"+1 impulsion", mk_wrong:"fausse note", mk_broken:"brisé", mk_off:"éteint", mk_frozen:"figé", mk_beat:"pile !", mk_miss:"raté",
+ bn_harmony:"Harmonie", bn_newgrid:"Nouvelle grille", bn_gridfull:"Grille complète", bn_step:"Étape {n}", bn_next:"Suivante", bn_tutodone:"Tutoriel terminé", bn_solved:"Résolu",
+ bn_puz:"Puzzle {k} · {n} essai|Puzzle {k} · {n} essais", bn_melody:"Mélodie {n}", bn_wrongs:"{n} fausse note|{n} fausses notes", bn_clean:"Sans fausse note", bn_level:"Niveau {n}", bn_coop:"Coop {n}", bn_replay:"Rejeu ×2", bn_kept:"+{n} · impulsions gardées", bn_full:"Résonance complète", bn_almost:"Presque", bn_retry:"On recommence", bn_missed:"Raté",
+ e_nopulse:"Plus d'impulsions", e_silence:"Silence.", e_left:"{n} nœud encore éteint.|{n} nœuds encore éteints.", e_score:"Score : {n}.", replay_lvl:"Rejouer le niveau", retry:"Réessayer", map:"Carte", replay:"Rejouer",
+ cu_k:"Ta grille", cu_ok:"Résolue.", cu_used:"{n} impulsion utilisée sur {m}.|{n} impulsions utilisées sur {m}.", cu_fail:"Pas encore.", cu_fail_msg:"Ajuste la grille ou accorde plus d'impulsions.", to_editor:"Retour à l'éditeur",
+ cp_grid:"grille {n}", cp_boss:"Gardien", cp_3:"Trois étoiles. Rien à redire.", cp_keep:"Garde au moins {n} impulsion pour trois étoiles.|Garde au moins {n} impulsions pour trois étoiles.", next_sea:"Mer suivante", next_grid:"Grille suivante", cp_star:"{n} étoile|{n} étoiles", cp_locked:"verrouillée",
+ tu_k:"Tutoriel", tu_t:"Prêt.", tu_msg:"Tu connais l'essentiel. La campagne présente chaque nouvel élément un par un.",
+ ch_k:"Temps écoulé", t_record:"Record.", t_end:"Fin.", ch_grids:"{n} grille complète.|{n} grilles complètes.", rec:"Record : {n}.",
+ rh_k:"Rythme", rh_t:"Hors tempo.", rh_beats:"{n} nœud allumé pile sur le temps.|{n} nœuds allumés pile sur le temps.",
+ sv_k:"Saturation", sv_t:"Submergé.", sv_msg:"Tenu {n} s.", sv_rec:"Record : {n} s.",
+ dl_k:"Duel", dl_tie:"Égalité.", dl_p1:"J1 gagne.", dl_p2:"J2 gagne.", dl_a:"Joueur 1 : {n} nœud.|Joueur 1 : {n} nœuds.", dl_b:"Joueur 2 : {n} nœud.|Joueur 2 : {n} nœuds.", rematch:"Revanche",
+ pz_k:"Puzzles", pz_t:"Tous résolus.", pz_msg:"Les {n} grilles sont bouclées.", restart:"Recommencer",
+ dy_k:"Défi du {d}", dy_t:"Accompli.", dy_best:"Meilleur aujourd'hui : {n}.", dy_tomorrow:"Nouvelles grilles demain.", share:"Partager", watch:"Revoir ×2",
+ sh_head:"Résonance · défi du {d}", sh_chain:"chaîne ×{n}", sh_score:"Score {n}", sh_retries:"{n} reprise|{n} reprises",
+ rp_k:"Rejeu", rp_t:"Fin du rejeu.", rp_msg:"Ta meilleure partie du jour : {n} points.", watch_again:"Revoir encore",
+ theme_aria:"Palette {t}", theme_lock:"Palette {t}, débloquée à {n} points",
+ themes:["Seiche","Abysse","Braise","Lichen","Papier"],
+ tips:{
+  puzzle:"Une seule impulsion. Les prismes et les miroirs font le reste.",
+  duel:"Moitié basse : joueur 1. Moitié haute : joueur 2. Un nœud revient à celui qui l'allume.",
+  coop:"Moitié basse : joueur 1. Moitié haute : joueur 2. Chaque nœud a besoin d'une onde de chacun de vous.",
+  chrono:"60 secondes. Seules les réactions en chaîne rapportent des points.",
+  surv:"Des nœuds apparaissent sans cesse. Chaque nœud allumé rend une impulsion. À 8 nœuds éteints, c'est fini.",
+  rhythm:"Les nœuds arrivent sur le tempo et chaque temps recharge une impulsion. Touche pile sur le temps pour doubler les points. Un nœud manqué coûte une vie.",
+  melody:"Allume les nœuds dans l'ordre des numéros. Une fausse note éteint tout.",
+  boss:"Le gardien central demande quatre directions différentes.",
+  base:"Touche deux points autour d'un nœud, presque en même temps.",
+  beacon:"Garde le doigt sur le résonateur : il émet une onde à chaque battement, pour une seule impulsion.",
+  delay:"L'écho différé renvoie l'onde qu'il reçoit une seconde plus tard.",
+  chroma:"Les nœuds bicolores veulent deux ondes de couleurs différentes, venues de deux prismes distincts.",
+  currents:"Les courants déplacent les nœuds. Le bouton Gel prépare une onde qui fige un nœud trois secondes.",
+  freq:"Appui court : onde aiguë, en pointillé. Appui long : onde grave, épaisse. Les nœuds marqués n'écoutent qu'une fréquence.",
+  portal:"Une onde qui entre dans un portail ressort par l'autre.",
+  jam:"Le brouilleur mobile absorbe les ondes qui le traversent.",
+  battery:"Le nœud marqué + te rend une impulsion quand il s'allume.",
+  decay:"Le nœud à rebours se rééteint au bout de 6 secondes.",
+  mirror:"Les traits clairs sont des miroirs : ils renvoient les ondes.",
+  walls:"Les murs arrêtent les ondes. Contourne-les.",
+  prisms:"Un prisme touché par une onde en relance une, gratuitement.",
+  mud:"La vase ralentit les ondes qui la traversent.",
+  twin:"Les jumeaux reliés doivent s'allumer ensemble.",
+  fragile:"Le nœud fragile s'éteint si une de tes ondes le touche seule. Allume-le en dernier.",
+  triple:"Les nœuds à trois arcs demandent trois directions.",
+  drift:"Les nœuds dérivent. Anticipe."
+ },
+ tuto:[
+  "Touche le point 1 puis le point 2, très vite. Les deux ondes arrivent ensemble au nœud et l'allument.",
+  "Le point 1 est plus loin du nœud : touche-le d'abord, puis le point 2 un court instant après.",
+  "Allume le premier nœud avec 1 et 2. Dès qu'il s'allume, touche 3 : son onde croise la tienne sur le second.",
+  "Le mur bloque l'onde. Les deux prismes la relancent et se croisent sur le nœud. Une seule touche suffit.",
+  "À toi : trois nœuds, cinq impulsions, sans aide."
+ ],
+ worlds:[
+  ["Rivage","Les bases : croiser, enchaîner, économiser."],
+  ["Récifs","Murs, prismes et miroirs."],
+  ["Marais","Vase, jumeaux et nœuds fragiles."],
+  ["Courants","Courants, portails, fréquences et brouilleurs."],
+  ["Abysses","Couleurs, échos différés et résonateurs."]
+ ],
+ ach:{
+  tuto:["Premiers pas","Terminer le tutoriel"], first:["Premier écho","Allumer un premier nœud"], chain3:["Ricochet","Réussir une chaîne ×3"], chain5:["Cascade","Réussir une chaîne ×5"], chain7:["Avalanche","Réussir une chaîne ×7"],
+  perfect:["Pile au même instant","Croiser deux de tes ondes à moins de 15 ms d'écart"], triple:["Trois voix","Allumer un nœud à trois arcs"], mirror:["Reflet","Allumer un nœud avec une onde réfléchie"], portal:["Ailleurs","Allumer un nœud avec une onde téléportée"],
+  freeze:["Glacé","Figer un nœud en mouvement"], batt10:["Rechargé","Récupérer 10 impulsions grâce aux batteries"], world1:["Cap passé","Vaincre le gardien du Rivage"], camp:["Abysses","Vaincre le dernier gardien de la campagne"],
+  stars100:["Constellation","Réunir 100 étoiles en campagne"], arc10:["Au large","Atteindre le niveau 10 en Arcade"], arc20:["Haute mer","Atteindre le niveau 20 en Arcade"], thrift:["Économe","Finir un niveau Arcade avec la moitié des impulsions"],
+  daily:["Rendez-vous","Terminer un défi du jour"], share:["Bouche à oreille","Partager un résultat du défi"], puz1:["Du premier coup","Résoudre un puzzle sans rater"], puzall:["Maître des puzzles","Résoudre tous les puzzles"],
+  chrono3k:["Contre la montre","Faire 3 000 points en contre-la-montre"], surv60:["Tenir bon","Tenir 60 secondes en survie"], beat10:["Dans le temps","Allumer 10 nœuds pile sur le temps"], melody:["Juste","Jouer une mélodie complète sans fausse note"],
+  coop5:["Main dans la main","Atteindre le niveau 5 en coop"], duel:["Face à face","Jouer un duel"], zen100:["Respiration","Allumer 100 nœuds en mode zen"], editor:["Architecte","Tester une grille de l'éditeur"],
+  palette:["Nouvelles couleurs","Débloquer une palette"], waves1000:["Marée","Lancer 1 000 ondes"]
+ }
+},
+en:{
+ _name:"English",
+ kicker:"Wave game · touch",
+ rules:"Tap the screen to send a wave. Two waves arriving from different directions at the same moment light a node, which then sends a wave of its own.",
+ m_tuto:"Tutorial", m_camp:"Campaign", m_arcade:"Arcade", m_daily:"Daily challenge", m_puzzle:"Puzzles", m_chrono:"Time attack", m_surv:"Survival", m_rhythm:"Rhythm", m_melody:"Melody", m_coop:"Co-op", m_duel:"Duel", m_zen:"Zen", m_editor:"Editor",
+ record:"Best", stars:"Stars", solved:"Solved", level:"Level", nodes:"Nodes", duel_sub:"2 players, 1 screen", editor_sub:"Build and share",
+ tuto_todo:"Start here", tuto_done:"Done · replay it", daily_todo:"{d} · to play", daily_today:"Today",
+ palettes:"Palettes · {n} points earned", link_ach:"Achievements", link_set:"Settings",
+ camp_title:"Five seas.", camp_sum:"{n} star out of {m}.|{n} stars out of {m}.", camp_sum2:"Each sea opens once the guardian of the previous one is beaten.",
+ menu:"Menu", back:"Back",
+ set_title:"Settings.", set_sound:"Sound", set_vib:"Vibration", on:"On", off:"Off", set_speed:"Wave speed",
+ set_speed_note:"Has no effect on the campaign, puzzles, daily challenge or tutorial, so their solutions still work.", slow:"Slow", normal:"Normal", fast:"Fast",
+ set_cb:"Colour-blind mode", set_cb_note:"Distinguishable colours, plus written marks on players and coloured prisms.", set_lang:"Language",
+ stats_kicker:"Your journey", stats_title:"Achievements.", ach_head:"Achievements · {n}/{m}",
+ st_waves:"Waves sent", st_lit:"Nodes lit", st_chain:"Longest chain", st_prec:"Average precision", st_time:"Time played", st_min:"{n} min", st_batt:"Pulses refunded", st_stars:"Stars", st_arcade:"Arcade best",
+ lb_arcade:"Level", lb_daily:"Challenge", lb_zen:"Zen", lb_chrono:"Time", lb_puzzle:"Puzzle", lb_duel:"Duel", lb_replay:"Replay", lb_surv:"Time", lb_melody:"Melody", lb_custom:"Grid", lb_camp:"Campaign", lb_tuto:"Tutorial", lb_coop:"Co-op", lb_rhythm:"Lives",
+ sc_score:"Score", sc_nodes:"Nodes", sc_try:"Try", sc_off:"Unlit", sc_step:"Step",
+ freeze:"Freeze", a_freeze:"Ready a freeze wave", a_menu:"Back to menu", a_pulses:"Pulses left", a_canvas:"Play area", a_splash:"Enter the game", p1:"P1", p2:"P2", hold_high:"high", hold_low:"low",
+ ed_title:"Editor", ed_nodes:"{n} node|{n} nodes", ed_test:"Test", ed_code:"Code", a_minus:"Fewer pulses", a_plus:"More pulses", a_pulses_ed:"Pulses allowed",
+ tl_node:"Node", tl_prism:"Prism", tl_wall:"Wall", tl_mirror:"Mirror", tl_mud:"Mud", tl_portal:"Portal", tl_erase:"Eraser",
+ et_node:"Tap to place a node. Tap a placed node to change its type.", et_prism:"Tap to place a prism.", et_wall:"Tap to place a wall. Tap a wall to rotate it.", et_mirror:"Tap to place a mirror. Tap it to rotate it.", et_mud:"Tap to place a mud pool.", et_portal_a:"Tap to place a portal entrance.", et_portal_b:"Tap where the portal exit goes.", et_erase:"Tap an element to erase it.",
+ nt:["Simple node","Three-arc node","Battery","High node","Low node","Fragile node","Countdown node"],
+ max_nodes:"14 nodes at most", max_mud:"4 mud pools at most", max_portal:"3 portals at most", need_node:"Place at least one node", loaded:"Grid loaded", ach_toast:"Achievement · {n}",
+ code_k:"Grid code", code_t:"Share.", code_msg:"Copy this code to share your grid, or paste a code you received and tap Load.", copy:"Copy", load:"Load", close:"Close", copied:"Copied", selected:"Selected, copy it", bad_code:"Unreadable code", a_text:"Text",
+ mk_pulse:"+1 pulse", mk_wrong:"wrong note", mk_broken:"broken", mk_off:"out", mk_frozen:"frozen", mk_beat:"on beat!", mk_miss:"missed",
+ bn_harmony:"Harmony", bn_newgrid:"New grid", bn_gridfull:"Grid complete", bn_step:"Step {n}", bn_next:"Next", bn_tutodone:"Tutorial complete", bn_solved:"Solved",
+ bn_puz:"Puzzle {k} · {n} try|Puzzle {k} · {n} tries", bn_melody:"Melody {n}", bn_wrongs:"{n} wrong note|{n} wrong notes", bn_clean:"No wrong notes", bn_level:"Level {n}", bn_coop:"Co-op {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · pulses saved", bn_full:"Full resonance", bn_almost:"Almost", bn_retry:"Try again", bn_missed:"Missed",
+ e_nopulse:"Out of pulses", e_silence:"Silence.", e_left:"{n} node still unlit.|{n} nodes still unlit.", e_score:"Score: {n}.", replay_lvl:"Replay level", retry:"Try again", map:"Map", replay:"Play again",
+ cu_k:"Your grid", cu_ok:"Solved.", cu_used:"{n} pulse used out of {m}.|{n} pulses used out of {m}.", cu_fail:"Not yet.", cu_fail_msg:"Adjust the grid or allow more pulses.", to_editor:"Back to editor",
+ cp_grid:"grid {n}", cp_boss:"Guardian", cp_3:"Three stars. Flawless.", cp_keep:"Keep at least {n} pulse for three stars.|Keep at least {n} pulses for three stars.", next_sea:"Next sea", next_grid:"Next grid", cp_star:"{n} star|{n} stars", cp_locked:"locked",
+ tu_k:"Tutorial", tu_t:"Ready.", tu_msg:"You know the essentials. The campaign introduces each new element one at a time.",
+ ch_k:"Time's up", t_record:"New best.", t_end:"Done.", ch_grids:"{n} grid completed.|{n} grids completed.", rec:"Best: {n}.",
+ rh_k:"Rhythm", rh_t:"Off beat.", rh_beats:"{n} node lit right on the beat.|{n} nodes lit right on the beat.",
+ sv_k:"Overload", sv_t:"Swamped.", sv_msg:"Lasted {n} s.", sv_rec:"Best: {n} s.",
+ dl_k:"Duel", dl_tie:"Draw.", dl_p1:"P1 wins.", dl_p2:"P2 wins.", dl_a:"Player 1: {n} node.|Player 1: {n} nodes.", dl_b:"Player 2: {n} node.|Player 2: {n} nodes.", rematch:"Rematch",
+ pz_k:"Puzzles", pz_t:"All solved.", pz_msg:"All {n} grids are done.", restart:"Start over",
+ dy_k:"Challenge of {d}", dy_t:"Done.", dy_best:"Today's best: {n}.", dy_tomorrow:"New grids tomorrow.", share:"Share", watch:"Watch ×2",
+ sh_head:"Résonance · challenge of {d}", sh_chain:"chain ×{n}", sh_score:"Score {n}", sh_retries:"{n} retry|{n} retries",
+ rp_k:"Replay", rp_t:"Replay over.", rp_msg:"Your best run today: {n} points.", watch_again:"Watch again",
+ theme_aria:"{t} palette", theme_lock:"{t} palette, unlocks at {n} points",
+ themes:["Cuttlefish","Abyss","Ember","Lichen","Paper"],
+ tips:{
+  puzzle:"One pulse only. Prisms and mirrors do the rest.",
+  duel:"Bottom half: player 1. Top half: player 2. A node belongs to whoever lights it.",
+  coop:"Bottom half: player 1. Top half: player 2. Every node needs a wave from each of you.",
+  chrono:"60 seconds. Only chain reactions score points.",
+  surv:"Nodes keep appearing. Every lit node gives back a pulse. At 8 unlit nodes, it's over.",
+  rhythm:"Nodes arrive on the beat and every beat recharges a pulse. Tap right on the beat to double the points. A missed node costs a life.",
+  melody:"Light the nodes in numbered order. A wrong note turns everything off.",
+  boss:"The central guardian needs four different directions.",
+  base:"Tap two points around a node, almost at the same time.",
+  beacon:"Keep your finger on the resonator: it sends a wave on every beat, for a single pulse.",
+  delay:"The delayed echo sends back the wave it receives one second later.",
+  chroma:"Two-colour nodes need two waves of different colours, coming from two separate prisms.",
+  currents:"Currents move nodes around. The Freeze button readies a wave that holds a node still for three seconds.",
+  freq:"Short tap: high wave, dotted. Long press: low wave, thick. Marked nodes only listen to one pitch.",
+  portal:"A wave entering one portal comes out of the other.",
+  jam:"The moving jammer absorbs waves that pass through it.",
+  battery:"The node marked + gives you a pulse back when it lights.",
+  decay:"The countdown node goes dark again after 6 seconds.",
+  mirror:"The bright lines are mirrors: they reflect waves.",
+  walls:"Walls stop waves. Go around them.",
+  prisms:"A prism hit by a wave sends out a new one, for free.",
+  mud:"Mud slows down the waves that cross it.",
+  twin:"Linked twins must light together.",
+  fragile:"The fragile node goes dark if one of your waves hits it alone. Light it last.",
+  triple:"Three-arc nodes need three directions.",
+  drift:"Nodes drift. Plan ahead."
+ },
+ tuto:[
+  "Tap point 1, then point 2, quickly. Both waves reach the node together and light it.",
+  "Point 1 is farther from the node: tap it first, then point 2 a moment later.",
+  "Light the first node with 1 and 2. As soon as it lights, tap 3: its wave crosses yours on the second node.",
+  "The wall blocks the wave. The two prisms send it on and cross on the node. One tap is enough.",
+  "Your turn: three nodes, five pulses, no help."
+ ],
+ worlds:[
+  ["Shore","The basics: cross, chain, save pulses."],
+  ["Reefs","Walls, prisms and mirrors."],
+  ["Marsh","Mud, twins and fragile nodes."],
+  ["Currents","Currents, portals, pitches and jammers."],
+  ["Abyss","Colours, delayed echoes and resonators."]
+ ],
+ ach:{
+  tuto:["First steps","Finish the tutorial"], first:["First echo","Light your first node"], chain3:["Ricochet","Make a ×3 chain"], chain5:["Cascade","Make a ×5 chain"], chain7:["Avalanche","Make a ×7 chain"],
+  perfect:["Dead on time","Cross two of your waves less than 15 ms apart"], triple:["Three voices","Light a three-arc node"], mirror:["Reflection","Light a node with a reflected wave"], portal:["Elsewhere","Light a node with a teleported wave"],
+  freeze:["Frozen","Freeze a moving node"], batt10:["Recharged","Get 10 pulses back from batteries"], world1:["Off the coast","Beat the Shore guardian"], camp:["Abyss","Beat the campaign's last guardian"],
+  stars100:["Constellation","Collect 100 stars in the campaign"], arc10:["Open water","Reach level 10 in Arcade"], arc20:["High seas","Reach level 20 in Arcade"], thrift:["Thrifty","Finish an Arcade level with half your pulses left"],
+  daily:["Regular","Finish a daily challenge"], share:["Word of mouth","Share a daily challenge result"], puz1:["First try","Solve a puzzle without missing"], puzall:["Puzzle master","Solve every puzzle"],
+  chrono3k:["Against the clock","Score 3,000 points in time attack"], surv60:["Hold on","Last 60 seconds in survival"], beat10:["In time","Light 10 nodes right on the beat"], melody:["In tune","Play a full melody without a wrong note"],
+  coop5:["Hand in hand","Reach level 5 in co-op"], duel:["Face to face","Play a duel"], zen100:["Breathe","Light 100 nodes in zen mode"], editor:["Architect","Test a grid from the editor"],
+  palette:["New colours","Unlock a palette"], waves1000:["Tide","Send 1,000 waves"]
+ }
+},
+es:{
+ _name:"Español",
+ kicker:"Juego de ondas · táctil",
+ rules:"Toca la pantalla para lanzar una onda. Dos ondas que llegan desde direcciones distintas en el mismo instante encienden un nodo, que a su vez emite otra onda.",
+ m_tuto:"Tutorial", m_camp:"Campaña", m_arcade:"Arcade", m_daily:"Reto diario", m_puzzle:"Puzles", m_chrono:"Contrarreloj", m_surv:"Supervivencia", m_rhythm:"Ritmo", m_melody:"Melodía", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
+ record:"Récord", stars:"Estrellas", solved:"Resueltos", level:"Nivel", nodes:"Nodos", duel_sub:"2 jugadores, 1 pantalla", editor_sub:"Crea y comparte",
+ tuto_todo:"Empieza aquí", tuto_done:"Hecho · repásalo", daily_todo:"{d} · pendiente", daily_today:"Hoy",
+ palettes:"Paletas · {n} puntos acumulados", link_ach:"Logros", link_set:"Ajustes",
+ camp_title:"Cinco mares.", camp_sum:"{n} estrella de {m}.|{n} estrellas de {m}.", camp_sum2:"Cada mar se abre al vencer al guardián del anterior.",
+ menu:"Menú", back:"Volver",
+ set_title:"Ajustes.", set_sound:"Sonido", set_vib:"Vibración", on:"Activado", off:"Desactivado", set_speed:"Velocidad de las ondas",
+ set_speed_note:"No afecta a la campaña, los puzles, el reto ni el tutorial, para que sus soluciones sigan funcionando.", slow:"Lenta", normal:"Normal", fast:"Rápida",
+ set_cb:"Modo daltónico", set_cb_note:"Colores distinguibles y marcas escritas en los jugadores y los prismas de color.", set_lang:"Idioma",
+ stats_kicker:"Tu recorrido", stats_title:"Logros.", ach_head:"Logros · {n}/{m}",
+ st_waves:"Ondas lanzadas", st_lit:"Nodos encendidos", st_chain:"Cadena más larga", st_prec:"Precisión media", st_time:"Tiempo de juego", st_min:"{n} min", st_batt:"Impulsos recuperados", st_stars:"Estrellas", st_arcade:"Récord arcade",
+ lb_arcade:"Nivel", lb_daily:"Reto", lb_zen:"Zen", lb_chrono:"Tiempo", lb_puzzle:"Puzle", lb_duel:"Duelo", lb_replay:"Repetición", lb_surv:"Tiempo", lb_melody:"Melodía", lb_custom:"Cuadrícula", lb_camp:"Campaña", lb_tuto:"Tutorial", lb_coop:"Coop", lb_rhythm:"Vidas",
+ sc_score:"Puntos", sc_nodes:"Nodos", sc_try:"Intento", sc_off:"Apagados", sc_step:"Paso",
+ freeze:"Hielo", a_freeze:"Preparar una onda de hielo", a_menu:"Volver al menú", a_pulses:"Impulsos restantes", a_canvas:"Zona de juego", a_splash:"Entrar en el juego", p1:"J1", p2:"J2", hold_high:"aguda", hold_low:"grave",
+ ed_title:"Editor", ed_nodes:"{n} nodo|{n} nodos", ed_test:"Probar", ed_code:"Código", a_minus:"Menos impulsos", a_plus:"Más impulsos", a_pulses_ed:"Impulsos permitidos",
+ tl_node:"Nodo", tl_prism:"Prisma", tl_wall:"Muro", tl_mirror:"Espejo", tl_mud:"Lodo", tl_portal:"Portal", tl_erase:"Borrar",
+ et_node:"Toca para colocar un nodo. Toca un nodo colocado para cambiar su tipo.", et_prism:"Toca para colocar un prisma.", et_wall:"Toca para colocar un muro. Toca un muro para girarlo.", et_mirror:"Toca para colocar un espejo. Tócalo para girarlo.", et_mud:"Toca para colocar un charco de lodo.", et_portal_a:"Toca para colocar la entrada de un portal.", et_portal_b:"Toca donde va la salida del portal.", et_erase:"Toca un elemento para borrarlo.",
+ nt:["Nodo simple","Nodo de tres arcos","Batería","Nodo agudo","Nodo grave","Nodo frágil","Nodo con cuenta atrás"],
+ max_nodes:"14 nodos como máximo", max_mud:"4 charcos como máximo", max_portal:"3 portales como máximo", need_node:"Coloca al menos un nodo", loaded:"Cuadrícula cargada", ach_toast:"Logro · {n}",
+ code_k:"Código de la cuadrícula", code_t:"Compartir.", code_msg:"Copia este código para compartir tu cuadrícula, o pega un código recibido y toca Cargar.", copy:"Copiar", load:"Cargar", close:"Cerrar", copied:"Copiado", selected:"Seleccionado, cópialo", bad_code:"Código ilegible", a_text:"Texto",
+ mk_pulse:"+1 impulso", mk_wrong:"nota falsa", mk_broken:"roto", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"¡a tiempo!", mk_miss:"fallo",
+ bn_harmony:"Armonía", bn_newgrid:"Nueva cuadrícula", bn_gridfull:"Cuadrícula completa", bn_step:"Paso {n}", bn_next:"Siguiente", bn_tutodone:"Tutorial completado", bn_solved:"Resuelto",
+ bn_puz:"Puzle {k} · {n} intento|Puzle {k} · {n} intentos", bn_melody:"Melodía {n}", bn_wrongs:"{n} nota falsa|{n} notas falsas", bn_clean:"Sin notas falsas", bn_level:"Nivel {n}", bn_coop:"Coop {n}", bn_replay:"Repetición ×2", bn_kept:"+{n} · impulsos ahorrados", bn_full:"Resonancia completa", bn_almost:"Casi", bn_retry:"Otra vez", bn_missed:"Fallo",
+ e_nopulse:"Sin impulsos", e_silence:"Silencio.", e_left:"Queda {n} nodo apagado.|Quedan {n} nodos apagados.", e_score:"Puntos: {n}.", replay_lvl:"Repetir nivel", retry:"Reintentar", map:"Mapa", replay:"Jugar otra vez",
+ cu_k:"Tu cuadrícula", cu_ok:"Resuelta.", cu_used:"{n} impulso usado de {m}.|{n} impulsos usados de {m}.", cu_fail:"Todavía no.", cu_fail_msg:"Ajusta la cuadrícula o concede más impulsos.", to_editor:"Volver al editor",
+ cp_grid:"cuadrícula {n}", cp_boss:"Guardián", cp_3:"Tres estrellas. Impecable.", cp_keep:"Guarda al menos {n} impulso para tres estrellas.|Guarda al menos {n} impulsos para tres estrellas.", next_sea:"Siguiente mar", next_grid:"Siguiente cuadrícula", cp_star:"{n} estrella|{n} estrellas", cp_locked:"bloqueada",
+ tu_k:"Tutorial", tu_t:"Listo.", tu_msg:"Ya conoces lo esencial. La campaña presenta cada elemento nuevo uno a uno.",
+ ch_k:"Se acabó el tiempo", t_record:"Récord.", t_end:"Fin.", ch_grids:"{n} cuadrícula completada.|{n} cuadrículas completadas.", rec:"Récord: {n}.",
+ rh_k:"Ritmo", rh_t:"Fuera de tiempo.", rh_beats:"{n} nodo encendido justo a tiempo.|{n} nodos encendidos justo a tiempo.",
+ sv_k:"Saturación", sv_t:"Desbordado.", sv_msg:"Aguantaste {n} s.", sv_rec:"Récord: {n} s.",
+ dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"Gana J1.", dl_p2:"Gana J2.", dl_a:"Jugador 1: {n} nodo.|Jugador 1: {n} nodos.", dl_b:"Jugador 2: {n} nodo.|Jugador 2: {n} nodos.", rematch:"Revancha",
+ pz_k:"Puzles", pz_t:"Todos resueltos.", pz_msg:"Las {n} cuadrículas están completas.", restart:"Empezar de nuevo",
+ dy_k:"Reto del {d}", dy_t:"Conseguido.", dy_best:"Mejor de hoy: {n}.", dy_tomorrow:"Nuevas cuadrículas mañana.", share:"Compartir", watch:"Ver ×2",
+ sh_head:"Résonance · reto del {d}", sh_chain:"cadena ×{n}", sh_score:"Puntos {n}", sh_retries:"{n} reintento|{n} reintentos",
+ rp_k:"Repetición", rp_t:"Fin de la repetición.", rp_msg:"Tu mejor partida de hoy: {n} puntos.", watch_again:"Ver otra vez",
+ theme_aria:"Paleta {t}", theme_lock:"Paleta {t}, se desbloquea con {n} puntos",
+ themes:["Sepia","Abismo","Brasa","Liquen","Papel"],
+ tips:{
+  puzzle:"Un solo impulso. Los prismas y los espejos hacen el resto.",
+  duel:"Mitad inferior: jugador 1. Mitad superior: jugador 2. El nodo es de quien lo enciende.",
+  coop:"Mitad inferior: jugador 1. Mitad superior: jugador 2. Cada nodo necesita una onda de cada uno.",
+  chrono:"60 segundos. Solo las reacciones en cadena dan puntos.",
+  surv:"Los nodos no dejan de aparecer. Cada nodo encendido devuelve un impulso. Con 8 nodos apagados, se acabó.",
+  rhythm:"Los nodos llegan al compás y cada tiempo recarga un impulso. Toca justo a tiempo para duplicar los puntos. Un nodo perdido cuesta una vida.",
+  melody:"Enciende los nodos en el orden de los números. Una nota falsa lo apaga todo.",
+  boss:"El guardián central necesita cuatro direcciones distintas.",
+  base:"Toca dos puntos alrededor de un nodo, casi a la vez.",
+  beacon:"Mantén el dedo sobre el resonador: emite una onda en cada pulso, por un solo impulso.",
+  delay:"El eco retardado devuelve la onda que recibe un segundo después.",
+  chroma:"Los nodos bicolores quieren dos ondas de colores distintos, de dos prismas diferentes.",
+  currents:"Las corrientes mueven los nodos. El botón Hielo prepara una onda que congela un nodo tres segundos.",
+  freq:"Toque corto: onda aguda, punteada. Toque largo: onda grave, gruesa. Los nodos marcados solo escuchan una frecuencia.",
+  portal:"Una onda que entra en un portal sale por el otro.",
+  jam:"El bloqueador móvil absorbe las ondas que lo atraviesan.",
+  battery:"El nodo marcado con + te devuelve un impulso al encenderse.",
+  decay:"El nodo con cuenta atrás se vuelve a apagar a los 6 segundos.",
+  mirror:"Las líneas claras son espejos: reflejan las ondas.",
+  walls:"Los muros detienen las ondas. Rodéalos.",
+  prisms:"Un prisma alcanzado por una onda lanza otra, gratis.",
+  mud:"El lodo frena las ondas que lo cruzan.",
+  twin:"Los gemelos unidos deben encenderse juntos.",
+  fragile:"El nodo frágil se apaga si una de tus ondas lo toca sola. Enciéndelo el último.",
+  triple:"Los nodos de tres arcos necesitan tres direcciones.",
+  drift:"Los nodos se desplazan. Anticípate."
+ },
+ tuto:[
+  "Toca el punto 1 y luego el punto 2, muy rápido. Las dos ondas llegan juntas al nodo y lo encienden.",
+  "El punto 1 está más lejos del nodo: tócalo primero y luego el punto 2 un instante después.",
+  "Enciende el primer nodo con 1 y 2. En cuanto se encienda, toca 3: su onda se cruza con la tuya en el segundo.",
+  "El muro bloquea la onda. Los dos prismas la relanzan y se cruzan en el nodo. Basta con un toque.",
+  "Tu turno: tres nodos, cinco impulsos, sin ayuda."
+ ],
+ worlds:[
+  ["Orilla","Lo básico: cruzar, encadenar, ahorrar."],
+  ["Arrecifes","Muros, prismas y espejos."],
+  ["Marisma","Lodo, gemelos y nodos frágiles."],
+  ["Corrientes","Corrientes, portales, frecuencias y bloqueadores."],
+  ["Abismo","Colores, ecos retardados y resonadores."]
+ ],
+ ach:{
+  tuto:["Primeros pasos","Terminar el tutorial"], first:["Primer eco","Encender tu primer nodo"], chain3:["Rebote","Lograr una cadena ×3"], chain5:["Cascada","Lograr una cadena ×5"], chain7:["Avalancha","Lograr una cadena ×7"],
+  perfect:["Justo a la vez","Cruzar dos de tus ondas con menos de 15 ms de diferencia"], triple:["Tres voces","Encender un nodo de tres arcos"], mirror:["Reflejo","Encender un nodo con una onda reflejada"], portal:["En otro lugar","Encender un nodo con una onda teletransportada"],
+  freeze:["Congelado","Congelar un nodo en movimiento"], batt10:["Recargado","Recuperar 10 impulsos con baterías"], world1:["Cabo superado","Vencer al guardián de la Orilla"], camp:["Abismo","Vencer al último guardián de la campaña"],
+  stars100:["Constelación","Reunir 100 estrellas en la campaña"], arc10:["Mar adentro","Llegar al nivel 10 en Arcade"], arc20:["Alta mar","Llegar al nivel 20 en Arcade"], thrift:["Ahorrador","Terminar un nivel Arcade con la mitad de los impulsos"],
+  daily:["Cita diaria","Terminar un reto diario"], share:["Boca a boca","Compartir un resultado del reto"], puz1:["A la primera","Resolver un puzle sin fallar"], puzall:["Maestro de puzles","Resolver todos los puzles"],
+  chrono3k:["Contra el reloj","Lograr 3.000 puntos en contrarreloj"], surv60:["Aguantar","Aguantar 60 segundos en supervivencia"], beat10:["A tiempo","Encender 10 nodos justo a tiempo"], melody:["Afinado","Tocar una melodía completa sin notas falsas"],
+  coop5:["Mano a mano","Llegar al nivel 5 en cooperativo"], duel:["Cara a cara","Jugar un duelo"], zen100:["Respirar","Encender 100 nodos en modo zen"], editor:["Arquitecto","Probar una cuadrícula del editor"],
+  palette:["Nuevos colores","Desbloquear una paleta"], waves1000:["Marea","Lanzar 1.000 ondas"]
+ }
+},
+de:{
+ _name:"Deutsch",
+ kicker:"Wellenspiel · Touch",
+ rules:"Tippe auf den Bildschirm, um eine Welle auszusenden. Treffen zwei Wellen aus verschiedenen Richtungen im selben Moment auf einen Knoten, leuchtet er auf und sendet selbst eine Welle aus.",
+ m_tuto:"Tutorial", m_camp:"Kampagne", m_arcade:"Arcade", m_daily:"Tägliche Aufgabe", m_puzzle:"Rätsel", m_chrono:"Zeitrennen", m_surv:"Überleben", m_rhythm:"Rhythmus", m_melody:"Melodie", m_coop:"Koop", m_duel:"Duell", m_zen:"Zen", m_editor:"Editor",
+ record:"Rekord", stars:"Sterne", solved:"Gelöst", level:"Level", nodes:"Knoten", duel_sub:"2 Spieler, 1 Bildschirm", editor_sub:"Bauen und teilen",
+ tuto_todo:"Hier anfangen", tuto_done:"Erledigt · wiederholen", daily_todo:"{d} · offen", daily_today:"Heute",
+ palettes:"Paletten · {n} Punkte gesammelt", link_ach:"Erfolge", link_set:"Einstellungen",
+ camp_title:"Fünf Meere.", camp_sum:"{n} Stern von {m}.|{n} Sterne von {m}.", camp_sum2:"Jedes Meer öffnet sich, sobald der Wächter des vorherigen besiegt ist.",
+ menu:"Menü", back:"Zurück",
+ set_title:"Einstellungen.", set_sound:"Ton", set_vib:"Vibration", on:"An", off:"Aus", set_speed:"Wellentempo",
+ set_speed_note:"Gilt nicht für Kampagne, Rätsel, tägliche Aufgabe und Tutorial, damit ihre Lösungen weiter funktionieren.", slow:"Langsam", normal:"Normal", fast:"Schnell",
+ set_cb:"Farbenblind-Modus", set_cb_note:"Unterscheidbare Farben und geschriebene Markierungen an Spielern und farbigen Prismen.", set_lang:"Sprache",
+ stats_kicker:"Dein Weg", stats_title:"Erfolge.", ach_head:"Erfolge · {n}/{m}",
+ st_waves:"Gesendete Wellen", st_lit:"Erleuchtete Knoten", st_chain:"Längste Kette", st_prec:"Durchschnittliche Präzision", st_time:"Spielzeit", st_min:"{n} Min.", st_batt:"Zurückerhaltene Impulse", st_stars:"Sterne", st_arcade:"Arcade-Rekord",
+ lb_arcade:"Level", lb_daily:"Aufgabe", lb_zen:"Zen", lb_chrono:"Zeit", lb_puzzle:"Rätsel", lb_duel:"Duell", lb_replay:"Wiederholung", lb_surv:"Zeit", lb_melody:"Melodie", lb_custom:"Feld", lb_camp:"Kampagne", lb_tuto:"Tutorial", lb_coop:"Koop", lb_rhythm:"Leben",
+ sc_score:"Punkte", sc_nodes:"Knoten", sc_try:"Versuch", sc_off:"Dunkel", sc_step:"Schritt",
+ freeze:"Frost", a_freeze:"Frostwelle vorbereiten", a_menu:"Zurück zum Menü", a_pulses:"Verbleibende Impulse", a_canvas:"Spielfeld", a_splash:"Spiel betreten", p1:"S1", p2:"S2", hold_high:"hoch", hold_low:"tief",
+ ed_title:"Editor", ed_nodes:"{n} Knoten|{n} Knoten", ed_test:"Testen", ed_code:"Code", a_minus:"Weniger Impulse", a_plus:"Mehr Impulse", a_pulses_ed:"Erlaubte Impulse",
+ tl_node:"Knoten", tl_prism:"Prisma", tl_wall:"Mauer", tl_mirror:"Spiegel", tl_mud:"Schlamm", tl_portal:"Portal", tl_erase:"Radierer",
+ et_node:"Tippe, um einen Knoten zu setzen. Tippe auf einen Knoten, um seinen Typ zu ändern.", et_prism:"Tippe, um ein Prisma zu setzen.", et_wall:"Tippe, um eine Mauer zu setzen. Tippe auf eine Mauer, um sie zu drehen.", et_mirror:"Tippe, um einen Spiegel zu setzen. Tippe darauf, um ihn zu drehen.", et_mud:"Tippe, um eine Schlammpfütze zu setzen.", et_portal_a:"Tippe, um einen Portaleingang zu setzen.", et_portal_b:"Tippe dorthin, wo der Portalausgang hin soll.", et_erase:"Tippe auf ein Element, um es zu löschen.",
+ nt:["Einfacher Knoten","Knoten mit drei Bögen","Batterie","Hoher Knoten","Tiefer Knoten","Zerbrechlicher Knoten","Countdown-Knoten"],
+ max_nodes:"Höchstens 14 Knoten", max_mud:"Höchstens 4 Pfützen", max_portal:"Höchstens 3 Portale", need_node:"Setze mindestens einen Knoten", loaded:"Feld geladen", ach_toast:"Erfolg · {n}",
+ code_k:"Feld-Code", code_t:"Teilen.", code_msg:"Kopiere diesen Code, um dein Feld zu teilen, oder füge einen erhaltenen Code ein und tippe auf Laden.", copy:"Kopieren", load:"Laden", close:"Schließen", copied:"Kopiert", selected:"Markiert, jetzt kopieren", bad_code:"Code nicht lesbar", a_text:"Text",
+ mk_pulse:"+1 Impuls", mk_wrong:"falscher Ton", mk_broken:"zerbrochen", mk_off:"erloschen", mk_frozen:"eingefroren", mk_beat:"im Takt!", mk_miss:"verpasst",
+ bn_harmony:"Harmonie", bn_newgrid:"Neues Feld", bn_gridfull:"Feld komplett", bn_step:"Schritt {n}", bn_next:"Weiter", bn_tutodone:"Tutorial abgeschlossen", bn_solved:"Gelöst",
+ bn_puz:"Rätsel {k} · {n} Versuch|Rätsel {k} · {n} Versuche", bn_melody:"Melodie {n}", bn_wrongs:"{n} falscher Ton|{n} falsche Töne", bn_clean:"Ohne falschen Ton", bn_level:"Level {n}", bn_coop:"Koop {n}", bn_replay:"Wiederholung ×2", bn_kept:"+{n} · gesparte Impulse", bn_full:"Volle Resonanz", bn_almost:"Fast", bn_retry:"Noch mal", bn_missed:"Daneben",
+ e_nopulse:"Keine Impulse mehr", e_silence:"Stille.", e_left:"{n} Knoten noch dunkel.|{n} Knoten noch dunkel.", e_score:"Punkte: {n}.", replay_lvl:"Level wiederholen", retry:"Erneut versuchen", map:"Karte", replay:"Nochmal spielen",
+ cu_k:"Dein Feld", cu_ok:"Gelöst.", cu_used:"{n} von {m} Impulsen benutzt.|{n} von {m} Impulsen benutzt.", cu_fail:"Noch nicht.", cu_fail_msg:"Passe das Feld an oder erlaube mehr Impulse.", to_editor:"Zurück zum Editor",
+ cp_grid:"Feld {n}", cp_boss:"Wächter", cp_3:"Drei Sterne. Makellos.", cp_keep:"Behalte mindestens {n} Impuls für drei Sterne.|Behalte mindestens {n} Impulse für drei Sterne.", next_sea:"Nächstes Meer", next_grid:"Nächstes Feld", cp_star:"{n} Stern|{n} Sterne", cp_locked:"gesperrt",
+ tu_k:"Tutorial", tu_t:"Bereit.", tu_msg:"Du kennst das Wichtigste. Die Kampagne stellt jedes neue Element einzeln vor.",
+ ch_k:"Zeit abgelaufen", t_record:"Rekord.", t_end:"Ende.", ch_grids:"{n} Feld abgeschlossen.|{n} Felder abgeschlossen.", rec:"Rekord: {n}.",
+ rh_k:"Rhythmus", rh_t:"Aus dem Takt.", rh_beats:"{n} Knoten genau im Takt erleuchtet.|{n} Knoten genau im Takt erleuchtet.",
+ sv_k:"Überlastung", sv_t:"Überrollt.", sv_msg:"{n} s durchgehalten.", sv_rec:"Rekord: {n} s.",
+ dl_k:"Duell", dl_tie:"Unentschieden.", dl_p1:"S1 gewinnt.", dl_p2:"S2 gewinnt.", dl_a:"Spieler 1: {n} Knoten.|Spieler 1: {n} Knoten.", dl_b:"Spieler 2: {n} Knoten.|Spieler 2: {n} Knoten.", rematch:"Revanche",
+ pz_k:"Rätsel", pz_t:"Alle gelöst.", pz_msg:"Alle {n} Felder sind geschafft.", restart:"Von vorn",
+ dy_k:"Aufgabe vom {d}", dy_t:"Geschafft.", dy_best:"Bester Wert heute: {n}.", dy_tomorrow:"Neue Felder morgen.", share:"Teilen", watch:"Ansehen ×2",
+ sh_head:"Résonance · Aufgabe vom {d}", sh_chain:"Kette ×{n}", sh_score:"Punkte {n}", sh_retries:"{n} Wiederholung|{n} Wiederholungen",
+ rp_k:"Wiederholung", rp_t:"Wiederholung beendet.", rp_msg:"Dein bester Lauf heute: {n} Punkte.", watch_again:"Noch mal ansehen",
+ theme_aria:"Palette {t}", theme_lock:"Palette {t}, ab {n} Punkten freigeschaltet",
+ themes:["Sepia","Abgrund","Glut","Flechte","Papier"],
+ tips:{
+  puzzle:"Nur ein Impuls. Prismen und Spiegel erledigen den Rest.",
+  duel:"Untere Hälfte: Spieler 1. Obere Hälfte: Spieler 2. Ein Knoten gehört dem, der ihn erleuchtet.",
+  coop:"Untere Hälfte: Spieler 1. Obere Hälfte: Spieler 2. Jeder Knoten braucht eine Welle von jedem von euch.",
+  chrono:"60 Sekunden. Nur Kettenreaktionen bringen Punkte.",
+  surv:"Ständig erscheinen Knoten. Jeder erleuchtete Knoten gibt einen Impuls zurück. Bei 8 dunklen Knoten ist Schluss.",
+  rhythm:"Knoten kommen im Takt, und jeder Schlag lädt einen Impuls auf. Tippe genau im Takt für doppelte Punkte. Ein verpasster Knoten kostet ein Leben.",
+  melody:"Erleuchte die Knoten in der Reihenfolge der Zahlen. Ein falscher Ton löscht alles.",
+  boss:"Der zentrale Wächter braucht vier verschiedene Richtungen.",
+  base:"Tippe zwei Punkte um einen Knoten herum, fast gleichzeitig.",
+  beacon:"Halte den Finger auf dem Resonator: Er sendet bei jedem Schlag eine Welle, für nur einen Impuls.",
+  delay:"Das verzögerte Echo sendet die empfangene Welle eine Sekunde später zurück.",
+  chroma:"Zweifarbige Knoten brauchen zwei Wellen verschiedener Farbe, von zwei verschiedenen Prismen.",
+  currents:"Strömungen verschieben Knoten. Die Frost-Taste bereitet eine Welle vor, die einen Knoten drei Sekunden lang einfriert.",
+  freq:"Kurz tippen: hohe Welle, gepunktet. Lang drücken: tiefe Welle, dick. Markierte Knoten hören nur auf eine Tonhöhe.",
+  portal:"Eine Welle, die in ein Portal eintritt, kommt aus dem anderen heraus.",
+  jam:"Der bewegliche Störer schluckt Wellen, die ihn durchqueren.",
+  battery:"Der mit + markierte Knoten gibt dir einen Impuls zurück, wenn er aufleuchtet.",
+  decay:"Der Countdown-Knoten erlischt nach 6 Sekunden wieder.",
+  mirror:"Die hellen Linien sind Spiegel: Sie reflektieren Wellen.",
+  walls:"Mauern stoppen Wellen. Umgehe sie.",
+  prisms:"Ein von einer Welle getroffenes Prisma sendet kostenlos eine neue aus.",
+  mud:"Schlamm bremst Wellen, die ihn durchqueren.",
+  twin:"Verbundene Zwillinge müssen gemeinsam aufleuchten.",
+  fragile:"Der zerbrechliche Knoten erlischt, wenn ihn eine deiner Wellen allein trifft. Erleuchte ihn zuletzt.",
+  triple:"Knoten mit drei Bögen brauchen drei Richtungen.",
+  drift:"Die Knoten treiben. Plane voraus."
+ },
+ tuto:[
+  "Tippe Punkt 1, dann Punkt 2, ganz schnell. Beide Wellen erreichen den Knoten gleichzeitig und bringen ihn zum Leuchten.",
+  "Punkt 1 ist weiter vom Knoten entfernt: Tippe ihn zuerst, dann kurz danach Punkt 2.",
+  "Erleuchte den ersten Knoten mit 1 und 2. Sobald er leuchtet, tippe 3: Seine Welle kreuzt deine am zweiten Knoten.",
+  "Die Mauer blockiert die Welle. Die zwei Prismen senden sie weiter und kreuzen sich am Knoten. Ein Tippen genügt.",
+  "Jetzt du: drei Knoten, fünf Impulse, ohne Hilfe."
+ ],
+ worlds:[
+  ["Ufer","Die Grundlagen: kreuzen, verketten, sparen."],
+  ["Riffe","Mauern, Prismen und Spiegel."],
+  ["Marsch","Schlamm, Zwillinge und zerbrechliche Knoten."],
+  ["Strömungen","Strömungen, Portale, Tonhöhen und Störer."],
+  ["Abgrund","Farben, verzögerte Echos und Resonatoren."]
+ ],
+ ach:{
+  tuto:["Erste Schritte","Das Tutorial abschließen"], first:["Erstes Echo","Den ersten Knoten erleuchten"], chain3:["Abpraller","Eine ×3-Kette schaffen"], chain5:["Kaskade","Eine ×5-Kette schaffen"], chain7:["Lawine","Eine ×7-Kette schaffen"],
+  perfect:["Auf den Punkt","Zwei deiner Wellen mit weniger als 15 ms Abstand kreuzen"], triple:["Drei Stimmen","Einen Knoten mit drei Bögen erleuchten"], mirror:["Spiegelbild","Einen Knoten mit einer reflektierten Welle erleuchten"], portal:["Anderswo","Einen Knoten mit einer teleportierten Welle erleuchten"],
+  freeze:["Eingefroren","Einen beweglichen Knoten einfrieren"], batt10:["Aufgeladen","10 Impulse durch Batterien zurückerhalten"], world1:["Kap umrundet","Den Wächter des Ufers besiegen"], camp:["Abgrund","Den letzten Wächter der Kampagne besiegen"],
+  stars100:["Sternbild","100 Sterne in der Kampagne sammeln"], arc10:["Offenes Meer","Level 10 in Arcade erreichen"], arc20:["Hohe See","Level 20 in Arcade erreichen"], thrift:["Sparsam","Ein Arcade-Level mit der Hälfte der Impulse beenden"],
+  daily:["Verabredung","Eine tägliche Aufgabe abschließen"], share:["Mundpropaganda","Ein Ergebnis der Aufgabe teilen"], puz1:["Auf Anhieb","Ein Rätsel ohne Fehlversuch lösen"], puzall:["Rätselmeister","Alle Rätsel lösen"],
+  chrono3k:["Gegen die Uhr","3.000 Punkte im Zeitrennen erzielen"], surv60:["Durchhalten","60 Sekunden im Überleben durchhalten"], beat10:["Im Takt","10 Knoten genau im Takt erleuchten"], melody:["Rein gestimmt","Eine ganze Melodie ohne falschen Ton spielen"],
+  coop5:["Hand in Hand","Level 5 im Koop erreichen"], duel:["Auge in Auge","Ein Duell spielen"], zen100:["Durchatmen","100 Knoten im Zen-Modus erleuchten"], editor:["Architekt","Ein Feld aus dem Editor testen"],
+  palette:["Neue Farben","Eine Palette freischalten"], waves1000:["Gezeiten","1.000 Wellen aussenden"]
+ }
+},
+it:{
+ _name:"Italiano",
+ kicker:"Gioco di onde · touch",
+ rules:"Tocca lo schermo per lanciare un'onda. Due onde che arrivano da direzioni diverse nello stesso istante accendono un nodo, che a sua volta emette un'onda.",
+ m_tuto:"Tutorial", m_camp:"Campagna", m_arcade:"Arcade", m_daily:"Sfida del giorno", m_puzzle:"Puzzle", m_chrono:"A tempo", m_surv:"Sopravvivenza", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativa", m_duel:"Duello", m_zen:"Zen", m_editor:"Editor",
+ record:"Record", stars:"Stelle", solved:"Risolti", level:"Livello", nodes:"Nodi", duel_sub:"2 giocatori, 1 schermo", editor_sub:"Crea e condividi",
+ tuto_todo:"Inizia da qui", tuto_done:"Fatto · da rivedere", daily_todo:"{d} · da fare", daily_today:"Oggi",
+ palettes:"Palette · {n} punti accumulati", link_ach:"Obiettivi", link_set:"Impostazioni",
+ camp_title:"Cinque mari.", camp_sum:"{n} stella su {m}.|{n} stelle su {m}.", camp_sum2:"Ogni mare si apre quando il guardiano del precedente è sconfitto.",
+ menu:"Menu", back:"Indietro",
+ set_title:"Impostazioni.", set_sound:"Suono", set_vib:"Vibrazione", on:"Attivo", off:"Disattivo", set_speed:"Velocità delle onde",
+ set_speed_note:"Non vale per campagna, puzzle, sfida e tutorial, così le loro soluzioni restano valide.", slow:"Lenta", normal:"Normale", fast:"Veloce",
+ set_cb:"Modalità daltonici", set_cb_note:"Colori distinguibili e segni scritti su giocatori e prismi colorati.", set_lang:"Lingua",
+ stats_kicker:"Il tuo percorso", stats_title:"Obiettivi.", ach_head:"Obiettivi · {n}/{m}",
+ st_waves:"Onde lanciate", st_lit:"Nodi accesi", st_chain:"Catena più lunga", st_prec:"Precisione media", st_time:"Tempo di gioco", st_min:"{n} min", st_batt:"Impulsi recuperati", st_stars:"Stelle", st_arcade:"Record arcade",
+ lb_arcade:"Livello", lb_daily:"Sfida", lb_zen:"Zen", lb_chrono:"Tempo", lb_puzzle:"Puzzle", lb_duel:"Duello", lb_replay:"Replay", lb_surv:"Tempo", lb_melody:"Melodia", lb_custom:"Griglia", lb_camp:"Campagna", lb_tuto:"Tutorial", lb_coop:"Coop", lb_rhythm:"Vite",
+ sc_score:"Punti", sc_nodes:"Nodi", sc_try:"Tentativo", sc_off:"Spenti", sc_step:"Passo",
+ freeze:"Gelo", a_freeze:"Prepara un'onda di gelo", a_menu:"Torna al menu", a_pulses:"Impulsi rimasti", a_canvas:"Area di gioco", a_splash:"Entra nel gioco", p1:"G1", p2:"G2", hold_high:"acuta", hold_low:"grave",
+ ed_title:"Editor", ed_nodes:"{n} nodo|{n} nodi", ed_test:"Prova", ed_code:"Codice", a_minus:"Meno impulsi", a_plus:"Più impulsi", a_pulses_ed:"Impulsi concessi",
+ tl_node:"Nodo", tl_prism:"Prisma", tl_wall:"Muro", tl_mirror:"Specchio", tl_mud:"Fango", tl_portal:"Portale", tl_erase:"Gomma",
+ et_node:"Tocca per piazzare un nodo. Tocca un nodo piazzato per cambiarne il tipo.", et_prism:"Tocca per piazzare un prisma.", et_wall:"Tocca per piazzare un muro. Tocca un muro per ruotarlo.", et_mirror:"Tocca per piazzare uno specchio. Toccalo per ruotarlo.", et_mud:"Tocca per piazzare una pozza di fango.", et_portal_a:"Tocca per piazzare l'ingresso di un portale.", et_portal_b:"Tocca dove va l'uscita del portale.", et_erase:"Tocca un elemento per cancellarlo.",
+ nt:["Nodo semplice","Nodo a tre archi","Batteria","Nodo acuto","Nodo grave","Nodo fragile","Nodo a tempo"],
+ max_nodes:"Al massimo 14 nodi", max_mud:"Al massimo 4 pozze", max_portal:"Al massimo 3 portali", need_node:"Piazza almeno un nodo", loaded:"Griglia caricata", ach_toast:"Obiettivo · {n}",
+ code_k:"Codice della griglia", code_t:"Condividi.", code_msg:"Copia questo codice per condividere la tua griglia, oppure incolla un codice ricevuto e tocca Carica.", copy:"Copia", load:"Carica", close:"Chiudi", copied:"Copiato", selected:"Selezionato, copialo", bad_code:"Codice illeggibile", a_text:"Testo",
+ mk_pulse:"+1 impulso", mk_wrong:"nota stonata", mk_broken:"rotto", mk_off:"spento", mk_frozen:"congelato", mk_beat:"a tempo!", mk_miss:"mancato",
+ bn_harmony:"Armonia", bn_newgrid:"Nuova griglia", bn_gridfull:"Griglia completa", bn_step:"Passo {n}", bn_next:"Avanti", bn_tutodone:"Tutorial completato", bn_solved:"Risolto",
+ bn_puz:"Puzzle {k} · {n} tentativo|Puzzle {k} · {n} tentativi", bn_melody:"Melodia {n}", bn_wrongs:"{n} nota stonata|{n} note stonate", bn_clean:"Nessuna nota stonata", bn_level:"Livello {n}", bn_coop:"Coop {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · impulsi risparmiati", bn_full:"Risonanza completa", bn_almost:"Quasi", bn_retry:"Si ricomincia", bn_missed:"Mancato",
+ e_nopulse:"Impulsi finiti", e_silence:"Silenzio.", e_left:"{n} nodo ancora spento.|{n} nodi ancora spenti.", e_score:"Punti: {n}.", replay_lvl:"Rigioca il livello", retry:"Riprova", map:"Mappa", replay:"Rigioca",
+ cu_k:"La tua griglia", cu_ok:"Risolta.", cu_used:"{n} impulso usato su {m}.|{n} impulsi usati su {m}.", cu_fail:"Non ancora.", cu_fail_msg:"Modifica la griglia o concedi più impulsi.", to_editor:"Torna all'editor",
+ cp_grid:"griglia {n}", cp_boss:"Guardiano", cp_3:"Tre stelle. Impeccabile.", cp_keep:"Tieni almeno {n} impulso per tre stelle.|Tieni almeno {n} impulsi per tre stelle.", next_sea:"Mare successivo", next_grid:"Griglia successiva", cp_star:"{n} stella|{n} stelle", cp_locked:"bloccata",
+ tu_k:"Tutorial", tu_t:"Pronto.", tu_msg:"Conosci l'essenziale. La campagna presenta ogni nuovo elemento uno alla volta.",
+ ch_k:"Tempo scaduto", t_record:"Record.", t_end:"Fine.", ch_grids:"{n} griglia completata.|{n} griglie completate.", rec:"Record: {n}.",
+ rh_k:"Ritmo", rh_t:"Fuori tempo.", rh_beats:"{n} nodo acceso proprio a tempo.|{n} nodi accesi proprio a tempo.",
+ sv_k:"Saturazione", sv_t:"Sommerso.", sv_msg:"Resistito {n} s.", sv_rec:"Record: {n} s.",
+ dl_k:"Duello", dl_tie:"Pareggio.", dl_p1:"Vince G1.", dl_p2:"Vince G2.", dl_a:"Giocatore 1: {n} nodo.|Giocatore 1: {n} nodi.", dl_b:"Giocatore 2: {n} nodo.|Giocatore 2: {n} nodi.", rematch:"Rivincita",
+ pz_k:"Puzzle", pz_t:"Tutti risolti.", pz_msg:"Tutte le {n} griglie sono completate.", restart:"Ricomincia",
+ dy_k:"Sfida del {d}", dy_t:"Completata.", dy_best:"Migliore di oggi: {n}.", dy_tomorrow:"Nuove griglie domani.", share:"Condividi", watch:"Rivedi ×2",
+ sh_head:"Résonance · sfida del {d}", sh_chain:"catena ×{n}", sh_score:"Punti {n}", sh_retries:"{n} ripresa|{n} riprese",
+ rp_k:"Replay", rp_t:"Fine del replay.", rp_msg:"La tua partita migliore di oggi: {n} punti.", watch_again:"Rivedi ancora",
+ theme_aria:"Palette {t}", theme_lock:"Palette {t}, si sblocca a {n} punti",
+ themes:["Seppia","Abisso","Brace","Lichene","Carta"],
+ tips:{
+  puzzle:"Un solo impulso. Prismi e specchi fanno il resto.",
+  duel:"Metà inferiore: giocatore 1. Metà superiore: giocatore 2. Un nodo è di chi lo accende.",
+  coop:"Metà inferiore: giocatore 1. Metà superiore: giocatore 2. Ogni nodo ha bisogno di un'onda da ciascuno di voi.",
+  chrono:"60 secondi. Solo le reazioni a catena danno punti.",
+  surv:"I nodi continuano ad apparire. Ogni nodo acceso restituisce un impulso. A 8 nodi spenti, è finita.",
+  rhythm:"I nodi arrivano a tempo e ogni battuta ricarica un impulso. Tocca proprio a tempo per raddoppiare i punti. Un nodo mancato costa una vita.",
+  melody:"Accendi i nodi nell'ordine dei numeri. Una nota stonata spegne tutto.",
+  boss:"Il guardiano centrale vuole quattro direzioni diverse.",
+  base:"Tocca due punti attorno a un nodo, quasi nello stesso momento.",
+  beacon:"Tieni il dito sul risonatore: emette un'onda a ogni battito, per un solo impulso.",
+  delay:"L'eco ritardata rimanda l'onda che riceve un secondo dopo.",
+  chroma:"I nodi bicolori vogliono due onde di colori diversi, da due prismi distinti.",
+  currents:"Le correnti spostano i nodi. Il tasto Gelo prepara un'onda che blocca un nodo per tre secondi.",
+  freq:"Tocco breve: onda acuta, tratteggiata. Pressione lunga: onda grave, spessa. I nodi segnati ascoltano una sola frequenza.",
+  portal:"Un'onda che entra in un portale esce dall'altro.",
+  jam:"Il disturbatore mobile assorbe le onde che lo attraversano.",
+  battery:"Il nodo segnato con + ti restituisce un impulso quando si accende.",
+  decay:"Il nodo a tempo si rispegne dopo 6 secondi.",
+  mirror:"Le linee chiare sono specchi: riflettono le onde.",
+  walls:"I muri fermano le onde. Aggirali.",
+  prisms:"Un prisma colpito da un'onda ne lancia un'altra, gratis.",
+  mud:"Il fango rallenta le onde che lo attraversano.",
+  twin:"I gemelli collegati devono accendersi insieme.",
+  fragile:"Il nodo fragile si spegne se una tua onda lo colpisce da sola. Accendilo per ultimo.",
+  triple:"I nodi a tre archi vogliono tre direzioni.",
+  drift:"I nodi si spostano. Anticipa."
+ },
+ tuto:[
+  "Tocca il punto 1, poi il punto 2, molto in fretta. Le due onde arrivano insieme al nodo e lo accendono.",
+  "Il punto 1 è più lontano dal nodo: toccalo per primo, poi il punto 2 un attimo dopo.",
+  "Accendi il primo nodo con 1 e 2. Appena si accende, tocca 3: la sua onda incrocia la tua sul secondo.",
+  "Il muro blocca l'onda. I due prismi la rilanciano e si incrociano sul nodo. Basta un tocco.",
+  "Tocca a te: tre nodi, cinque impulsi, senza aiuto."
+ ],
+ worlds:[
+  ["Riva","Le basi: incrociare, concatenare, risparmiare."],
+  ["Scogliere","Muri, prismi e specchi."],
+  ["Palude","Fango, gemelli e nodi fragili."],
+  ["Correnti","Correnti, portali, frequenze e disturbatori."],
+  ["Abisso","Colori, echi ritardati e risonatori."]
+ ],
+ ach:{
+  tuto:["Primi passi","Completa il tutorial"], first:["Primo eco","Accendi il tuo primo nodo"], chain3:["Rimbalzo","Fai una catena ×3"], chain5:["Cascata","Fai una catena ×5"], chain7:["Valanga","Fai una catena ×7"],
+  perfect:["Nello stesso istante","Incrocia due tue onde a meno di 15 ms di distanza"], triple:["Tre voci","Accendi un nodo a tre archi"], mirror:["Riflesso","Accendi un nodo con un'onda riflessa"], portal:["Altrove","Accendi un nodo con un'onda teletrasportata"],
+  freeze:["Congelato","Blocca un nodo in movimento"], batt10:["Ricaricato","Recupera 10 impulsi grazie alle batterie"], world1:["Capo superato","Sconfiggi il guardiano della Riva"], camp:["Abisso","Sconfiggi l'ultimo guardiano della campagna"],
+  stars100:["Costellazione","Raccogli 100 stelle nella campagna"], arc10:["Al largo","Raggiungi il livello 10 in Arcade"], arc20:["Mare aperto","Raggiungi il livello 20 in Arcade"], thrift:["Risparmiatore","Finisci un livello Arcade con metà degli impulsi"],
+  daily:["Appuntamento","Completa una sfida del giorno"], share:["Passaparola","Condividi un risultato della sfida"], puz1:["Al primo colpo","Risolvi un puzzle senza sbagliare"], puzall:["Maestro dei puzzle","Risolvi tutti i puzzle"],
+  chrono3k:["Contro il tempo","Fai 3.000 punti nella modalità a tempo"], surv60:["Resistere","Resisti 60 secondi in sopravvivenza"], beat10:["A tempo","Accendi 10 nodi proprio a tempo"], melody:["Intonato","Suona una melodia completa senza note stonate"],
+  coop5:["Mano nella mano","Raggiungi il livello 5 in cooperativa"], duel:["Faccia a faccia","Gioca un duello"], zen100:["Respiro","Accendi 100 nodi in modalità zen"], editor:["Architetto","Prova una griglia dell'editor"],
+  palette:["Nuovi colori","Sblocca una palette"], waves1000:["Marea","Lancia 1.000 onde"]
+ }
+},
+pt:{
+ _name:"Português",
+ kicker:"Jogo de ondas · toque",
+ rules:"Toque na tela para lançar uma onda. Duas ondas vindas de direções diferentes no mesmo instante acendem um nó, que por sua vez emite uma onda.",
+ m_tuto:"Tutorial", m_camp:"Campanha", m_arcade:"Arcade", m_daily:"Desafio do dia", m_puzzle:"Quebra-cabeças", m_chrono:"Contra o tempo", m_surv:"Sobrevivência", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
+ record:"Recorde", stars:"Estrelas", solved:"Resolvidos", level:"Nível", nodes:"Nós", duel_sub:"2 jogadores, 1 tela", editor_sub:"Crie e compartilhe",
+ tuto_todo:"Comece por aqui", tuto_done:"Concluído · rever", daily_todo:"{d} · a fazer", daily_today:"Hoje",
+ palettes:"Paletas · {n} pontos acumulados", link_ach:"Conquistas", link_set:"Configurações",
+ camp_title:"Cinco mares.", camp_sum:"{n} estrela de {m}.|{n} estrelas de {m}.", camp_sum2:"Cada mar se abre quando o guardião do anterior é derrotado.",
+ menu:"Menu", back:"Voltar",
+ set_title:"Configurações.", set_sound:"Som", set_vib:"Vibração", on:"Ligado", off:"Desligado", set_speed:"Velocidade das ondas",
+ set_speed_note:"Não vale para a campanha, os quebra-cabeças, o desafio e o tutorial, para que as soluções continuem funcionando.", slow:"Lenta", normal:"Normal", fast:"Rápida",
+ set_cb:"Modo daltônico", set_cb_note:"Cores distinguíveis e marcas escritas nos jogadores e nos prismas coloridos.", set_lang:"Idioma",
+ stats_kicker:"Sua jornada", stats_title:"Conquistas.", ach_head:"Conquistas · {n}/{m}",
+ st_waves:"Ondas lançadas", st_lit:"Nós acesos", st_chain:"Maior corrente", st_prec:"Precisão média", st_time:"Tempo de jogo", st_min:"{n} min", st_batt:"Impulsos recuperados", st_stars:"Estrelas", st_arcade:"Recorde arcade",
+ lb_arcade:"Nível", lb_daily:"Desafio", lb_zen:"Zen", lb_chrono:"Tempo", lb_puzzle:"Quebra-cabeça", lb_duel:"Duelo", lb_replay:"Replay", lb_surv:"Tempo", lb_melody:"Melodia", lb_custom:"Grade", lb_camp:"Campanha", lb_tuto:"Tutorial", lb_coop:"Coop", lb_rhythm:"Vidas",
+ sc_score:"Pontos", sc_nodes:"Nós", sc_try:"Tentativa", sc_off:"Apagados", sc_step:"Etapa",
+ freeze:"Gelo", a_freeze:"Preparar uma onda de gelo", a_menu:"Voltar ao menu", a_pulses:"Impulsos restantes", a_canvas:"Área de jogo", a_splash:"Entrar no jogo", p1:"J1", p2:"J2", hold_high:"aguda", hold_low:"grave",
+ ed_title:"Editor", ed_nodes:"{n} nó|{n} nós", ed_test:"Testar", ed_code:"Código", a_minus:"Menos impulsos", a_plus:"Mais impulsos", a_pulses_ed:"Impulsos permitidos",
+ tl_node:"Nó", tl_prism:"Prisma", tl_wall:"Muro", tl_mirror:"Espelho", tl_mud:"Lama", tl_portal:"Portal", tl_erase:"Borracha",
+ et_node:"Toque para colocar um nó. Toque em um nó colocado para mudar o tipo.", et_prism:"Toque para colocar um prisma.", et_wall:"Toque para colocar um muro. Toque em um muro para girá-lo.", et_mirror:"Toque para colocar um espelho. Toque nele para girá-lo.", et_mud:"Toque para colocar uma poça de lama.", et_portal_a:"Toque para colocar a entrada de um portal.", et_portal_b:"Toque onde fica a saída do portal.", et_erase:"Toque em um elemento para apagá-lo.",
+ nt:["Nó simples","Nó de três arcos","Bateria","Nó agudo","Nó grave","Nó frágil","Nó com contagem regressiva"],
+ max_nodes:"No máximo 14 nós", max_mud:"No máximo 4 poças", max_portal:"No máximo 3 portais", need_node:"Coloque pelo menos um nó", loaded:"Grade carregada", ach_toast:"Conquista · {n}",
+ code_k:"Código da grade", code_t:"Compartilhar.", code_msg:"Copie este código para compartilhar sua grade, ou cole um código recebido e toque em Carregar.", copy:"Copiar", load:"Carregar", close:"Fechar", copied:"Copiado", selected:"Selecionado, copie", bad_code:"Código ilegível", a_text:"Texto",
+ mk_pulse:"+1 impulso", mk_wrong:"nota errada", mk_broken:"quebrado", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"no tempo!", mk_miss:"perdido",
+ bn_harmony:"Harmonia", bn_newgrid:"Nova grade", bn_gridfull:"Grade completa", bn_step:"Etapa {n}", bn_next:"Próxima", bn_tutodone:"Tutorial concluído", bn_solved:"Resolvido",
+ bn_puz:"Quebra-cabeça {k} · {n} tentativa|Quebra-cabeça {k} · {n} tentativas", bn_melody:"Melodia {n}", bn_wrongs:"{n} nota errada|{n} notas erradas", bn_clean:"Sem nota errada", bn_level:"Nível {n}", bn_coop:"Coop {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · impulsos poupados", bn_full:"Ressonância completa", bn_almost:"Quase", bn_retry:"De novo", bn_missed:"Errou",
+ e_nopulse:"Sem impulsos", e_silence:"Silêncio.", e_left:"{n} nó ainda apagado.|{n} nós ainda apagados.", e_score:"Pontos: {n}.", replay_lvl:"Jogar o nível de novo", retry:"Tentar de novo", map:"Mapa", replay:"Jogar de novo",
+ cu_k:"Sua grade", cu_ok:"Resolvida.", cu_used:"{n} impulso usado de {m}.|{n} impulsos usados de {m}.", cu_fail:"Ainda não.", cu_fail_msg:"Ajuste a grade ou permita mais impulsos.", to_editor:"Voltar ao editor",
+ cp_grid:"grade {n}", cp_boss:"Guardião", cp_3:"Três estrelas. Perfeito.", cp_keep:"Guarde pelo menos {n} impulso para três estrelas.|Guarde pelo menos {n} impulsos para três estrelas.", next_sea:"Próximo mar", next_grid:"Próxima grade", cp_star:"{n} estrela|{n} estrelas", cp_locked:"bloqueada",
+ tu_k:"Tutorial", tu_t:"Pronto.", tu_msg:"Você já sabe o essencial. A campanha apresenta cada novo elemento, um de cada vez.",
+ ch_k:"Tempo esgotado", t_record:"Recorde.", t_end:"Fim.", ch_grids:"{n} grade concluída.|{n} grades concluídas.", rec:"Recorde: {n}.",
+ rh_k:"Ritmo", rh_t:"Fora do tempo.", rh_beats:"{n} nó aceso bem no tempo.|{n} nós acesos bem no tempo.",
+ sv_k:"Saturação", sv_t:"Submerso.", sv_msg:"Aguentou {n} s.", sv_rec:"Recorde: {n} s.",
+ dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"J1 vence.", dl_p2:"J2 vence.", dl_a:"Jogador 1: {n} nó.|Jogador 1: {n} nós.", dl_b:"Jogador 2: {n} nó.|Jogador 2: {n} nós.", rematch:"Revanche",
+ pz_k:"Quebra-cabeças", pz_t:"Todos resolvidos.", pz_msg:"As {n} grades estão concluídas.", restart:"Recomeçar",
+ dy_k:"Desafio de {d}", dy_t:"Concluído.", dy_best:"Melhor de hoje: {n}.", dy_tomorrow:"Novas grades amanhã.", share:"Compartilhar", watch:"Rever ×2",
+ sh_head:"Résonance · desafio de {d}", sh_chain:"corrente ×{n}", sh_score:"Pontos {n}", sh_retries:"{n} nova tentativa|{n} novas tentativas",
+ rp_k:"Replay", rp_t:"Fim do replay.", rp_msg:"Sua melhor partida de hoje: {n} pontos.", watch_again:"Rever de novo",
+ theme_aria:"Paleta {t}", theme_lock:"Paleta {t}, desbloqueada com {n} pontos",
+ themes:["Sépia","Abismo","Brasa","Líquen","Papel"],
+ tips:{
+  puzzle:"Um único impulso. Prismas e espelhos fazem o resto.",
+  duel:"Metade de baixo: jogador 1. Metade de cima: jogador 2. O nó é de quem o acende.",
+  coop:"Metade de baixo: jogador 1. Metade de cima: jogador 2. Cada nó precisa de uma onda de cada um de vocês.",
+  chrono:"60 segundos. Só as reações em cadeia dão pontos.",
+  surv:"Nós não param de aparecer. Cada nó aceso devolve um impulso. Com 8 nós apagados, acabou.",
+  rhythm:"Os nós chegam no compasso e cada batida recarrega um impulso. Toque bem no tempo para dobrar os pontos. Um nó perdido custa uma vida.",
+  melody:"Acenda os nós na ordem dos números. Uma nota errada apaga tudo.",
+  boss:"O guardião central precisa de quatro direções diferentes.",
+  base:"Toque em dois pontos em volta de um nó, quase ao mesmo tempo.",
+  beacon:"Mantenha o dedo no ressonador: ele emite uma onda a cada batida, por um único impulso.",
+  delay:"O eco atrasado devolve a onda que recebe um segundo depois.",
+  chroma:"Nós bicolores querem duas ondas de cores diferentes, vindas de dois prismas distintos.",
+  currents:"As correntes movem os nós. O botão Gelo prepara uma onda que congela um nó por três segundos.",
+  freq:"Toque curto: onda aguda, pontilhada. Toque longo: onda grave, grossa. Nós marcados só escutam uma frequência.",
+  portal:"Uma onda que entra em um portal sai pelo outro.",
+  jam:"O bloqueador móvel absorve as ondas que o atravessam.",
+  battery:"O nó marcado com + devolve um impulso quando acende.",
+  decay:"O nó com contagem regressiva apaga de novo depois de 6 segundos.",
+  mirror:"As linhas claras são espelhos: elas refletem as ondas.",
+  walls:"Muros param as ondas. Contorne-os.",
+  prisms:"Um prisma atingido por uma onda lança outra, de graça.",
+  mud:"A lama desacelera as ondas que a atravessam.",
+  twin:"Gêmeos ligados precisam acender juntos.",
+  fragile:"O nó frágil apaga se uma onda sua o atingir sozinha. Acenda-o por último.",
+  triple:"Nós de três arcos precisam de três direções.",
+  drift:"Os nós se deslocam. Antecipe-se."
+ },
+ tuto:[
+  "Toque no ponto 1 e depois no ponto 2, bem rápido. As duas ondas chegam juntas ao nó e o acendem.",
+  "O ponto 1 está mais longe do nó: toque nele primeiro e no ponto 2 um instante depois.",
+  "Acenda o primeiro nó com 1 e 2. Assim que ele acender, toque em 3: a onda dele cruza a sua no segundo nó.",
+  "O muro bloqueia a onda. Os dois prismas a relançam e se cruzam no nó. Basta um toque.",
+  "Sua vez: três nós, cinco impulsos, sem ajuda."
+ ],
+ worlds:[
+  ["Margem","O básico: cruzar, encadear, economizar."],
+  ["Recifes","Muros, prismas e espelhos."],
+  ["Pântano","Lama, gêmeos e nós frágeis."],
+  ["Correntes","Correntes, portais, frequências e bloqueadores."],
+  ["Abismo","Cores, ecos atrasados e ressonadores."]
+ ],
+ ach:{
+  tuto:["Primeiros passos","Concluir o tutorial"], first:["Primeiro eco","Acender seu primeiro nó"], chain3:["Ricochete","Fazer uma corrente ×3"], chain5:["Cascata","Fazer uma corrente ×5"], chain7:["Avalanche","Fazer uma corrente ×7"],
+  perfect:["No mesmo instante","Cruzar duas ondas suas com menos de 15 ms de diferença"], triple:["Três vozes","Acender um nó de três arcos"], mirror:["Reflexo","Acender um nó com uma onda refletida"], portal:["Em outro lugar","Acender um nó com uma onda teletransportada"],
+  freeze:["Congelado","Congelar um nó em movimento"], batt10:["Recarregado","Recuperar 10 impulsos com baterias"], world1:["Cabo vencido","Derrotar o guardião da Margem"], camp:["Abismo","Derrotar o último guardião da campanha"],
+  stars100:["Constelação","Juntar 100 estrelas na campanha"], arc10:["Mar aberto","Chegar ao nível 10 no Arcade"], arc20:["Alto-mar","Chegar ao nível 20 no Arcade"], thrift:["Econômico","Terminar um nível Arcade com metade dos impulsos"],
+  daily:["Encontro diário","Concluir um desafio do dia"], share:["Boca a boca","Compartilhar um resultado do desafio"], puz1:["De primeira","Resolver um quebra-cabeça sem errar"], puzall:["Mestre dos quebra-cabeças","Resolver todos os quebra-cabeças"],
+  chrono3k:["Contra o relógio","Fazer 3.000 pontos no modo contra o tempo"], surv60:["Aguentar firme","Aguentar 60 segundos na sobrevivência"], beat10:["No tempo","Acender 10 nós bem no tempo"], melody:["Afinado","Tocar uma melodia completa sem nota errada"],
+  coop5:["De mãos dadas","Chegar ao nível 5 no cooperativo"], duel:["Frente a frente","Jogar um duelo"], zen100:["Respirar","Acender 100 nós no modo zen"], editor:["Arquiteto","Testar uma grade do editor"],
+  palette:["Novas cores","Desbloquear uma paleta"], waves1000:["Maré","Lançar 1.000 ondas"]
+ }
+}
+};
+const LANGS=['fr','en','es','de','it','pt'];
+const LOCALES={fr:'fr-FR',en:'en-GB',es:'es-ES',de:'de-DE',it:'it-IT',pt:'pt-BR'};
+let LANG='en';
+function detectLang(){
+  const list=(navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||'en']);
+  for(const l of list){ const k=String(l).slice(0,2).toLowerCase(); if(LANGS.includes(k)) return k; }
+  return 'en';
+}
+function plural(n){ return (LANG==='fr'||LANG==='pt') ? (Math.abs(n)>=2) : (n!==1); }
+function t(key,p){
+  let s=(I18N[LANG]&&I18N[LANG][key]); if(s==null) s=I18N.en[key]; if(s==null) s=I18N.fr[key]; if(s==null) return key;
+  if(typeof s!=='string') return s;
+  if(s.includes('|')){ const parts=s.split('|'); s=(p&&p.n!=null&&plural(+p.n))?parts[1]:parts[0]; }
+  if(p) s=s.replace(/\{(\w+)\}/g,(m,k)=>p[k]!=null?(typeof p[k]==='number'?fmt(p[k]):p[k]):m);
+  return s;
+}
+function tip(k){ return (I18N[LANG].tips||{})[k] || I18N.en.tips[k]; }
+function fmt(n){ try{ return Number.isInteger(n)&&Math.abs(n)>=1000 ? n.toLocaleString(LOCALES[LANG]) : String(n); }catch(e){ return String(n); } }
+
+</script>
+
+<script>
+(() => {
+const PUZZLES = /*PUZZLES*/[{"targets":[{"nx":0.689,"ny":0.603,"need":2}],"prisms":[{"nx":0.112,"ny":0.859},{"nx":0.453,"ny":0.827}],"walls":[],"muds":[],"hint":[0.074,0.691]},{"targets":[{"nx":0.503,"ny":0.329,"need":2}],"prisms":[{"nx":0.325,"ny":0.144},{"nx":0.155,"ny":0.231}],"walls":[],"muds":[],"hint":[0.074,0.279]},{"targets":[{"nx":0.807,"ny":0.646,"need":2},{"nx":0.511,"ny":0.141,"need":2}],"prisms":[{"nx":0.328,"ny":0.177},{"nx":0.818,"ny":0.408}],"walls":[],"muds":[],"hint":[0.279,0.015]},{"targets":[{"nx":0.487,"ny":0.125,"need":2},{"nx":0.296,"ny":0.806,"need":2}],"prisms":[{"nx":0.125,"ny":0.226},{"nx":0.612,"ny":0.86}],"walls":[{"nx":0.596,"ny":0.301,"a":2.32,"len":0.317,"mirror":true},{"nx":0.253,"ny":0.531,"a":1.972,"len":0.257,"mirror":false}],"muds":[],"hint":[0.279,0.015]},{"targets":[{"nx":0.458,"ny":0.769,"need":2},{"nx":0.659,"ny":0.507,"need":2}],"prisms":[{"nx":0.349,"ny":0.519},{"nx":0.845,"ny":0.876}],"walls":[{"nx":0.638,"ny":0.367,"a":2.544,"len":0.367,"mirror":true},{"nx":0.342,"ny":0.736,"a":2.774,"len":0.368,"mirror":false}],"muds":[],"hint":[0.868,0.515]},{"targets":[{"nx":0.215,"ny":0.291,"need":2},{"nx":0.434,"ny":0.142,"need":2},{"nx":0.499,"ny":0.745,"need":2}],"prisms":[{"nx":0.108,"ny":0.517},{"nx":0.56,"ny":0.514}],"walls":[{"nx":0.245,"ny":0.215,"a":0.952,"len":0.266,"mirror":true}],"muds":[],"hint":[0.868,0.132]},{"targets":[{"nx":0.179,"ny":0.153,"need":2},{"nx":0.393,"ny":0.772,"need":2},{"nx":0.766,"ny":0.66,"need":2}],"prisms":[{"nx":0.834,"ny":0.383},{"nx":0.399,"ny":0.41}],"walls":[],"muds":[],"hint":[0.221,0.897]},{"targets":[{"nx":0.357,"ny":0.217,"need":2},{"nx":0.673,"ny":0.712,"need":2},{"nx":0.722,"ny":0.147,"need":2}],"prisms":[{"nx":0.893,"ny":0.478},{"nx":0.108,"ny":0.43}],"walls":[{"nx":0.704,"ny":0.343,"a":0.858,"len":0.297,"mirror":false}],"muds":[],"hint":[0.221,0.897]},{"targets":[{"nx":0.767,"ny":0.331,"need":2},{"nx":0.714,"ny":0.838,"need":2},{"nx":0.345,"ny":0.683,"need":2}],"prisms":[{"nx":0.529,"ny":0.57},{"nx":0.415,"ny":0.152},{"nx":0.218,"ny":0.12}],"walls":[{"nx":0.573,"ny":0.394,"a":0.617,"len":0.255,"mirror":true}],"muds":[],"hint":[0.426,0.074]},{"targets":[{"nx":0.533,"ny":0.699,"need":3},{"nx":0.674,"ny":0.529,"need":2},{"nx":0.795,"ny":0.166,"need":2}],"prisms":[{"nx":0.485,"ny":0.134},{"nx":0.188,"ny":0.898},{"nx":0.765,"ny":0.37}],"walls":[{"nx":0.264,"ny":0.271,"a":0.284,"len":0.278,"mirror":false},{"nx":0.279,"ny":0.74,"a":2.455,"len":0.294,"mirror":false}],"muds":[],"hint":[0.426,0.926]},{"targets":[{"nx":0.379,"ny":0.159,"need":3},{"nx":0.149,"ny":0.725,"need":2},{"nx":0.643,"ny":0.318,"need":2}],"prisms":[{"nx":0.284,"ny":0.511},{"nx":0.204,"ny":0.248}],"walls":[{"nx":0.447,"ny":0.627,"a":1.935,"len":0.269,"mirror":true}],"muds":[],"hint":[0.338,0.603]},{"targets":[{"nx":0.829,"ny":0.467,"need":2},{"nx":0.61,"ny":0.327,"need":2},{"nx":0.162,"ny":0.201,"need":2}],"prisms":[{"nx":0.776,"ny":0.815},{"nx":0.327,"ny":0.372},{"nx":0.319,"ny":0.65}],"walls":[{"nx":0.269,"ny":0.757,"a":1.168,"len":0.281,"mirror":false},{"nx":0.653,"ny":0.662,"a":2.271,"len":0.301,"mirror":false}],"muds":[],"hint":[0.809,0.191]}]/*/PUZZLES*/;
+const cv=document.getElementById('c'), ctx=cv.getContext('2d');
+const lay=document.createElement('canvas'), lctx=lay.getContext('2d');
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store={ get(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:v; }catch(e){ return d; } },
+              set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
+              json(k,d){ try{ const v=JSON.parse(this.get(k,'null')); return v==null?d:v; }catch(e){ return d; } } };
+const STEP=1/120, HOLD=0.25, VERSION=5;
+const SET=Object.assign({ sound:true, vib:true, speed:1, cb:false, lang:null }, store.json('resonance.settings',{}));
+LANG = LANGS.includes(SET.lang) ? SET.lang : detectLang();
+
+/* ---------- palettes ---------- */
+const THEMES=[
+  { id:'seiche', need:0,     ink:'#13100e', bone:'#efe3cf', acc:'#f2a541', rose:'#d9776b', dust:'#8a7d6c', p2:'#6fc2c0', wave:'sine',     base:1,    light:false },
+  { id:'abysse', need:3000,  ink:'#0a1417', bone:'#d3eaec', acc:'#ff8a65', rose:'#a89bff', dust:'#5b7a80', p2:'#f2c14e', wave:'sine',     base:0.75, light:false },
+  { id:'braise', need:8000,  ink:'#170c0a', bone:'#f5ddd0', acc:'#ff6b3d', rose:'#ffcf5a', dust:'#8c5f52', p2:'#7fc8ff', wave:'triangle', base:1,    light:false },
+  { id:'lichen', need:15000, ink:'#0f1411', bone:'#e2e8d8', acc:'#d8c65a', rose:'#c98bd6', dust:'#6f7d6c', p2:'#ef8f6f', wave:'sine',     base:1.25, light:false },
+  { id:'papier', need:30000, ink:'#f1ebe0', bone:'#1d1a17', acc:'#c2410c', rose:'#2f6f8f', dust:'#8b8174', p2:'#7a3e9d', wave:'triangle', base:1.5,  light:true }
+];
+const themeName=i=>t('themes')[i];
+const rgb=h=>{ const n=parseInt(h.slice(1),16); return `${n>>16&255},${n>>8&255},${n&255}`; };
+let TH=THEMES[0], C={};
+function applyTheme(id){
+  TH=THEMES.find(x=>x.id===id)||THEMES[0];
+  const acc=SET.cb?'#E69F00':TH.acc, rose=SET.cb?'#CC79A7':TH.rose, p2=SET.cb?'#56B4E9':TH.p2;
+  const s=document.documentElement.style;
+  s.setProperty('--ink',TH.ink); s.setProperty('--bone',TH.bone); s.setProperty('--saffron',acc);
+  s.setProperty('--rose',rose); s.setProperty('--dust',TH.dust); s.setProperty('--p2',p2);
+  s.setProperty('color-scheme',TH.light?'light':'dark');
+  C={ ink:rgb(TH.ink), bone:rgb(TH.bone), saffron:rgb(acc), rose:rgb(rose), dust:rgb(TH.dust), p2:rgb(p2) };
+  store.set('resonance.theme',TH.id);
+  if(W) buildGrid();
+}
+
+/* ---------- langue ---------- */
+function applyLang(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-i]').forEach(el=>{ el.textContent=t(el.dataset.i); });
+  document.querySelectorAll('[data-ia]').forEach(el=>{ el.setAttribute('aria-label',t(el.dataset.ia)); });
+  TODAY_LABEL=now.toLocaleDateString(LOCALES[LANG],{day:'numeric',month:'long'});
+}
+
+/* ---------- écran ---------- */
+let W=0,H=0,M=0,DPR=1,TOP=90,BOT=70,grid=null;
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,2); W=innerWidth; H=innerHeight; M=Math.min(W,H);
+  cv.width=lay.width=W*DPR; cv.height=lay.height=H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0); lctx.setTransform(DPR,0,0,DPR,0,0);
+  buildGrid();
+  if(G){ G.env=makeEnv(); G.speed=speedFor(G.env); E.layout(G); }
+}
+function buildGrid(){
+  grid=document.createElement('canvas'); grid.width=W*DPR; grid.height=H*DPR;
+  const g=grid.getContext('2d'); g.setTransform(DPR,0,0,DPR,0,0);
+  g.fillStyle=TH.ink; g.fillRect(0,0,W,H);
+  const step=Math.max(22,M/16); g.fillStyle=`rgba(${C.dust},0.2)`;
+  for(let y=step/2;y<H;y+=step) for(let x=step/2;x<W;x+=step) g.fillRect(x-0.75,y-0.75,1.5,1.5);
+  const rg=g.createRadialGradient(W/2,H*0.55,0,W/2,H*0.55,Math.hypot(W,H)*0.6);
+  rg.addColorStop(0,'rgba(0,0,0,0)'); rg.addColorStop(1,TH.light?'rgba(80,60,40,0.12)':'rgba(0,0,0,0.55)');
+  g.fillStyle=rg; g.fillRect(0,0,W,H);
+}
+
+/* ---------- audio ---------- */
+let AC=null;
+const SCALE=[261.6,293.7,329.6,392,440,523.3,587.3,659.3,784,880,1046.5];
+function osc(f,d,type,v,delay){
+  if(!AC||!SET.sound) return;
+  const t0=AC.currentTime+(delay||0), o=AC.createOscillator(), g=AC.createGain();
+  o.type=type; o.frequency.setValueAtTime(f,t0);
+  g.gain.setValueAtTime(0.0001,t0); g.gain.exponentialRampToValueAtTime(v,t0+0.008); g.gain.exponentialRampToValueAtTime(0.0001,t0+d);
+  o.connect(g).connect(AC.destination); o.start(t0); o.stop(t0+d+0.05); return o;
+}
+function tone(f,d=0.25,type,v=0.08,delay=0){ osc(f*TH.base,d,type||TH.wave,v,delay); }
+function kick(){ const o=osc(120,0.25,'sine',0.22,0); if(o){ o.frequency.exponentialRampToValueAtTime(42,AC.currentTime+0.2); } }
+function buzz(ms){ if(!SET.vib) return; try{ navigator.vibrate&&navigator.vibrate(ms); }catch(e){} }
+function startAudio(){ try{ if(!AC) AC=new (window.AudioContext||window.webkitAudioContext)(); AC.resume&&AC.resume(); }catch(e){} }
+
+/* ---------- aléa & date ---------- */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let x=Math.imul(a^a>>>15,1|a); x=x+Math.imul(x^x>>>7,61|x)^x; return ((x^x>>>14)>>>0)/4294967296; }; }
+const now=new Date();
+const TODAY=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+let TODAY_LABEL='';
+const DAILY_SEED=now.getFullYear()*10000+(now.getMonth()+1)*100+now.getDate();
+const DAILY_LEVELS=[2,4,7,10,12,14];
+
+/* ---------- campagne ---------- */
+const WORLDS=[
+  { F:i=>({ n:3+Math.floor(i/2), triples:i>=6?0.25:0, battery:i>=4 }) },
+  { F:i=>({ n:4+Math.floor(i/3), walls:1+Math.floor(i/4), prisms:i>=2?1:0, mirror:i>=5, triples:0.2, battery:true }) },
+  { F:i=>({ n:5+Math.floor(i/3), walls:1, mud:1, twins:i>=3, fragile:i>=6, drift:i>=8, prisms:1, triples:0.2 }) },
+  { F:i=>({ n:5+Math.floor(i/3), walls:1, currents:1, portal:i>=3, freq:i>=5, jam:i>=7, freeze:true, prisms:1 }) },
+  { F:i=>({ n:5+Math.floor(i/3), walls:2, chroma:true, delay:i>=3, beacon:i>=5, decay:i>=7, prisms:2, drift:i>=6, freeze:true }) }
+];
+const worldName=w=>t('worlds')[w][0], worldDesc=w=>t('worlds')[w][1];
+const CAMP=store.json('resonance.camp',{});
+const campKey=(w,i)=>`${w}-${i}`;
+const campStars=()=>Object.values(CAMP).reduce((a,b)=>a+b,0);
+const worldOpen=w=> w===0 || !!CAMP[campKey(w-1,9)];
+const gridOpen=(w,i)=> worldOpen(w) && (i===0 || !!CAMP[campKey(w,i-1)]);
+
+/* ---------- tutoriel ---------- */
+const TUTO=[
+  { L:{ targets:[{nx:.5,ny:.5}] }, hints:[[.2,.5],[.8,.5]] },
+  { L:{ targets:[{nx:.3,ny:.35}] }, hints:[[.3,.95],[.75,.35]] },
+  { L:{ targets:[{nx:.3,ny:.35},{nx:.7,ny:.75}] }, hints:[[.1,.35],[.5,.35],[.7,.2]] },
+  { L:{ targets:[{nx:.5,ny:.9}], prisms:[{nx:.25,ny:.5},{nx:.75,ny:.5}], walls:[{nx:.5,ny:.5,a:0,len:.2}] }, hints:[[.5,.1]] },
+  { L:{ targets:[{nx:.25,ny:.3},{nx:.75,ny:.3},{nx:.5,ny:.75}] }, hints:[], pulses:5 }
+];
+
+/* ---------- statistiques & succès ---------- */
+const STATS=Object.assign({ waves:0, lit:0, chain:0, precSum:0, precN:0, playSec:0, batt:0 }, store.json('resonance.stats',{}));
+let statsDirty=0;
+function saveStats(){ store.set('resonance.stats',JSON.stringify(STATS)); statsDirty=0; }
+const ACH=['tuto','first','chain3','chain5','chain7','perfect','triple','mirror','portal','freeze','batt10','world1','camp','stars100','arc10','arc20','thrift',
+  'daily','share','puz1','puzall','chrono3k','surv60','beat10','melody','coop5','duel','zen100','editor','palette','waves1000'];
+const achText=id=>(I18N[LANG].ach&&I18N[LANG].ach[id])||I18N.en.ach[id];
+const got=new Set(store.json('resonance.ach',[]));
+let toastTimer=0;
+function toast(msg,ms){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),ms||1400); }
+function award(id){
+  if(got.has(id)) return; got.add(id); store.set('resonance.ach',JSON.stringify([...got]));
+  toast(t('ach_toast',{n:achText(id)[0]}),2600);
+  tone(SCALE[8],0.4,'triangle',0.04); tone(SCALE[10],0.5,'triangle',0.03,0.08);
+}
+
+/* ---------- état ---------- */
+let G=null;
+const S={ mode:'arcade', level:1, score:0, levelStartScore:0, pulses:0, max:0, pp:[0,0,0], ppMax:0,
+  phase:'menu', clearT:0, acc:0, marks:[], timeLeft:0, grids:0, fails:0, zenLit:0, levelDepth:0,
+  tapLog:[], dailyRuns:[], dailyStats:[], dailyRetries:0, replay:null, layout:null,
+  survT:0, spawnT:0, expect:0, melodyFails:0, custom:null, hold:null, bhold:null,
+  freezes:0, freezeArmed:false, camp:null, tutoTaps:0, rh:null };
+const seen=new Set();
+
+const SQUARE=['puzzle','editor','custom','tuto'];
+const FIXED=['puzzle','daily','replay','camp','tuto','custom','editor'];
+const SPLIT=['duel','coop'];
+function square(){ return SQUARE.includes(S.mode); }
+function makeEnv(){
+  if(square()){
+    const top = S.mode==='editor' ? 110 : TOP, bot = S.mode==='editor' ? 80 : (S.mode==='tuto'?120:BOT);
+    const side=Math.min(W-32, H-top-bot-24);
+    return { x0:(W-side)/2, y0:top+(H-top-bot-side)/2, w:side, h:side, U:side };
+  }
+  return { x0:28, y0:TOP, w:W-56, h:H-TOP-BOT, U:M };
+}
+const speedFor=env=> (square() ? env.U*0.42 : Math.max(env.U*0.42,160)) * (FIXED.includes(S.mode)?1:SET.speed);
+const nodeR=()=>Math.max(13,(G?G.env.U:M)*0.032);
+
+/* ---------- génération de grilles ---------- */
+function featuresFor(L,o){
+  const off={ n:4, walls:0, mirror:false, prisms:0, mud:0, twins:false, fragile:false, battery:false, freq:false, decay:false, portal:false,
+    jam:false, drift:false, triples:0, currents:0, chroma:false, delay:false, beacon:false, boss:false, freeze:false, speedL:10 };
+  if(o.F) return Object.assign(off,o.F);
+  const wantPortal = L>=12 && (L%2===0 || L>=16);
+  return Object.assign(off,{ n:o.n||Math.min(3+Math.floor((L-1)/2),10),
+    walls:o.noWalls?0:(L>=3?Math.min(1+Math.floor((L-3)/2),4):0), mirror:L>=6&&!wantPortal, prisms:L>=5?(L>=8?2:1):0,
+    mud:o.noMud?0:(L>=11?2:(L>=7?1:0)), twins:L>=8&&!o.noTwins, fragile:L>=9&&!o.noFragile, battery:L>=4&&!o.noBattery,
+    freq:L>=13&&!o.noFreq, decay:L>=15&&!o.noDecay, portal:wantPortal&&!o.noPortal, jam:L>=14&&!o.noJam, drift:L>=6&&!o.noDrift,
+    triples:L>=4?Math.min(0.15+L*0.02,0.4):0, currents:(L>=16&&!o.noCurrents)?1:0, chroma:L>=17&&!o.noChroma, delay:L>=18&&!o.noDelay,
+    beacon:L>=19&&!o.noBeacon, freeze:L>=16&&!o.noFreeze, speedL:L });
+}
+function genLevel(L,rng,o={}){
+  const F=featuresFor(L,o);
+  const env=makeEnv(), R=Math.max(13,env.U*0.032), rand=(a,b)=>a+rng()*(b-a);
+  const P=q=>({x:env.x0+q.nx*env.w, y:env.y0+q.ny*env.h});
+  const dist=(a,b)=>{ const p=P(a), q=P(b); return Math.hypot(p.x-q.x,p.y-q.y); };
+  const T=[]; let tries=0;
+  if(F.boss) T.push({nx:0.5,ny:0.5,need:4,boss:true});
+  const n=F.n+(F.boss?1:0);
+  while(T.length<n && tries<4000){ tries++;
+    const nd={nx:rand(0.05,0.95),ny:rand(0.05,0.95),need:2};
+    if(T.every(q=>dist(q,nd)>(q.boss?0.28:0.2)*env.U)) T.push(nd); }
+  const free=()=>T.filter(x=>x.need===2&&!x.boss&&x.twin==null&&!x.fragile&&!x.battery&&!x.freq&&!x.decay&&!x.chroma);
+  if(F.twins && T.length>=4){ const f=free(); if(f.length>=2){ f[0].twin=T.indexOf(f[1]); f[1].twin=T.indexOf(f[0]); } }
+  if(F.fragile){ const f=free(); if(f.length) f[f.length-1].fragile=true; }
+  if(F.battery && rng()<0.55){ const f=free(); if(f.length) f[0].battery=true; }
+  if(F.freq){ const f=free(); const k=Math.floor(rng()*2); f.slice(0,Math.min(3,f.length)).forEach((x,i)=>x.freq=(i+k)%2?'low':'high'); }
+  if(F.decay){ const f=free(); if(f.length) f[f.length-1].decay=6; }
+  if(F.chroma){ const f=free(); f.slice(0,Math.min(2,f.length)).forEach(x=>x.chroma=true); }
+  if(F.triples) free().forEach(x=>{ if(rng()<F.triples) x.need=3; });
+  if(F.drift) T.forEach(x=>{ if(x.boss) return; const sp=Math.min(0.01+F.speedL*0.0012,0.026), a=rand(0,TAU); x.vx=Math.cos(a)*sp; x.vy=Math.sin(a)*sp; });
+  const drift=T.some(x=>x.vx);
+  const ends=w=>{ const c=P(w), h=w.len*env.U/2; return [c.x-Math.cos(w.a)*h,c.y-Math.sin(w.a)*h,c.x+Math.cos(w.a)*h,c.y+Math.sin(w.a)*h]; };
+  const dSeg=(px,py,e)=>{ const [ax,ay,bx,by]=e, dx=bx-ax, dy=by-ay; const k=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy))); return Math.hypot(px-ax-k*dx,py-ay-k*dy); };
+  const Wl=[]; tries=0;
+  while(Wl.length<F.walls && tries<4000){ tries++;
+    const w={nx:rand(0.1,0.9),ny:rand(0.1,0.9),a:rand(0,Math.PI),len:rand(0.22,0.34)}; const e=ends(w);
+    if(Math.min(e[0],e[2])<20||Math.max(e[0],e[2])>W-20||Math.min(e[1],e[3])<TOP-10||Math.max(e[1],e[3])>H-BOT) continue;
+    if(T.some(x=>{const p=P(x);return dSeg(p.x,p.y,e)<(drift?R*4.5:x.boss?R*4:R*2.8);})) continue;
+    if(Wl.some(q=>dist(q,w)<0.25*env.U)) continue;
+    Wl.push(w); }
+  if(F.mirror && Wl.length) Wl[0].mirror=true;
+  const okSpot=(q,rad)=>{ const c=P(q);
+    if(T.some(x=>{const p=P(x);return Math.hypot(p.x-c.x,p.y-c.y)<rad+R*2+(drift?0.12*env.U:0);})) return false;
+    if(Wl.some(w=>dSeg(c.x,c.y,ends(w))<rad+12)) return false; return true; };
+  const Md=[]; tries=0;
+  while(Md.length<F.mud && tries<4000){ tries++;
+    const m={nx:rand(0.12,0.88),ny:rand(0.12,0.88),r:rand(0.09,0.12)};
+    if(!okSpot(m,m.r*env.U)) continue;
+    if(Md.some(q=>dist(q,m)<(q.r+m.r)*env.U+20)) continue; Md.push(m); }
+  const spotFree=(p,minT=0.14)=>{
+    if(T.some(x=>dist(x,p)<minT*env.U)) return false;
+    if(Wl.some(w=>{const c=P(p);return dSeg(c.x,c.y,ends(w))<R*2.5;})) return false;
+    if(Md.some(m=>dist(m,p)<m.r*env.U+R)) return false; return true; };
+  const Pr=[]; const np=Math.max(F.prisms, F.chroma?2:0); tries=0;
+  while(Pr.length<np && tries<4000){ tries++;
+    const p={nx:rand(0.08,0.92),ny:rand(0.08,0.92)};
+    if(!spotFree(p) || Pr.some(q=>dist(q,p)<0.25*env.U)) continue; Pr.push(p); }
+  if(F.chroma) Pr.forEach((p,i)=>p.hue=i%2);
+  const others=[...Pr];
+  const Po=[]; if(F.portal){ tries=0;
+    while(!Po.length && tries<4000){ tries++;
+      const a={nx:rand(0.08,0.92),ny:rand(0.08,0.92)}, b={nx:rand(0.08,0.92),ny:rand(0.08,0.92)};
+      if(dist(a,b)<0.45*env.U) continue;
+      if(![a,b].every(q=>okSpot(q,R)&&spotFree(q)&&!others.some(p=>dist(p,q)<0.15*env.U))) continue;
+      Po.push({a,b}); others.push(a,b); } }
+  const place=(minD)=>{ for(let k=0;k<4000;k++){ const p={nx:rand(0.08,0.92),ny:rand(0.08,0.92)}; if(spotFree(p) && !others.some(q=>dist(q,p)<minD*env.U)){ others.push(p); return p; } } return null; };
+  const Dl=[]; if(F.delay){ const p=place(0.18); if(p) Dl.push(p); }
+  const Bc=[]; if(F.beacon){ const p=place(0.2); if(p) Bc.push({...p,period:0.7}); }
+  const Jm=[]; if(F.jam){ const a=rand(0,TAU), sp=0.03; Jm.push({nx:rand(0.3,0.7),ny:rand(0.3,0.7),r:0.05,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp}); }
+  const Cu=[]; for(let k=0;k<F.currents;k++){ const a=rand(0,TAU), sp=0.05; Cu.push({nx:rand(0.25,0.75),ny:rand(0.25,0.75),r:0.16,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp}); }
+  return { targets:T, walls:Wl, prisms:Pr, muds:Md, portals:Po, jammers:Jm, currents:Cu, delays:Dl, beacons:Bc, freeze:F.freeze };
+}
+function budget(Ly){
+  const T=Ly.targets;
+  const base=T.length+1+T.filter(x=>x.need===3).length+(T.some(x=>x.boss)?2:0)+(T.some(x=>x.twin!=null)?1:0)
+    +T.filter(x=>x.fragile||x.decay).length+((Ly.jammers||[]).length?1:0)+((Ly.currents||[]).length?1:0)+(T.some(x=>x.chroma)?1:0);
+  const echo=(Ly.walls||[]).filter(w=>w.mirror).length*2+((Ly.portals||[]).length?2:0)+Math.max(0,(Ly.prisms||[]).length-1)+((Ly.delays||[]).length?1:0);
+  return Math.max(Math.ceil(T.length*0.6)+1, base-echo);
+}
+
+/* ---------- niveaux ---------- */
+function makeLevel(){
+  const m=S.mode; let Ly;
+  TOP = m==='duel' ? 70 : 90; BOT = 70;
+  if(m==='puzzle') Ly=PUZZLES[S.level-1];
+  else if(m==='custom') Ly=S.custom;
+  else if(m==='tuto') Ly=JSON.parse(JSON.stringify(TUTO[S.level-1].L));
+  else if(m==='camp'){ const {w,i}=S.camp; const F=WORLDS[w].F(i); if(i===9){ F.boss=true; F.n+=1; } Ly=genLevel(10,mulberry32(9000+w*100+i),{F}); }
+  else if(m==='daily'||m==='replay') Ly=genLevel(DAILY_LEVELS[S.level-1], mulberry32(DAILY_SEED*97+S.level));
+  else if(m==='zen') Ly=genLevel(3+(S.level%5), Math.random, {noDrift:true,noFragile:true,noDecay:true});
+  else if(m==='chrono') Ly=genLevel(Math.min(3+S.grids,9), Math.random, {noDrift:true,noFragile:true,noTwins:true});
+  else if(m==='duel') Ly=genLevel(7, Math.random, {n:9,noDrift:true,noFragile:true,noTwins:true,noMud:true,noBattery:true});
+  else if(m==='coop'){ Ly=genLevel(S.level+1, Math.random, {noDrift:S.level<8,noFragile:true,noTwins:true,noFreq:true,noBeacon:true,noChroma:true}); Ly.targets.forEach(x=>x.coop=true); }
+  else if(m==='surv') Ly=genLevel(5, Math.random, {n:3,noDrift:true,noFragile:true,noTwins:true,noMud:true,noBattery:true,noWalls:true});
+  else if(m==='rhythm') Ly=genLevel(5, Math.random, {n:2,noDrift:true,noFragile:true,noTwins:true,noMud:true,noBattery:true,noWalls:true});
+  else if(m==='melody'){
+    const n=Math.min(3+S.level,8);
+    Ly=genLevel(Math.min(2+S.level,9), Math.random, {n,noDrift:true,noFragile:true,noTwins:true,noBattery:true,noMud:true});
+    const order=[...Ly.targets.keys()].sort(()=>Math.random()-0.5);
+    const pent=[0,1,2,4,5,7,8,9]; let note=Math.floor(Math.random()*3);
+    order.forEach((ti,k)=>{ const x=Ly.targets[ti]; x.seq=k; x.need=2; x.note=SCALE[pent[note]]; note=Math.max(0,Math.min(7,note+[-1,1,1,2,-2][Math.floor(Math.random()*5)])); });
+  }
+  else Ly=genLevel(S.level, Math.random);
+  S.layout=Ly;
+  const env=makeEnv();
+  const win = m==='zen'?0.34 : ['puzzle','duel','chrono','surv','melody','custom','tuto','coop','rhythm','camp'].includes(m)?0.3 : Math.max(0.3-(effL()-1)*0.012,0.18);
+  G=E.create(Ly, env, speedFor(env), win);
+  if(m==='melody') G.targets.forEach((x,i)=>x.note=Ly.targets[i].note);
+  S.acc=0; S.marks=[]; S.tapLog=[]; S.levelStartScore=S.score; S.expect=0; S.hold=null; S.bhold=null; S.tutoTaps=0; S.freezeArmed=false;
+  S.freezes = Ly.freeze ? 2 : 0;
+  if(m==='zen'||m==='chrono'){ S.max=S.pulses=Infinity; }
+  else if(m==='rhythm'){ S.max=S.pulses=3; }
+  else if(m==='tuto'){ S.max=S.pulses=TUTO[S.level-1].pulses||Infinity; }
+  else if(m==='puzzle'){ S.max=S.pulses=1; }
+  else if(m==='custom'){ S.max=S.pulses=Ly.pulses||budget(Ly); }
+  else if(m==='surv'){ S.max=12; S.pulses=8; S.spawnT=0; }
+  else if(m==='melody'){ S.max=S.pulses=Ly.targets.length*2; }
+  else if(m==='coop'){ S.max=S.pulses=budget(Ly)+2; }
+  else if(m==='duel'){ S.ppMax=Math.ceil(Ly.targets.length*0.8)+1; S.pp=[0,S.ppMax,S.ppMax]; S.max=S.pulses=0; }
+  else { S.max=S.pulses=budget(Ly); }
+  if(m==='rhythm'){ S.rh={ beat:0.6, lives:5, next:0.6, n:0, flash:-9, lastBeat:0, onBeat:0 }; }
+  if(m==='arcade'){ if(S.level>=10) award('arc10'); if(S.level>=20) award('arc20'); }
+  if(m==='coop' && S.level>=5) award('coop5');
+  S.phase='play';
+  showTip(Ly);
+  renderHud();
+}
+function effL(){ return S.mode==='daily'||S.mode==='replay' ? DAILY_LEVELS[S.level-1] : S.level; }
+function showTip(Ly){
+  const T=Ly.targets; let txt='', mid=false, strong=false;
+  const once=k=>{ if(!txt && !seen.has(k)){ seen.add(k); txt=tip(k); } };
+  if(S.mode==='tuto'){ txt=t('tuto')[S.level-1]; strong=true; }
+  if(S.mode==='puzzle') once('puzzle');
+  if(S.mode==='duel'){ once('duel'); mid=true; }
+  if(S.mode==='coop'){ once('coop'); mid=true; }
+  if(S.mode==='chrono') once('chrono');
+  if(S.mode==='surv') once('surv');
+  if(S.mode==='rhythm') once('rhythm');
+  if(S.mode==='melody') once('melody');
+  if(S.mode==='camp' && T.some(x=>x.boss)) once('boss');
+  if(!['replay','tuto'].includes(S.mode)){
+    if(S.level===1 && ['arcade','daily','zen'].includes(S.mode)) once('base');
+    if((Ly.beacons||[]).length) once('beacon');
+    if((Ly.delays||[]).length) once('delay');
+    if(T.some(x=>x.chroma)) once('chroma');
+    if((Ly.currents||[]).length) once('currents');
+    if(T.some(x=>x.freq)) once('freq');
+    if((Ly.portals||[]).length) once('portal');
+    if((Ly.jammers||[]).length) once('jam');
+    if(T.some(x=>x.battery)) once('battery');
+    if(T.some(x=>x.decay)) once('decay');
+    if(Ly.walls.some(w=>w.mirror)) once('mirror');
+    if(Ly.walls.some(w=>!w.mirror)) once('walls');
+    if(Ly.prisms.length) once('prisms');
+    if((Ly.muds||[]).length) once('mud');
+    if(T.some(x=>x.twin!=null)) once('twin');
+    if(T.some(x=>x.fragile)) once('fragile');
+    if(T.some(x=>x.need===3)) once('triple');
+    if(T.some(x=>x.vx)) once('drift');
+  }
+  const te=$('tip'); te.classList.toggle('mid',mid); te.classList.toggle('high',S.mode==='tuto'||S.freezes>0); te.classList.toggle('strong',strong);
+  if(txt){ te.textContent=txt; te.hidden=false; te.style.opacity=1; } else te.hidden=true;
+}
+function dots(el,n,max){
+  el.innerHTML='';
+  for(let i=0;i<max;i++){ const d=document.createElement('i'); if(i<n) d.className='on'; el.appendChild(d); }
+}
+function renderHud(){
+  const m=S.mode, duel=m==='duel';
+  $('hud').hidden=duel; $('duelTop').hidden=$('duelBot').hidden=!duel;
+  const fb=$('freezeBtn'); fb.hidden=!(S.freezes>0||S.freezeArmed); $('freezeN').textContent=S.freezes; fb.classList.toggle('armed',S.freezeArmed);
+  if(duel){
+    const own=k=>G.targets.filter(x=>x.lit&&x.owner===k).length;
+    $('d1').textContent=own(1); $('d2').textContent=own(2);
+    dots($('dp1'),S.pp[1],S.ppMax); dots($('dp2'),S.pp[2],S.ppMax); return;
+  }
+  $('lvlLabel').textContent=t('lb_'+m);
+  let lv=S.level;
+  if(m==='daily'||m==='replay') lv=`${S.level}/6`;
+  else if(m==='puzzle') lv=`${S.level}/${PUZZLES.length}`;
+  else if(m==='tuto') lv=`${S.level}/${TUTO.length}`;
+  else if(m==='chrono') lv=Math.ceil(S.timeLeft);
+  else if(m==='surv') lv=`${Math.floor(S.survT)} s`;
+  else if(m==='custom') lv='—';
+  else if(m==='camp') lv=`${S.camp.w+1}·${S.camp.i===9?'G':S.camp.i+1}`;
+  else if(m==='rhythm') lv=S.rh?S.rh.lives:5;
+  $('lvl').textContent=lv;
+  const el=$('pulses');
+  if(S.max===Infinity) el.innerHTML='<span class="inf">∞</span>'; else dots(el,S.pulses,S.max);
+  $('scoreLabel').textContent = t(m==='zen'?'sc_nodes' : m==='puzzle'?'sc_try' : m==='surv'?'sc_off' : m==='tuto'?'sc_step' : 'sc_score');
+  $('score').textContent = m==='zen'?S.zenLit : m==='puzzle'?S.fails+1 : m==='surv'?`${G.targets.filter(x=>!x.lit).length}/8` : m==='tuto'?S.level : fmt(S.score);
+}
+function addTotal(n){
+  if(n<=0) return; const tot=+store.get('resonance.total',0)+n; store.set('resonance.total',tot);
+  if(tot>=THEMES[1].need) award('palette');
+}
+
+/* ---------- entrées ---------- */
+function ownerAt(y){ return SPLIT.includes(S.mode) ? (y<H/2?2:1) : 0; }
+function fire(x,y,freq){
+  const owner=ownerAt(y);
+  const freeze=S.freezeArmed;
+  if(freeze){ S.freezeArmed=false; S.freezes--; }
+  else if(S.mode==='duel'){ if(S.pp[owner]<=0) return; S.pp[owner]--; }
+  else { if(S.pulses<=0) return; S.pulses--; }
+  let tag=null;
+  if(S.mode==='rhythm' && S.rh){ const d=Math.min(Math.abs(G.t-S.rh.lastBeat), Math.abs(S.rh.next-G.t)); if(d<=0.09){ tag='beat'; S.marks.push({x,y:y-14,t:G.t,txt:t('mk_beat')}); } }
+  S.tapLog.push({ s:G.stepN, nx:(x-G.env.x0)/G.env.w, ny:(y-G.env.y0)/G.env.h, f:freq||null, z:freeze?1:0 });
+  E.tap(G,x,y,owner,freq,{tag,freeze});
+  S.marks.push({x,y,t:G.t,owner});
+  if(S.mode==='tuto') S.tutoTaps++;
+  STATS.waves++; if(STATS.waves>=1000) award('waves1000');
+  tone((S.mode==='zen'?SCALE[Math.floor(Math.random()*5)]:SCALE[0])*(freq==='low'?0.25:0.5),0.2,'triangle',0.05); buzz(8);
+  const tp=$('tip'); if(!tp.hidden && S.mode!=='tuto') tp.style.opacity=0.35;
+  renderHud();
+}
+function beaconAt(x,y){ if(!G) return -1; const R=nodeR(); return G.beacons.findIndex(b=>Math.hypot(b.x-x,b.y-y)<R*1.8); }
+function beaconOn(i,owner,id){
+  const b=G.beacons[i]; if(b.active) return;
+  if(S.mode==='duel'){ if(S.pp[owner]<=0) return; S.pp[owner]--; } else { if(S.pulses<=0) return; S.pulses--; }
+  b.active=true; b.next=G.t; b.owner=owner; S.bhold={id,i,t0:G.t};
+  S.tapLog.push({ s:G.stepN, b:i, on:1 }); renderHud();
+}
+function beaconOff(){
+  if(!S.bhold||!G) return; const b=G.beacons[S.bhold.i]; if(b) b.active=false;
+  S.tapLog.push({ s:G.stepN, b:S.bhold.i, on:0 }); S.bhold=null;
+}
+cv.addEventListener('pointerdown',e=>{
+  if(S.mode==='editor'&&S.phase==='edit'){ e.preventDefault(); return edTap(e.clientX,e.clientY); }
+  if(S.phase!=='play'||S.mode==='replay'||!G) return;
+  e.preventDefault();
+  const bi=beaconAt(e.clientX,e.clientY);
+  if(bi>=0 && !S.freezeArmed){ beaconOn(bi,ownerAt(e.clientY),e.pointerId); return; }
+  if(G.hasFreq && !S.freezeArmed){ S.hold={x:e.clientX,y:e.clientY,t0:performance.now(),id:e.pointerId}; return; }
+  fire(e.clientX,e.clientY,null);
+});
+const release=e=>{
+  if(S.bhold && e.pointerId===S.bhold.id){ beaconOff(); return; }
+  if(!S.hold||e.pointerId!==S.hold.id) return;
+  const h=S.hold; S.hold=null;
+  if(S.phase!=='play'||!G) return;
+  fire(h.x,h.y,(performance.now()-h.t0)/1000>=HOLD?'low':'high');
+};
+cv.addEventListener('pointerup',release); cv.addEventListener('pointercancel',release);
+// armer le gel ne coûte rien : la charge est consommée au tir
+$('freezeBtn').onclick=()=>{ if(S.phase!=='play') return; if(S.freezeArmed) S.freezeArmed=false; else if(S.freezes>0) S.freezeArmed=true; renderHud(); };
+
+/* ---------- événements moteur ---------- */
+function onEvent(type,nd){
+  if(type==='light'){
+    const d=nd.depth, m=S.mode;
+    let note = m==='zen' ? SCALE[Math.floor(Math.random()*SCALE.length)] : SCALE[Math.min(d+2,SCALE.length-1)];
+    if(m==='melody') note=nd.note;
+    tone(note,0.7,null,0.09); tone(note*1.5,0.5,null,0.035,0.06); buzz(d>1?[12,30,12]:15);
+    STATS.lit++; STATS.chain=Math.max(STATS.chain,d);
+    if(nd.spread!=null){ STATS.precSum+=Math.max(0,1-nd.spread/G.win); STATS.precN++; if(nd.spread<0.015) award('perfect'); }
+    award('first'); if(d>=3) award('chain3'); if(d>=5) award('chain5'); if(d>=7) award('chain7');
+    if(nd.need===3) award('triple'); if(nd.byVia) award('mirror'); if(nd.byPortal) award('portal');
+    if(nd.battery && S.max!==Infinity && m!=='duel'){ S.pulses++; S.max=Math.max(S.max,S.pulses); STATS.batt++; if(STATS.batt>=10) award('batt10'); S.marks.push({x:nd.x,y:nd.y+18,t:G.t,txt:t('mk_pulse')}); }
+    let wrong=false;
+    if(m==='melody'){
+      if(nd.seq===S.expect){ S.expect++; }
+      else {
+        wrong=true; S.melodyFails++; S.expect=0;
+        G.targets.forEach(o=>{ o.lit=false; o.hits=[]; });
+        S.marks.push({x:nd.x,y:nd.y,t:G.t,txt:t('mk_wrong'),bad:true}); tone(120,0.5,'sawtooth',0.04);
+      }
+    }
+    if(m==='surv'){ S.pulses=Math.min(S.pulses+1,S.max); }
+    let gain=0;
+    if(['arcade','daily','replay','surv','melody','custom','camp','coop','rhythm'].includes(m) && !wrong) gain=100*d;
+    else if(m==='chrono') gain=d>1?100*(d-1):0;
+    else if(m==='zen'){ S.zenLit++; const z=+store.get('resonance.zen',0)+1; store.set('resonance.zen',z); if(z>=100) award('zen100'); }
+    if(m==='rhythm' && nd.onBeat){ gain*=2; S.rh.onBeat++; if(S.rh.onBeat>=10) award('beat10'); }
+    if(gain){ S.score+=gain; if(!['replay','custom'].includes(m)) addTotal(gain); S.marks.push({x:nd.x,y:nd.y,t:G.t,txt:`+${fmt(gain)}`}); }
+    if(m==='daily') S.levelDepth=Math.max(S.levelDepth,d);
+    renderHud();
+  } else if(type==='prism'){ tone(SCALE[7],0.25,'triangle',0.035); }
+  else if(type==='portal'){ tone(SCALE[9],0.2,'sine',0.03); tone(SCALE[6],0.2,'sine',0.03,0.05); }
+  else if(type==='delay'){ tone(SCALE[3],0.15,'triangle',0.025); }
+  else if(type==='echo'){ tone(SCALE[3],0.3,'triangle',0.04); }
+  else if(type==='beacon'){ tone(SCALE[2],0.15,'triangle',0.035); buzz(6); }
+  else if(type==='freeze'){ award('freeze'); tone(SCALE[10],0.3,'sine',0.03); S.marks.push({x:nd.x,y:nd.y,t:G.t,txt:t('mk_frozen')}); }
+  else if(type==='arm'){ tone(SCALE[5],0.2,'triangle',0.03); }
+  else if(type==='break'){ tone(110,0.5,'sawtooth',0.04); buzz([20,40,20]); S.marks.push({x:nd.x,y:nd.y,t:G.t,txt:t('mk_broken'),bad:true}); }
+  else if(type==='fade'){ tone(140,0.4,'triangle',0.04); S.marks.push({x:nd.x,y:nd.y,t:G.t,txt:t('mk_off'),bad:true}); }
+}
+
+/* ---------- déroulé ---------- */
+function banner(big,small){ const b=$('banner'); b.textContent=big; if(small){ const s=document.createElement('small'); s.textContent=small; b.appendChild(s); } b.classList.add('show'); }
+function hideBanner(){ $('banner').classList.remove('show'); }
+
+function spawnNode(minD,extra){
+  const env=G.env, R=nodeR();
+  for(let k=0;k<60;k++){
+    const nd=Object.assign({nx:0.05+Math.random()*0.9, ny:0.05+Math.random()*0.9, need:2},extra||{});
+    const p=E.pos(G,nd);
+    if(G.targets.every(o=>Math.hypot(o.x-p.x,o.y-p.y)>minD*env.U) && G.prisms.every(o=>Math.hypot(o.x-p.x,o.y-p.y)>R*3)){ return E.addTarget(G,nd); }
+  }
+  return null;
+}
+function survTick(){
+  const before=Math.floor(S.survT*4);
+  S.survT+=STEP; if(S.survT>=60) award('surv60');
+  G.targets=G.targets.filter(x=>!(x.lit && G.t-x.litT>2.2));
+  S.spawnT-=STEP;
+  if(S.spawnT<=0){
+    S.spawnT=Math.max(1.1, 3.2-S.survT*0.025);
+    if(spawnNode(0.16,{need:Math.random()<Math.min(0.1+S.survT/300,0.35)?3:2})) tone(SCALE[1],0.15,'triangle',0.025);
+  }
+  if(Math.floor(S.survT*4)!==before) renderHud();
+  const off=G.targets.filter(x=>!x.lit).length;
+  if(off>=8 || (S.pulses<=0 && !E.active(G))) endSurv();
+}
+function rhythmTick(){
+  const rh=S.rh;
+  if(G.t>=rh.next){
+    rh.lastBeat=rh.next; rh.next+=rh.beat; rh.n++; rh.flash=G.t;
+    if(S.pulses<S.max){ S.pulses++; renderHud(); }
+    if(rh.n%2===1) kick(); osc(6200,0.04,'square',0.012,0);
+    const bass=[0,0,4,3][Math.floor(rh.n/2)%4]; if(rh.n%2===1) osc(SCALE[bass]*0.25,0.35,'triangle',0.06,0);
+    // la cadence d'apparition double après une minute
+    if(rh.n%(rh.n>100?1:2)===0 && G.targets.filter(x=>!x.lit).length<6){ const nd=spawnNode(0.18); if(nd) nd.expire=G.t+rh.beat*6; }
+  }
+  G.targets=G.targets.filter(x=>{
+    if(x.lit) return G.t-x.litT<1.5;
+    if(x.expire && G.t>x.expire){ rh.lives--; S.marks.push({x:x.x,y:x.y,t:G.t,txt:t('mk_miss'),bad:true}); tone(130,0.3,'triangle',0.05); renderHud(); return false; }
+    return true;
+  });
+  if(rh.lives<=0) endRhythm();
+}
+
+function campClear(){
+  const {w,i}=S.camp, k=campKey(w,i), left=S.pulses;
+  const need3=Math.ceil(S.max*0.35);
+  const stars = left>=need3 ? 3 : left>=1 ? 2 : 1;
+  if(!CAMP[k] || stars>CAMP[k]) CAMP[k]=stars; store.set('resonance.camp',JSON.stringify(CAMP));
+  addTotal(100*stars);
+  if(i===9 && w===0) award('world1'); if(i===9 && w===WORLDS.length-1) award('camp'); if(campStars()>=100) award('stars100');
+  S.phase='over';
+  const next = i<9 ? {w,i:i+1} : (w<WORLDS.length-1 ? {w:w+1,i:0} : null);
+  showEnd({ kicker:`${worldName(w)} · ${i===9?t('cp_boss'):t('cp_grid',{n:i+1})}`, title:'★'.repeat(stars)+'☆'.repeat(3-stars),
+    msg: stars===3 ? t('cp_3') : t('cp_keep',{n:need3}),
+    btns:[ ...(next?[{label:t(i===9?'next_sea':'next_grid'), fn:()=>playCamp(next.w,next.i)}]:[]),
+           {label:t('replay'), ghost:true, fn:()=>playCamp(w,i)}, {label:t('map'), ghost:true, fn:openCamp} ] });
+}
+
+function checkState(){
+  const m=S.mode;
+  if(S.bhold && G.t-S.bhold.t0>5) beaconOff();
+  if(m==='surv') return survTick();
+  if(m==='rhythm') return rhythmTick();
+  if(m==='chrono'){ S.timeLeft-=STEP; if(S.timeLeft<=0){ S.timeLeft=0; return endChrono(); } }
+  if(E.allLit(G) && (m!=='melody' || S.expect>=G.targets.length)){
+    S.phase='clear'; S.clearT=G.t; beaconOff();
+    [0,0.08,0.16].forEach((d,i)=>tone(SCALE[4+i*2],0.7,null,0.06,d));
+    if(m==='zen'){ banner(t('bn_harmony'),t('bn_newgrid')); return; }
+    if(m==='chrono'){ S.score+=200; addTotal(200); banner('+200',t('bn_gridfull')); return; }
+    if(m==='camp') return campClear();
+    if(m==='tuto'){ banner(t('bn_step',{n:S.level}), t(S.level<TUTO.length?'bn_next':'bn_tutodone')); return; }
+    if(m==='puzzle'){
+      const solved=+store.get('resonance.puzzle',0); if(S.level>solved){ store.set('resonance.puzzle',S.level); addTotal(300); }
+      if(S.fails===0) award('puz1'); if(+store.get('resonance.puzzle',0)>=PUZZLES.length) award('puzall');
+      banner(t('bn_solved'), t('bn_puz',{k:S.level,n:S.fails+1})); return;
+    }
+    if(m==='duel') return endDuel();
+    if(m==='custom'){ S.phase='over'; const u=S.max-S.pulses;
+      return showEnd({ kicker:t('cu_k'), title:t('cu_ok'), msg:`${t('cu_used',{n:u,m:S.max})} ${t('e_score',{n:S.score})}`,
+        btns:[ {label:t('to_editor'), fn:openEditor}, {label:t('replay'), ghost:true, fn:()=>{ S.score=0; makeLevel(); }} ] }); }
+    if(m==='melody'){
+      if(S.melodyFails===0) award('melody');
+      const bonus=S.pulses*50; S.score+=bonus; addTotal(bonus); saveBest();
+      banner(t('bn_melody',{n:S.level}), S.melodyFails?t('bn_wrongs',{n:S.melodyFails}):t('bn_clean'));
+      playMelody(); return;
+    }
+    const bonus=S.pulses*50; S.score+=bonus; if(m!=='replay') addTotal(bonus);
+    if(m==='arcade' && S.pulses>=S.max/2) award('thrift');
+    if(m==='daily'){ S.dailyRuns[S.level-1]=S.tapLog.slice(); S.dailyStats[S.level-1]={used:S.max-S.pulses,max:S.max,chain:S.levelDepth||1}; }
+    const head = m==='daily'||m==='replay' ? `${S.level} / 6` : m==='coop' ? t('bn_coop',{n:S.level}) : t('bn_level',{n:S.level});
+    banner(head, m==='replay'?t('bn_replay'):bonus?t('bn_kept',{n:bonus}):t('bn_full'));
+    saveBest(); renderHud(); return;
+  }
+  if(E.active(G)) return;
+  if(m==='duel'){ if(S.pp[1]<=0&&S.pp[2]<=0) endDuel(); return; }
+  if(m==='tuto'){
+    const need=TUTO[S.level-1].hints.length;
+    if((S.pulses===Infinity && S.tutoTaps>=Math.max(need,1)) || S.pulses<=0){ S.phase='retry'; S.clearT=G.t; banner(t('bn_almost'),t('bn_retry')); }
+    return;
+  }
+  if(S.pulses>0) return;
+  if(m==='puzzle'){ S.phase='retry'; S.clearT=G.t; S.fails++; banner(t('bn_missed'),t('bn_retry')); tone(150,0.4,'triangle',0.05); return; }
+  if(m==='replay'){ S.phase='clear'; S.clearT=G.t; return; }
+  S.phase='over'; saveBest();
+  const left=G.targets.filter(x=>!x.lit).length, nodesTxt=t('e_left',{n:left});
+  if(m==='custom') return showEnd({ kicker:t('cu_k'), bad:true, title:t('cu_fail'), msg:`${nodesTxt} ${t('cu_fail_msg')}`,
+    btns:[ {label:t('retry'), fn:()=>{ S.score=0; makeLevel(); }}, {label:t('to_editor'), ghost:true, fn:openEditor} ] });
+  if(m==='camp') return showEnd({ kicker:worldName(S.camp.w), bad:true, title:t('e_silence'), msg:nodesTxt,
+    btns:[ {label:t('retry'), fn:()=>playCamp(S.camp.w,S.camp.i)}, {label:t('map'), ghost:true, fn:openCamp} ] });
+  showEnd({ kicker:t('e_nopulse'), bad:true, title:t('e_silence'), msg:`${nodesTxt} ${t('e_score',{n:S.score})}`,
+    btns:[ {label:t('replay_lvl'), fn:()=>{ S.score=S.levelStartScore; if(S.mode==='daily') S.dailyRetries++; S.levelDepth=0; S.melodyFails=0; makeLevel(); }},
+           {label:t('menu'), ghost:true, fn:toMenu} ] });
+  tone(130,0.6,'triangle',0.07);
+}
+function playMelody(){ [...G.targets].sort((a,b)=>a.seq-b.seq).forEach((x,i)=>tone(x.note,0.5,'sine',0.06,0.5+i*0.22)); }
+function afterClear(){
+  const m=S.mode, el=G.t-S.clearT;
+  if(S.phase==='retry'){ if(el>0.9){ hideBanner(); makeLevel(); } return; }
+  if(el < (m==='chrono'?0.7:m==='melody'?2.6:1.6)) return;
+  hideBanner();
+  if(m==='chrono'){ S.grids++; S.level++; return makeLevel(); }
+  if(m==='daily' && S.level>=6) return endDaily();
+  if(m==='replay' && S.level>=6) return endReplay();
+  if(m==='puzzle' && S.level>=PUZZLES.length) return endPuzzles();
+  if(m==='tuto' && S.level>=TUTO.length) return endTuto();
+  S.level++; S.levelDepth=0; S.fails=0; S.melodyFails=0; makeLevel();
+}
+function saveBest(){
+  const keys={arcade:'resonance.best',chrono:'resonance.chrono',melody:'resonance.melody',rhythm:'resonance.rhythm'};
+  const k=keys[S.mode]; if(k && S.score>+store.get(k,0)) store.set(k,S.score);
+  if(S.mode==='coop' && S.level>+store.get('resonance.coop',0)) store.set('resonance.coop',S.level);
+}
+
+/* ---------- fins de partie ---------- */
+function endTuto(){
+  S.phase='over'; store.set('resonance.tuto',1); award('tuto');
+  showEnd({ kicker:t('tu_k'), title:t('tu_t'), msg:t('tu_msg'),
+    btns:[ {label:t('m_camp'), fn:openCamp}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function endChrono(){
+  S.phase='over'; const prev=+store.get('resonance.chrono',0); saveBest();
+  if(S.score>=3000) award('chrono3k');
+  showEnd({ kicker:t('ch_k'), title: t(S.score>prev?'t_record':'t_end'),
+    msg:`${t('e_score',{n:S.score})} ${t('ch_grids',{n:S.grids})} ${t('rec',{n:Math.max(prev,S.score)})}`,
+    btns:[ {label:t('replay'), fn:()=>startMode('chrono')}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function endRhythm(){
+  S.phase='over'; const prev=+store.get('resonance.rhythm',0); saveBest();
+  showEnd({ kicker:t('rh_k'), bad:true, title: t(S.score>prev?'t_record':'rh_t'),
+    msg:`${t('e_score',{n:S.score})} ${t('rh_beats',{n:S.rh.onBeat})} ${t('rec',{n:Math.max(prev,S.score)})}`,
+    btns:[ {label:t('replay'), fn:()=>startMode('rhythm')}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function endSurv(){
+  S.phase='over'; const sec=Math.floor(S.survT), prev=+store.get('resonance.surv',0);
+  if(sec>prev) store.set('resonance.surv',sec);
+  showEnd({ kicker:t('sv_k'), bad:true, title: t(sec>prev?'t_record':'sv_t'),
+    msg:`${t('sv_msg',{n:sec})} ${t('e_score',{n:S.score})} ${t('sv_rec',{n:Math.max(prev,sec)})}`,
+    btns:[ {label:t('replay'), fn:()=>startMode('surv')}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function endDuel(){
+  S.phase='over'; award('duel');
+  const a=G.targets.filter(x=>x.lit&&x.owner===1).length, b=G.targets.filter(x=>x.lit&&x.owner===2).length;
+  renderHud();
+  showEnd({ kicker:t('dl_k'), title:t(a===b?'dl_tie':a>b?'dl_p1':'dl_p2'), msg:`${t('dl_a',{n:a})} ${t('dl_b',{n:b})}`,
+    btns:[ {label:t('rematch'), fn:()=>startMode('duel')}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function endPuzzles(){
+  S.phase='over';
+  showEnd({ kicker:t('pz_k'), title:t('pz_t'), msg:t('pz_msg',{n:PUZZLES.length}),
+    btns:[ {label:t('restart'), fn:()=>{ store.set('resonance.puzzle',0); startMode('puzzle'); }}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function copyBox(btn,text){
+  const box=$('shareBox'); box.value=text; box.hidden=false; box.focus(); box.select();
+  const done=()=>btn.textContent=t('copied'), fail=()=>btn.textContent=t('selected');
+  try{ navigator.clipboard.writeText(text).then(done,fail); }catch(e){ fail(); }
+}
+function shareText(){
+  const lines=[t('sh_head',{d:TODAY_LABEL})];
+  S.dailyStats.forEach((s,i)=>{ if(!s) return; lines.push(`${i+1} ${'🟧'.repeat(s.used)}${'⬜'.repeat(Math.max(0,s.max-s.used))}${s.chain>1?' '+t('sh_chain',{n:s.chain}):''}`); });
+  lines.push(t('sh_score',{n:S.score})+(S.dailyRetries?' · '+t('sh_retries',{n:S.dailyRetries}):''));
+  return lines.join('\n');
+}
+function endDaily(){
+  S.phase='over'; award('daily');
+  const key='resonance.daily.'+TODAY, prev=+store.get(key,-1);
+  if(S.score>prev){ store.set(key,S.score); store.set('resonance.dailyrun.'+TODAY, JSON.stringify({v:VERSION,score:S.score,runs:S.dailyRuns})); }
+  const run=store.json('resonance.dailyrun.'+TODAY,null);
+  showEnd({ kicker:t('dy_k',{d:TODAY_LABEL}), title:t('dy_t'), msg:`${t('e_score',{n:S.score})} ${t('dy_best',{n:Math.max(prev,S.score)})} ${t('dy_tomorrow')}`,
+    btns:[ {label:t('share'), keep:true, fn:(btn)=>{ award('share'); $('shareBox').readOnly=true; copyBox(btn,shareText()); }},
+           ...(run&&run.v===VERSION?[{label:t('watch'), ghost:true, fn:startReplay}]:[]),
+           {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function startReplay(){
+  const run=store.json('resonance.dailyrun.'+TODAY,null);
+  if(!run||run.v!==VERSION){ toMenu(); return; }
+  S.mode='replay'; S.replay=run; S.level=1; S.score=0;
+  $('end').hidden=true; $('menu').hidden=true; makeLevel();
+}
+function endReplay(){
+  S.phase='over';
+  showEnd({ kicker:t('rp_k'), title:t('rp_t'), msg:t('rp_msg',{n:S.replay.score}),
+    btns:[ {label:t('watch_again'), fn:startReplay}, {label:t('menu'), ghost:true, fn:toMenu} ] });
+}
+function showEnd({kicker,bad,title,msg,btns,box}){
+  $('endKicker').textContent=kicker; $('endKicker').style.color=bad?'var(--rose)':'var(--saffron)';
+  $('endTitle').textContent=title; $('endMsg').textContent=msg;
+  const sb=$('shareBox'); sb.hidden=!box; if(box){ sb.readOnly=!!box.readOnly; sb.value=box.value||''; }
+  const row=$('endBtns'); row.innerHTML='';
+  btns.forEach(b=>{ const el=document.createElement('button'); el.className='btn'+(b.ghost?' ghost':''); el.textContent=b.label;
+    el.onclick=()=>{ startAudio(); if(!b.keep) $('end').hidden=true; b.fn(el); }; row.appendChild(el); });
+  $('freezeBtn').hidden=true;
+  $('end').hidden=false; $('end').scrollTop=0;
+}
+
+/* ---------- transitions ---------- */
+function swap(fn){
+  const f=$('fade');
+  if(reduce){ fn(); return; }
+  f.classList.add('on'); setTimeout(()=>{ fn(); f.classList.remove('on'); },220);
+}
+
+/* ---------- campagne : carte ---------- */
+function renderCamp(){
+  const wrap=$('campWorlds'); wrap.innerHTML='';
+  const tot=campStars();
+  $('campSum').textContent=`${t('camp_sum',{n:tot,m:WORLDS.length*30})} ${t('camp_sum2')}`;
+  WORLDS.forEach((wd,w)=>{
+    const open=worldOpen(w), sec=document.createElement('section'); sec.className='world'+(open?'':' locked');
+    const st=Array.from({length:10},(_,i)=>CAMP[campKey(w,i)]||0).reduce((a,b)=>a+b,0);
+    const h=document.createElement('h3'); h.textContent=`${w+1}. ${worldName(w)}`; const hs=document.createElement('span'); hs.textContent=`${st}/30 ★`; h.appendChild(hs);
+    const p=document.createElement('p'); p.textContent=worldDesc(w);
+    sec.append(h,p);
+    const cells=document.createElement('div'); cells.className='cells';
+    for(let i=0;i<10;i++){
+      const s=CAMP[campKey(w,i)]||0, ok=gridOpen(w,i), b=document.createElement('button');
+      b.className='cell'+(i===9?' boss':'')+(ok?'':' locked')+(s?' done':'');
+      b.innerHTML=`${i===9?'G':i+1}<small>${s?'★'.repeat(s):''}</small>`;
+      b.setAttribute('aria-label',[worldName(w), i===9?t('cp_boss'):t('cp_grid',{n:i+1}), s?t('cp_star',{n:s}):null, ok?null:t('cp_locked')].filter(Boolean).join(', '));
+      if(ok) b.onclick=()=>playCamp(w,i); else b.disabled=true;
+      cells.appendChild(b);
+    }
+    sec.appendChild(cells); wrap.appendChild(sec);
+  });
+}
+function openCamp(){
+  swap(()=>{ S.phase='menu'; G=null; hideAll(); renderCamp(); $('campView').hidden=false; $('campView').scrollTop=0; });
+}
+function playCamp(w,i){
+  startAudio();
+  swap(()=>{ hideAll(); S.mode='camp'; S.camp={w,i}; S.score=0; S.level=1; makeLevel(); });
+}
+$('closeCamp').onclick=()=>toMenu();
+
+/* ---------- éditeur ---------- */
+const TOOLS=['node','prism','wall','mirror','mud','portal','erase'];
+const NODE_TYPES=[{need:2},{need:3},{need:2,battery:true},{need:2,freq:'high'},{need:2,freq:'low'},{need:2,fragile:true},{need:2,decay:6}];
+let ED=null;
+function blankDraft(){ return { targets:[], prisms:[], walls:[], muds:[], portals:[], pulses:3, _pend:null }; }
+function loadDraft(){ const d=store.json('resonance.draft',null); return d?Object.assign(blankDraft(),d,{_pend:null}):blankDraft(); }
+function saveDraft(){ const {_pend,...d}=ED.draft; store.set('resonance.draft',JSON.stringify(d)); }
+function buildTools(){
+  const bar=$('edTools'); bar.innerHTML='';
+  TOOLS.forEach(id=>{ const b=document.createElement('button'); b.className='tool'+(ED.tool===id?' sel':''); b.textContent=t('tl_'+id);
+    b.onclick=()=>{ ED.tool=id; ED.draft._pend=null; buildTools(); edTip(); }; bar.appendChild(b); });
+}
+function edTip(){
+  const k = ED.tool==='portal' ? (ED.draft._pend?'et_portal_b':'et_portal_a') : 'et_'+ED.tool;
+  const te=$('tip'); te.classList.remove('mid','strong'); te.classList.add('high'); te.textContent=t(k); te.hidden=false; te.style.opacity=1;
+}
+function edRefresh(){
+  const d=ED.draft;
+  d.pulses=Math.min(Math.max(d.pulses,1),20);
+  $('pVal').textContent=d.pulses;
+  $('edCount').textContent=t('ed_nodes',{n:d.targets.length});
+  const env=makeEnv(); G=E.create(d, env, speedFor(env), 0.3);
+  saveDraft();
+}
+function edTap(x,y){
+  const d=ED.draft, env=G.env;
+  const nx=(x-env.x0)/env.w, ny=(y-env.y0)/env.h;
+  if(nx<0||nx>1||ny<0||ny>1) return;
+  const cl=v=>Math.min(Math.max(v,0.04),0.96), q={nx:cl(nx),ny:cl(ny)};
+  const near=(o,r=26)=>Math.hypot((o.nx-nx)*env.w,(o.ny-ny)*env.h)<r;
+  const segNear=w=>{ const h=w.len*env.U/2, cx=w.nx*env.w, cy=w.ny*env.h, ax=cx-Math.cos(w.a)*h, ay=cy-Math.sin(w.a)*h, bx=cx+Math.cos(w.a)*h, by=cy+Math.sin(w.a)*h;
+    const px=nx*env.w, py=ny*env.h, dx=bx-ax, dy=by-ay, k=Math.max(0,Math.min(1,((px-ax)*dx+(py-ay)*dy)/(dx*dx+dy*dy))); return Math.hypot(px-ax-k*dx,py-ay-k*dy)<20; };
+  const tool=ED.tool;
+  if(tool==='erase'){
+    let i;
+    if((i=d.targets.findIndex(o=>near(o)))>=0) d.targets.splice(i,1);
+    else if((i=d.prisms.findIndex(o=>near(o)))>=0) d.prisms.splice(i,1);
+    else if((i=d.portals.findIndex(p=>near(p.a)||near(p.b)))>=0) d.portals.splice(i,1);
+    else if((i=d.walls.findIndex(segNear))>=0) d.walls.splice(i,1);
+    else if((i=d.muds.findIndex(m=>near(m,m.r*env.U)))>=0) d.muds.splice(i,1);
+  } else if(tool==='node'){
+    const o=d.targets.find(o=>near(o));
+    if(o){ const k=((o._k||0)+1)%NODE_TYPES.length;
+      for(const kk of Object.keys(o)) if(kk!=='nx'&&kk!=='ny') delete o[kk];
+      Object.assign(o,NODE_TYPES[k],{_k:k}); toast(t('nt')[k]); }
+    else if(d.targets.length<14) d.targets.push({...q,need:2,_k:0});
+    else toast(t('max_nodes'));
+  } else if(tool==='prism'){ if(!d.prisms.some(o=>near(o))) d.prisms.push(q); }
+  else if(tool==='wall'||tool==='mirror'){
+    const w=d.walls.find(segNear);
+    if(w) w.a=(w.a+Math.PI/6)%Math.PI;
+    else d.walls.push({...q,a:0,len:0.3,mirror:tool==='mirror'});
+  } else if(tool==='mud'){ if(d.muds.length<4) d.muds.push({...q,r:0.1}); else toast(t('max_mud')); }
+  else if(tool==='portal'){
+    if(d._pend){ d.portals.push({a:d._pend,b:q}); d._pend=null; } else if(d.portals.length<3) d._pend=q; else toast(t('max_portal'));
+    edTip();
+  }
+  tone(SCALE[4],0.1,'triangle',0.025);
+  edRefresh();
+}
+function encodeDraft(d){
+  const r=v=>Math.round(v*1000);
+  const o={ t:d.targets.map(x=>[r(x.nx),r(x.ny),x._k||0]), p:d.prisms.map(p=>[r(p.nx),r(p.ny)]),
+    w:d.walls.map(w=>[r(w.nx),r(w.ny),Math.round(w.a*180/Math.PI),r(w.len),w.mirror?1:0]),
+    m:d.muds.map(m=>[r(m.nx),r(m.ny),r(m.r)]), o:d.portals.map(p=>[r(p.a.nx),r(p.a.ny),r(p.b.nx),r(p.b.ny)]), n:d.pulses };
+  return 'RSN1.'+btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+}
+function decodeDraft(code){
+  const s=code.trim().replace(/\s+/g,''); if(!s.startsWith('RSN1.')) throw new Error('prefix');
+  const o=JSON.parse(decodeURIComponent(escape(atob(s.slice(5))))); const v=x=>Math.min(Math.max(+x/1000||0,0),1);
+  const d=blankDraft(), K=k=>Math.abs(k|0)%NODE_TYPES.length;
+  d.targets=(o.t||[]).slice(0,14).map(([x,y,k])=>({nx:v(x),ny:v(y),...NODE_TYPES[K(k)],_k:K(k)}));
+  d.prisms=(o.p||[]).slice(0,10).map(([x,y])=>({nx:v(x),ny:v(y)}));
+  d.walls=(o.w||[]).slice(0,10).map(([x,y,a,l,m])=>({nx:v(x),ny:v(y),a:(+a||0)*Math.PI/180,len:Math.min(Math.max(v(l),0.05),0.6),mirror:!!m}));
+  d.muds=(o.m||[]).slice(0,4).map(([x,y,r])=>({nx:v(x),ny:v(y),r:Math.min(Math.max(v(r),0.03),0.2)}));
+  d.portals=(o.o||[]).slice(0,3).map(([a,b,c,e])=>({a:{nx:v(a),ny:v(b)},b:{nx:v(c),ny:v(e)}}));
+  d.pulses=Math.min(Math.max(o.n|0,1),20);
+  return d;
+}
+function openEditor(){
+  startAudio();
+  swap(()=>{
+    hideAll(); S.mode='editor'; S.phase='edit'; TOP=90; BOT=70; S.marks=[]; S.hold=null;
+    if(!ED) ED={ tool:'node', draft:loadDraft() };
+    $('edTop').hidden=false; $('edTools').hidden=false;
+    buildTools(); edTip(); edRefresh();
+  });
+}
+$('pMinus').onclick=()=>{ ED.draft.pulses--; edRefresh(); };
+$('pPlus').onclick=()=>{ ED.draft.pulses++; edRefresh(); };
+$('edTest').onclick=()=>{
+  if(!ED.draft.targets.length){ toast(t('need_node')); return; }
+  award('editor');
+  const {_pend,...d}=ED.draft; S.custom=JSON.parse(JSON.stringify(d));
+  swap(()=>{ hideAll(); S.mode='custom'; S.score=0; S.level=1; makeLevel(); });
+};
+$('edCode').onclick=()=>{
+  const code=encodeDraft(ED.draft); S.phase='over';
+  showEnd({ kicker:t('code_k'), title:t('code_t'), msg:t('code_msg'),
+    box:{ value:code, readOnly:false },
+    btns:[ {label:t('copy'), keep:true, fn:(b)=>copyBox(b,$('shareBox').value)},
+           {label:t('load'), keep:true, fn:(b)=>{ try{ ED.draft=decodeDraft($('shareBox').value); $('end').hidden=true; S.phase='edit'; edRefresh(); edTip(); toast(t('loaded')); }
+             catch(e){ b.textContent=t('bad_code'); } }},
+           {label:t('close'), ghost:true, fn:()=>{ S.phase='edit'; }} ] });
+};
+
+/* ---------- réglages ---------- */
+function buildLangSeg(){
+  const seg=$('langSeg'); seg.innerHTML='';
+  LANGS.forEach(l=>{ const b=document.createElement('button'); b.dataset.v=l; b.textContent=I18N[l]._name; b.lang=l; seg.appendChild(b); });
+}
+function paintSettings(){
+  document.querySelectorAll('#setView .seg').forEach(seg=>{
+    const k=seg.dataset.k, cur=k==='speed'?String(SET.speed):k==='lang'?LANG:(SET[k]?'1':'0');
+    seg.querySelectorAll('button').forEach(b=>{ b.classList.toggle('on',b.dataset.v===cur); b.setAttribute('aria-pressed',b.dataset.v===cur?'true':'false'); });
+  });
+}
+function bindSettings(){
+  document.querySelectorAll('#setView .seg').forEach(seg=>{
+    seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+      const k=seg.dataset.k;
+      if(k==='lang'){ SET.lang=b.dataset.v; LANG=SET.lang; applyLang(); refreshMenu(); }
+      else SET[k]= k==='speed' ? +b.dataset.v : b.dataset.v==='1';
+      store.set('resonance.settings',JSON.stringify(SET)); paintSettings();
+      if(k==='cb'){ applyTheme(TH.id); refreshMenu(); }
+      if(k==='sound' && SET.sound){ startAudio(); tone(SCALE[4],0.2,null,0.06); }
+      if(k==='vib' && SET.vib) buzz(20);
+    });
+  });
+}
+$('openSet').onclick=()=>{ paintSettings(); $('setView').hidden=false; $('setView').scrollTop=0; };
+$('closeSet').onclick=()=>{ $('setView').hidden=true; };
+
+/* ---------- menu ---------- */
+function refreshMenu(){
+  const total=+store.get('resonance.total',0), tutoDone=store.get('resonance.tuto',null)!=null;
+  $('mTuto').classList.toggle('primary',!tutoDone); $('mCamp').classList.toggle('primary',tutoDone);
+  $('tutoLine').textContent = t(tutoDone?'tuto_done':'tuto_todo');
+  $('campStars').textContent=`${campStars()}/${WORLDS.length*30}`;
+  $('bestArcade').textContent=fmt(+store.get('resonance.best',0));
+  const d=store.get('resonance.daily.'+TODAY,null), dl=$('dailyLine'); dl.textContent='';
+  if(d==null) dl.textContent=t('daily_todo',{d:TODAY_LABEL});
+  else { dl.append(t('daily_today')+' '); const b=document.createElement('b'); b.textContent=fmt(+d); dl.appendChild(b); }
+  $('puzCount').textContent=`${Math.min(+store.get('resonance.puzzle',0),PUZZLES.length)}/${PUZZLES.length}`;
+  $('bestChrono').textContent=fmt(+store.get('resonance.chrono',0));
+  $('bestSurv').textContent=`${store.get('resonance.surv',0)} s`;
+  $('bestRhythm').textContent=fmt(+store.get('resonance.rhythm',0));
+  $('bestMelody').textContent=fmt(+store.get('resonance.melody',0));
+  $('bestCoop').textContent=store.get('resonance.coop',0);
+  $('zenCount').textContent=fmt(+store.get('resonance.zen',0));
+  $('totalLine').textContent=t('palettes',{n:fmt(total)});
+  $('achCount').textContent=`${got.size}/${ACH.length}`;
+  const sw=$('swatches'); sw.innerHTML='';
+  THEMES.forEach((th,i)=>{
+    const ok=total>=th.need, b=document.createElement('button');
+    b.className='sw'+(th.id===TH.id?' sel':'')+(ok?'':' locked');
+    b.setAttribute('aria-label', ok?t('theme_aria',{t:themeName(i)}):t('theme_lock',{t:themeName(i),n:th.need}));
+    const sp=document.createElement('span'); sp.style.background=`conic-gradient(${th.acc} 0 33%,${th.rose} 0 55%,${th.bone} 0 70%,${th.ink} 0)`;
+    b.append(sp, ok?themeName(i):fmt(th.need));
+    b.onclick=()=>{ if(!ok) return; applyTheme(th.id); refreshMenu(); };
+    sw.appendChild(b);
+  });
+}
+function openStats(){
+  saveStats();
+  const prec = STATS.precN ? Math.round(STATS.precSum/STATS.precN*100)+' %' : '—';
+  const items=[ ['st_waves',fmt(STATS.waves)], ['st_lit',fmt(STATS.lit)],
+    ['st_chain',STATS.chain?'×'+STATS.chain:'—'], ['st_prec',prec],
+    ['st_time',t('st_min',{n:Math.floor(STATS.playSec/60)})], ['st_batt',fmt(STATS.batt)],
+    ['st_stars',`${campStars()}/${WORLDS.length*30}`], ['st_arcade',fmt(+store.get('resonance.best',0))] ];
+  const g=$('statsGrid'); g.innerHTML='';
+  items.forEach(([k,v])=>{ const d=document.createElement('div'); d.textContent=t(k); const b=document.createElement('b'); b.textContent=v; d.appendChild(b); g.appendChild(d); });
+  $('achHead').textContent=t('ach_head',{n:got.size,m:ACH.length});
+  const ul=$('achList'); ul.innerHTML='';
+  ACH.forEach(id=>{ const [n,dsc]=achText(id); const li=document.createElement('li'); if(got.has(id)) li.className='on';
+    const sp=document.createElement('span'); const b=document.createElement('b'); b.textContent=n; sp.append(b,' · '+dsc); li.append(document.createElement('i'),sp); ul.appendChild(li); });
+  $('statsView').hidden=false; $('statsView').scrollTop=0;
+}
+$('openStats').onclick=openStats;
+$('closeStats').onclick=()=>{ $('statsView').hidden=true; };
+function hideAll(){
+  ['hud','duelTop','duelBot','tip','end','menu','campView','setView','statsView','edTop','edTools','freezeBtn'].forEach(id=>$(id).hidden=true);
+  hideBanner();
+}
+function toMenu(){
+  saveBest(); saveStats(); beaconOff();
+  swap(()=>{ S.phase='menu'; G=null; S.hold=null; hideAll(); refreshMenu(); $('menu').hidden=false; $('menu').scrollTop=0; });
+}
+function startMode(m){
+  startAudio();
+  swap(()=>{
+    hideAll();
+    S.mode=m; S.score=0; S.zenLit=0; S.grids=0; S.fails=0; S.levelDepth=0; S.melodyFails=0; S.survT=0;
+    S.level = m==='puzzle' ? Math.max(1,Math.min(+store.get('resonance.puzzle',0)+1, PUZZLES.length)) : 1;
+    if(m==='chrono') S.timeLeft=60;
+    if(m==='daily'){ S.dailyRuns=[]; S.dailyStats=[]; S.dailyRetries=0; }
+    makeLevel();
+  });
+}
+const MODES={ mTuto:'tuto', mArcade:'arcade', mDaily:'daily', mPuzzle:'puzzle', mChrono:'chrono', mSurv:'surv', mRhythm:'rhythm', mMelody:'melody', mCoop:'coop', mDuel:'duel', mZen:'zen' };
+for(const id in MODES) $(id).onclick=()=>startMode(MODES[id]);
+$('mCamp').onclick=openCamp;
+$('mEditor').onclick=openEditor;
+$('toMenu').onclick=toMenu; $('toMenu2').onclick=toMenu; $('toMenu3').onclick=toMenu;
+
+/* ---------- rendu ---------- */
+function ringColor(r){
+  if(SPLIT.includes(S.mode)) return r.owner===2?C.p2:C.saffron;
+  if(r.freeze) return C.p2;
+  if(r.hue!=null && G.prisms.some(p=>p.hue!=null)) return r.hue===0?C.rose:C.p2;
+  return r.kind==='chain'?C.saffron : r.kind==='prism'?C.rose : r.kind==='delay'?C.dust : C.bone;
+}
+function ringPath(g,r){
+  g.beginPath();
+  if(r.via||!G.muds.length){ g.arc(r.x,r.y,Math.max(r.r,0.1),0,TAU); return; }
+  const N=120;
+  if(!r.ivc){
+    r.ivc=[];
+    for(let i=0;i<N;i++){
+      const th=i/N*TAU, ux=Math.cos(th), uy=Math.sin(th), iv=[];
+      for(const m of G.muds){ const fx=r.x-m.x, fy=r.y-m.y, b=fx*ux+fy*uy, c=fx*fx+fy*fy-m.rr*m.rr, d=b*b-c;
+        if(d<=0) continue; const q=Math.sqrt(d), t1=Math.max(-b-q,0), t2=-b+q; if(t2>t1) iv.push([t1,t2]); }
+      iv.sort((a,b)=>a[0]-b[0]); r.ivc.push(iv);
+    }
+  }
+  for(let i=0;i<=N;i++){
+    const k=i%N, th=k/N*TAU; let rho=0, rem=r.r;
+    for(const [a,b] of r.ivc[k]){
+      if(a>rho){ const f=a-rho; if(rem<=f){ rho+=rem; rem=0; break; } rho=a; rem-=f; }
+      const cost=(b-Math.max(a,rho))*K_MUD; if(rem<=cost){ rho+=rem/K_MUD; rem=0; break; } rho=b; rem-=cost;
+    }
+    rho+=rem;
+    const x=r.x+Math.cos(th)*rho, y=r.y+Math.sin(th)*rho; i?g.lineTo(x,y):g.moveTo(x,y);
+  }
+}
+function strokeRing(g,r,a){
+  const col=ringColor(r); ringPath(g,r);
+  const thick=r.freq==='low', thin=r.freq==='high';
+  if(thin) g.setLineDash([7,6]); else if(r.freeze) g.setLineDash([2,6]); else if(r.kind==='delay') g.setLineDash([12,4]);
+  g.strokeStyle=`rgba(${col},${a*0.14})`; g.lineWidth=thick?16:10; g.stroke();
+  g.strokeStyle=`rgba(${col},${a*0.9})`; g.lineWidth=thick?3.4:r.freeze?2.6:1.6; g.stroke();
+  g.setLineDash([]);
+}
+function sideOf(e,x,y){ return Math.sign((e[2]-e[0])*(y-e[1])-(e[3]-e[1])*(x-e[0])); }
+function drawRings(){
+  const diag=Math.hypot(W,H), far=diag*3;
+  G.rings=G.rings.filter(r=>r.r<=Math.max(r.lim,diag*1.15));
+  const occl = G.walls.length || G.jammers.length;
+  for(const r of G.rings){
+    const a=Math.max(0,1-r.r/(diag*1.15)); if(a<=0) continue;
+    if(!occl && !r.via){ strokeRing(ctx,r,a); continue; }
+    const x0=Math.max(0,Math.floor(r.x-r.r-10)), y0=Math.max(0,Math.floor(r.y-r.r-10));
+    const x1=Math.min(W,Math.ceil(r.x+r.r+10)), y1=Math.min(H,Math.ceil(r.y+r.r+10));
+    if(x1<=x0||y1<=y0) continue;
+    lctx.clearRect(x0,y0,x1-x0,y1-y0);
+    strokeRing(lctx,r,a);
+    const cone=(e)=>{ const [ax,ay,bx,by]=e, da=Math.hypot(ax-r.x,ay-r.y)||1, db=Math.hypot(bx-r.x,by-r.y)||1;
+      lctx.beginPath(); lctx.moveTo(ax,ay); lctx.lineTo(bx,by);
+      lctx.lineTo(bx+(bx-r.x)/db*far,by+(by-r.y)/db*far); lctx.lineTo(ax+(ax-r.x)/da*far,ay+(ay-r.y)/da*far); lctx.closePath(); lctx.fill(); };
+    lctx.fillStyle='#000';
+    if(r.via){ lctx.globalCompositeOperation='destination-in'; cone(r.via.e); }
+    lctx.globalCompositeOperation='destination-out';
+    const vs = r.via ? sideOf(r.via.e,r.x,r.y) : 0;
+    for(const w of G.walls){
+      if(w===r.via) continue;
+      if(r.via && sideOf(r.via.e,w.e[0],w.e[1])===vs && sideOf(r.via.e,w.e[2],w.e[3])===vs) continue;
+      cone(w.e);
+    }
+    for(const j of G.jammers){
+      const dx=j.x-r.x, dy=j.y-r.y, d=Math.hypot(dx,dy);
+      lctx.beginPath(); lctx.arc(j.x,j.y,j.rr,0,TAU); lctx.fill();
+      if(d<=j.rr+1) continue;
+      const base=Math.atan2(dy,dx), al=Math.asin(j.rr/d), L=Math.sqrt(d*d-j.rr*j.rr);
+      const p1=[r.x+Math.cos(base-al)*L, r.y+Math.sin(base-al)*L], p2=[r.x+Math.cos(base+al)*L, r.y+Math.sin(base+al)*L];
+      lctx.beginPath(); lctx.moveTo(p1[0],p1[1]); lctx.lineTo(p1[0]+Math.cos(base-al)*far,p1[1]+Math.sin(base-al)*far);
+      lctx.lineTo(p2[0]+Math.cos(base+al)*far,p2[1]+Math.sin(base+al)*far); lctx.lineTo(p2[0],p2[1]); lctx.closePath(); lctx.fill();
+    }
+    lctx.globalCompositeOperation='source-over';
+    ctx.drawImage(lay,x0*DPR,y0*DPR,(x1-x0)*DPR,(y1-y0)*DPR,x0,y0,x1-x0,y1-y0);
+  }
+}
+function label(txt,x,y,col,size){
+  ctx.fillStyle=`rgba(${col},0.95)`; ctx.font=`700 ${size||11}px Unbounded, sans-serif`; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(txt,x,y); ctx.textBaseline='alphabetic';
+}
+function draw(){
+  ctx.drawImage(grid,0,0,W,H);
+  const R=nodeR(), tt=G.t;
+  if(square()){ const e=G.env; ctx.strokeStyle=`rgba(${C.dust},0.35)`; ctx.lineWidth=1; ctx.setLineDash([4,6]); ctx.strokeRect(e.x0,e.y0,e.w,e.h); ctx.setLineDash([]); }
+  if(SPLIT.includes(S.mode)){
+    ctx.fillStyle=`rgba(${C.p2},0.035)`; ctx.fillRect(0,0,W,H/2);
+    ctx.fillStyle=`rgba(${C.saffron},0.035)`; ctx.fillRect(0,H/2,W,H/2);
+    ctx.strokeStyle=`rgba(${C.dust},0.5)`; ctx.setLineDash([6,8]); ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke(); ctx.setLineDash([]);
+  }
+  if(S.mode==='rhythm' && S.rh){
+    const k=Math.max(0,1-(tt-S.rh.flash)/0.35), strong=S.rh.n%2===1;
+    ctx.strokeStyle=`rgba(${strong?C.saffron:C.bone},${k*(strong?0.5:0.25)})`; ctx.lineWidth=6; ctx.strokeRect(3,3,W-6,H-6);
+  }
+  for(const c of G.currents){
+    ctx.beginPath(); ctx.arc(c.x,c.y,c.rr,0,TAU); ctx.fillStyle=`rgba(${C.p2},0.06)`; ctx.fill();
+    ctx.strokeStyle=`rgba(${C.p2},0.3)`; ctx.lineWidth=1; ctx.setLineDash([3,6]); ctx.stroke(); ctx.setLineDash([]);
+    const a=Math.atan2(c.vy,c.vx), off=reduce?0:(tt*30)%24;
+    ctx.save(); ctx.beginPath(); ctx.arc(c.x,c.y,c.rr,0,TAU); ctx.clip(); ctx.translate(c.x,c.y); ctx.rotate(a);
+    ctx.strokeStyle=`rgba(${C.p2},0.45)`; ctx.lineWidth=1.4;
+    for(let yy=-c.rr+10; yy<c.rr; yy+=16) for(let xx=-c.rr-24+off; xx<c.rr; xx+=24){ ctx.beginPath(); ctx.moveTo(xx,yy); ctx.lineTo(xx+8,yy); ctx.lineTo(xx+5,yy-3); ctx.moveTo(xx+8,yy); ctx.lineTo(xx+5,yy+3); ctx.stroke(); }
+    ctx.restore();
+  }
+  for(const m of G.muds){
+    const g=ctx.createRadialGradient(m.x,m.y,0,m.x,m.y,m.rr);
+    g.addColorStop(0,`rgba(${C.dust},0.32)`); g.addColorStop(1,`rgba(${C.dust},0.08)`);
+    ctx.beginPath(); ctx.arc(m.x,m.y,m.rr,0,TAU); ctx.fillStyle=g; ctx.fill();
+    for(let i=1;i<=3;i++){ ctx.beginPath(); ctx.arc(m.x,m.y,m.rr*(i/3.4)+(reduce?0:Math.sin(tt*1.2+i)*2),0,TAU); ctx.strokeStyle=`rgba(${C.dust},0.28)`; ctx.lineWidth=1; ctx.stroke(); }
+  }
+  if(S.mode==='puzzle' && S.fails>=4 && S.layout.hint){
+    const hx=G.env.x0+S.layout.hint[0]*G.env.w, hy=G.env.y0+S.layout.hint[1]*G.env.h, k=reduce?0.5:(Math.sin(tt*3)+1)/2;
+    ctx.setLineDash([3,5]); ctx.beginPath(); ctx.arc(hx,hy,G.env.U*0.045+k*4,0,TAU); ctx.strokeStyle=`rgba(${C.bone},${0.35+k*0.35})`; ctx.lineWidth=1.5; ctx.stroke(); ctx.setLineDash([]);
+  }
+  if(S.mode==='tuto'){
+    TUTO[S.level-1].hints.forEach(([hx,hy],i)=>{
+      const x=G.env.x0+hx*G.env.w, y=G.env.y0+hy*G.env.h, next=i===S.tutoTaps, k=reduce?0.5:(Math.sin(tt*4)+1)/2;
+      ctx.beginPath(); ctx.arc(x,y,16+(next?k*5:0),0,TAU); ctx.fillStyle=`rgba(${C.saffron},${next?0.22:0.06})`; ctx.fill();
+      ctx.strokeStyle=`rgba(${C.saffron},${next?0.9:0.35})`; ctx.lineWidth=1.5; ctx.stroke();
+      label(String(i+1),x,y+1,next?C.saffron:C.dust,12);
+    });
+  }
+  drawRings();
+  for(const j of G.jammers){
+    ctx.beginPath(); ctx.arc(j.x,j.y,j.rr,0,TAU); ctx.fillStyle=TH.ink; ctx.fill();
+    ctx.strokeStyle=`rgba(${C.rose},0.8)`; ctx.lineWidth=1.5; ctx.setLineDash([2,3]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.save(); ctx.beginPath(); ctx.arc(j.x,j.y,Math.max(j.rr-3,1),0,TAU); ctx.clip(); ctx.fillStyle=`rgba(${C.dust},0.6)`;
+    const sd=Math.floor((reduce?0:tt)*12);
+    for(let i=0;i<26;i++){ const a=((i*137+sd*29)%360)*Math.PI/180, rr=((i*53+sd*17)%100)/100*j.rr; ctx.fillRect(j.x+Math.cos(a)*rr-1,j.y+Math.sin(a)*rr-1,2,2); }
+    ctx.restore();
+  }
+  ctx.lineCap='round';
+  for(const w of G.walls){
+    const [ax,ay,bx,by]=w.e; ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by);
+    if(w.mirror){ ctx.strokeStyle=`rgba(${C.bone},0.25)`; ctx.lineWidth=9; ctx.stroke(); ctx.strokeStyle=`rgba(${C.bone},0.95)`; ctx.lineWidth=3; ctx.stroke(); }
+    else { ctx.strokeStyle=`rgba(${C.dust},0.9)`; ctx.lineWidth=7; ctx.stroke(); ctx.strokeStyle=`rgba(${C.bone},0.3)`; ctx.lineWidth=1.5; ctx.stroke(); }
+  }
+  G.gates.forEach((g,i)=>{
+    const k=Math.max(0,1-(tt-g.lastT)/0.5);
+    ctx.save(); ctx.translate(g.x,g.y); ctx.rotate(reduce?0:tt*(i%2?-0.8:0.8));
+    ctx.setLineDash([5,4]); ctx.beginPath(); ctx.arc(0,0,R*0.9,0,TAU); ctx.strokeStyle=`rgba(${C.p2},${0.6+k*0.4})`; ctx.lineWidth=2.2; ctx.stroke();
+    ctx.setLineDash([]); ctx.beginPath(); ctx.arc(0,0,R*0.45,0,TAU); ctx.fillStyle=`rgba(${C.p2},${0.15+k*0.5})`; ctx.fill(); ctx.restore();
+  });
+  for(const d of G.delays){
+    const pend=G.pending.find(p=>p.d===d), k=pend?1-(pend.t-tt):0;
+    ctx.beginPath(); ctx.arc(d.x,d.y,R*0.8,0,TAU); ctx.strokeStyle=`rgba(${C.bone},0.6)`; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.beginPath(); ctx.arc(d.x,d.y,R*0.8,-Math.PI/2,-Math.PI/2+k*TAU); ctx.strokeStyle=`rgba(${C.bone},0.95)`; ctx.lineWidth=3; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d.x,d.y-R*0.5); ctx.moveTo(d.x,d.y); ctx.lineTo(d.x+R*0.35,d.y); ctx.strokeStyle=`rgba(${C.bone},0.8)`; ctx.lineWidth=1.6; ctx.stroke();
+  }
+  for(const b of G.beacons){
+    const ph=b.active?((tt-b.next+b.period)/b.period):0, k=b.active?Math.max(0,1-ph):0;
+    ctx.beginPath(); ctx.arc(b.x,b.y,R*1.05+k*4,0,TAU); ctx.fillStyle=`rgba(${C.saffron},${0.12+k*0.4})`; ctx.fill();
+    ctx.strokeStyle=`rgba(${C.saffron},0.9)`; ctx.lineWidth=2; ctx.stroke();
+    for(let i=1;i<=2;i++){ ctx.beginPath(); ctx.arc(b.x,b.y,R*0.35*i,0,TAU); ctx.strokeStyle=`rgba(${C.saffron},0.6)`; ctx.lineWidth=1.2; ctx.stroke(); }
+  }
+  if(S.mode==='editor' && ED && ED.draft._pend){ const p=E.pos(G,ED.draft._pend); ctx.setLineDash([5,4]); ctx.beginPath(); ctx.arc(p.x,p.y,R*0.9,0,TAU); ctx.strokeStyle=`rgba(${C.p2},0.6)`; ctx.lineWidth=2; ctx.stroke(); ctx.setLineDash([]); }
+  const chromaLvl=G.prisms.some(p=>p.hue!=null);
+  for(const p of G.prisms){
+    const k=Math.max(0,1-(tt-p.lastT)/0.5), s=R*0.62*(1+k*0.25), col=p.hue==null?C.rose:(p.hue===0?C.rose:C.p2);
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(Math.PI/4+(reduce?0:tt*0.4));
+    ctx.beginPath(); ctx.rect(-s,-s,s*2,s*2); ctx.fillStyle=`rgba(${col},${0.12+k*0.6})`; ctx.fill();
+    ctx.strokeStyle=`rgb(${col})`; ctx.lineWidth=2; ctx.stroke(); ctx.restore();
+    if(chromaLvl && p.hue!=null) label(p.hue===0?'A':'B',p.x,p.y+1,col,10);
+  }
+  const done=new Set();
+  for(const n of G.targets){
+    if(n.twin==null||done.has(n)) continue; const o=G.targets[n.twin]; if(!o) continue; done.add(o);
+    ctx.setLineDash([2,7]); ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(o.x,o.y);
+    ctx.strokeStyle=`rgba(${n.lit&&o.lit?C.saffron:C.bone},0.35)`; ctx.lineWidth=1.5; ctx.stroke(); ctx.setLineDash([]);
+  }
+  S.marks=S.marks.filter(m=>tt-m.t<1.2);
+  for(const m of S.marks){
+    const k=(tt-m.t)/1.2;
+    if(m.txt){ ctx.fillStyle=`rgba(${m.bad?C.rose:C.saffron},${1-k})`; ctx.font='700 13px Unbounded, sans-serif'; ctx.textAlign='center'; ctx.fillText(m.txt,m.x,m.y-30-k*24); }
+    else { ctx.beginPath(); ctx.arc(m.x,m.y,4+k*6,0,TAU); ctx.fillStyle=`rgba(${m.owner===2?C.p2:m.owner===1?C.saffron:C.bone},${0.8*(1-k)})`; ctx.fill(); }
+  }
+  if(S.hold){
+    const h=(performance.now()-S.hold.t0)/1000, k=Math.min(h/HOLD,1);
+    ctx.beginPath(); ctx.arc(S.hold.x,S.hold.y,10+k*16,0,TAU); ctx.strokeStyle=`rgba(${C.bone},${0.3+k*0.6})`; ctx.lineWidth=k>=1?3.4:1.6;
+    if(k<1) ctx.setLineDash([7,6]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle=`rgba(${C.bone},0.85)`; ctx.font='500 11px "IBM Plex Mono", monospace'; ctx.textAlign='center';
+    ctx.fillText(t(k>=1?'hold_low':'hold_high'), S.hold.x, S.hold.y-34);
+  }
+  for(const n of G.targets){
+    const x=n.x, y=n.y, RR=n.boss?R*1.6:R;
+    const split=SPLIT.includes(S.mode);
+    const litCol = split ? (n.owner===2?C.p2:C.saffron) : C.saffron;
+    if(S.mode==='melody' && !n.lit && n.seq===S.expect && S.phase==='play'){
+      const k=reduce?0.5:(Math.sin(tt*4)+1)/2; ctx.beginPath(); ctx.arc(x,y,RR+9+k*4,0,TAU); ctx.strokeStyle=`rgba(${C.saffron},${0.25+k*0.35})`; ctx.lineWidth=1.5; ctx.stroke();
+    }
+    if(n.frozenUntil && tt<n.frozenUntil){
+      ctx.beginPath(); ctx.arc(x,y,RR+8,0,TAU); ctx.strokeStyle=`rgba(${C.p2},0.85)`; ctx.lineWidth=2; ctx.setLineDash([2,3]); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(x,y,RR+8,-Math.PI/2,-Math.PI/2+(n.frozenUntil-tt)/3*TAU); ctx.strokeStyle=`rgba(${C.p2},0.9)`; ctx.lineWidth=3; ctx.stroke();
+    }
+    if(n.expire && !n.lit){ const left=Math.max(0,(n.expire-tt)/(S.rh?S.rh.beat*6:5)); ctx.beginPath(); ctx.arc(x,y,RR+6,-Math.PI/2,-Math.PI/2+left*TAU); ctx.strokeStyle=`rgba(${left<0.3?C.rose:C.dust},0.8)`; ctx.lineWidth=2; ctx.stroke(); }
+    if(n.lit){
+      const k=tt-n.litT;
+      if(!reduce && k<0.8){ ctx.beginPath(); ctx.arc(x,y,RR+k*60,0,TAU); ctx.strokeStyle=`rgba(${litCol},${0.6*(1-k/0.8)})`; ctx.lineWidth=2; ctx.stroke(); }
+      const pulse=reduce?0:Math.sin(tt*3+n.nx*9)*1.5;
+      ctx.save(); ctx.shadowColor=`rgba(${litCol},0.8)`; ctx.shadowBlur=24;
+      ctx.beginPath(); ctx.arc(x,y,RR*0.72+pulse,0,TAU); ctx.fillStyle=`rgb(${litCol})`; ctx.fill(); ctx.restore();
+      if(n.fragile){ ctx.setLineDash([3,4]); ctx.beginPath(); ctx.arc(x,y,RR+3,0,TAU); ctx.strokeStyle=`rgba(${C.rose},0.9)`; ctx.lineWidth=1.5; ctx.stroke(); ctx.setLineDash([]); }
+      if(n.decay){ const left=Math.max(0,1-(tt-n.litT)/n.decay); ctx.beginPath(); ctx.arc(x,y,RR+5,-Math.PI/2,-Math.PI/2+left*TAU); ctx.strokeStyle=`rgba(${C.rose},0.95)`; ctx.lineWidth=2.5; ctx.stroke(); }
+      if(split && SET.cb) label(String(n.owner||''),x,y+1,C.ink,11);
+    } else {
+      const armed=n.armedT!=null, gap=n.need>=4?0.22:0.32, seg=TAU/n.need;
+      for(let i=0;i<n.need;i++){
+        const a0=-Math.PI/2+i*seg+gap/2; ctx.beginPath(); ctx.arc(x,y,RR,a0,a0+seg-gap);
+        const on=armed||i<n.dirs, blink=armed&&!reduce&&Math.sin(tt*30)>0;
+        let base=C.bone;
+        if(n.chroma) base = i%2===0?C.rose:C.p2;
+        if(n.coop) base = i%2===0?C.saffron:C.p2;
+        ctx.strokeStyle= on ? `rgba(${C.saffron},${blink?0.5:1})` : `rgba(${base},${n.chroma||n.coop?0.8:0.55})`; ctx.lineWidth=on?3.5:(n.boss?3:2); ctx.stroke();
+      }
+      if(n.boss){ ctx.beginPath(); ctx.arc(x,y,RR+7,0,TAU); ctx.strokeStyle=`rgba(${C.rose},0.5)`; ctx.lineWidth=1; ctx.stroke(); }
+      if(n.fragile){ ctx.setLineDash([3,4]); ctx.beginPath(); ctx.arc(x,y,RR+6,0,TAU); ctx.strokeStyle=`rgba(${C.rose},0.8)`; ctx.lineWidth=1.2; ctx.stroke(); ctx.setLineDash([]); }
+      if(n.decay){ ctx.beginPath(); ctx.arc(x,y,RR+6,0,TAU); ctx.strokeStyle=`rgba(${C.rose},0.45)`; ctx.lineWidth=1; ctx.stroke(); }
+    }
+    const ic = n.lit ? C.ink : C.bone;
+    ctx.fillStyle=`rgba(${ic},0.9)`; ctx.strokeStyle=`rgba(${ic},0.9)`; ctx.lineWidth=2;
+    if(n.lit && split && SET.cb){}
+    else if(n.seq!=null) label(String(n.seq+1),x,y+1,ic,12);
+    else if(n.chroma && !n.lit) label('A·B',x,y+1,C.bone,8);
+    else if(n.coop && !n.lit) label('1·2',x,y+1,C.bone,8);
+    else if(n.boss && !n.lit) label('4',x,y+1,C.rose,13);
+    else if(n.battery){ ctx.beginPath(); ctx.moveTo(x-5,y); ctx.lineTo(x+5,y); ctx.moveTo(x,y-5); ctx.lineTo(x,y+5); ctx.stroke(); }
+    else if(n.freq==='low'){ ctx.fillRect(x-4,y-4,8,8); }
+    else if(n.freq==='high'){ ctx.beginPath(); ctx.moveTo(x,y-5); ctx.lineTo(x+5,y+4); ctx.lineTo(x-5,y+4); ctx.closePath(); ctx.stroke(); }
+    else if(n.decay){ ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y-5); ctx.moveTo(x,y); ctx.lineTo(x+4,y); ctx.stroke(); }
+    else if(!n.lit){ ctx.beginPath(); ctx.arc(x,y,3,0,TAU); ctx.fill(); }
+    for(const h of n.hits){
+      const k=1-(tt-h.t)/G.win; if(k<=0) continue;
+      const col = split ? (h.owner===2?C.p2:C.saffron) : (h.hue!=null&&chromaLvl) ? (h.hue===0?C.rose:C.p2) : h.kind==='chain'?C.saffron : h.kind==='prism'?C.rose : C.bone;
+      ctx.beginPath(); ctx.moveTo(x+Math.cos(h.a)*(RR+4),y+Math.sin(h.a)*(RR+4)); ctx.lineTo(x+Math.cos(h.a)*(RR+4+18*k),y+Math.sin(h.a)*(RR+4+18*k));
+      ctx.strokeStyle=`rgba(${col},${k})`; ctx.lineWidth=2.5; ctx.stroke();
+    }
+  }
+}
+let demoRings=[], demoT=0, demoNext=0;
+function drawDemo(dt){
+  demoT+=dt; ctx.drawImage(grid,0,0,W,H); if(reduce) return;
+  if(demoT>demoNext){ demoRings.push({x:(0.2+Math.random()*0.6)*W,y:(0.1+Math.random()*0.4)*H,b:demoT,c:[C.bone,C.saffron,C.rose][Math.floor(Math.random()*3)]}); demoNext=demoT+0.9; }
+  demoRings=demoRings.filter(r=>demoT-r.b<5);
+  for(const r of demoRings){ const a=Math.max(0,1-(demoT-r.b)/5); ctx.beginPath(); ctx.arc(r.x,r.y,(demoT-r.b)*M*0.25,0,TAU); ctx.strokeStyle=`rgba(${r.c},${a*0.5})`; ctx.lineWidth=1.4; ctx.stroke(); }
+}
+
+/* ---------- boucle ---------- */
+let last=performance.now();
+function frame(nowT){
+  const dt=Math.min((nowT-last)/1000,0.05); last=nowT;
+  if(S.phase==='menu'||!G){ drawDemo(dt); requestAnimationFrame(frame); return; }
+  if(S.mode==='editor'){ draw(); requestAnimationFrame(frame); return; }
+  if(S.phase==='play'){ STATS.playSec+=dt; if(++statsDirty>600) saveStats(); }
+  S.acc+=dt*(S.mode==='replay'?2:1);
+  let guard=0;
+  while(S.acc>=STEP && guard++<40){
+    S.acc-=STEP;
+    if(S.phase==='over') continue;
+    if(S.mode==='replay' && S.phase==='play'){
+      const taps=S.replay.runs[S.level-1]||[];
+      for(const tp of taps){ if(tp.done || tp.s>G.stepN) continue; tp.done=true;
+        if(tp.b!=null){ const b=G.beacons[tp.b]; if(b){ if(tp.on){ if(S.pulses>0) S.pulses--; b.active=true; b.next=G.t; } else b.active=false; } continue; }
+        const x=G.env.x0+tp.nx*G.env.w, y=G.env.y0+tp.ny*G.env.h;
+        if(tp.z){ S.freezes--; } else if(S.pulses>0) S.pulses--;
+        E.tap(G,x,y,0,tp.f||null,{freeze:!!tp.z}); S.marks.push({x,y,t:G.t}); tone(SCALE[0]*0.5,0.2,'triangle',0.04); renderHud(); }
+      if(taps.every(tp=>tp.done)) S.pulses=0;
+    }
+    E.step(G,STEP,onEvent);
+    if(S.phase==='play') checkState();
+    else if(S.phase==='clear'||S.phase==='retry') afterClear();
+    if(!G) break;
+  }
+  if(G){ if(S.mode==='chrono'&&S.phase==='play') $('lvl').textContent=Math.ceil(S.timeLeft); draw(); }
+  else drawDemo(dt);
+  requestAnimationFrame(frame);
+}
+addEventListener('pagehide',saveStats);
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) saveStats(); });
+
+buildLangSeg(); bindSettings(); applyLang();
+applyTheme(store.get('resonance.theme','seiche'));
+if(+store.get('resonance.total',0) < TH.need) applyTheme('seiche');
+addEventListener('resize',resize); resize();
+refreshMenu();
+// bouton retour d'Android : ferme l'écran ouvert, sinon revient au menu ; renvoie false au menu pour quitter
+window.resonanceBack=()=>{
+  for(const id of ['statsView','setView']) if(!$(id).hidden){ $(id).hidden=true; return true; }
+  if(!$('campView').hidden){ toMenu(); return true; }
+  if(S.phase==='menu' && !$('menu').hidden) return false;
+  toMenu(); return true;
+};
+const sp=$('splash');
+const leave=()=>{ if(sp.classList.contains('hide')) return; sp.classList.add('hide'); $('menu').hidden=false; setTimeout(()=>{ sp.hidden=true; }, reduce?0:500); };
+sp.addEventListener('pointerdown',()=>{ startAudio(); leave(); });
+setTimeout(leave, reduce?200:1600);
+requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+if('serviceWorker' in navigator){ addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
+</script>
+</body></html>
