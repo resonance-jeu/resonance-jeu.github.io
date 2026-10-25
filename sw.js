@@ -1,6 +1,6 @@
 // Service worker de Résonance : met tout le jeu en cache pour qu'il fonctionne hors ligne.
 // Change VERSION à chaque mise à jour du jeu pour que les joueurs reçoivent la nouvelle version.
-const VERSION = 'resonance-1.2.1';
+const VERSION = 'resonance-1.2.2';
 const FILES = [
   "./",
   "index.html",

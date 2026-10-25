@@ -11,6 +11,7 @@
 - **24/10** — Création de `ARCHITECTURE.md`, `A_FAIRE.md`, `PIEGES.md`, README complété.
 
 - **25/10** — Checklist « avant lancement » : `privacy.html` complétée dans les 6 langues (version web, cookies, partage, conditions d'utilisation, mentions légales, contact = tickets GitHub au lieu de `[TON E-MAIL DE CONTACT]`), lien dans les Réglages (clé `legal`), `<title>` remis dans `<head>` + Open Graph + `og-image.png` 1200×630 + préchargement de la police titre, `404.html`, `robots.txt` + `sitemap.xml`, couleurs `dust` des thèmes Abysse/Braise/Lichen/Papier au contraste AA, correctif SW (une navigation vers `privacy.html` ou une 404 n'écrase plus la copie hors ligne du jeu), cache `resonance-1.2.1`.
+- **25/10** — Passe SEO éditoriale (requête « jeu de réflexion gratuit ») : `<title>`, description, Open Graph alignés ; un seul `<h1>` (le sur-titre traduit `kicker`, devenu « Jeu de réflexion gratuit · ondes » dans les 6 langues, est placé dans le `<h1>` du menu ; les 4 autres titres d'écran passent en `<h2 class="big">`, même rendu) ; paragraphe `<noscript>` ; données structurées `VideoGame` en fin de `<body>` ; `VERSION` `resonance-1.2.2`. L'appli Android embarque ces fichiers : à reporter au prochain build.
 
 ## En cours
 

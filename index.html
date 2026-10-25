@@ -1,7 +1,7 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <style>[hidden]{display:none!important}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style><meta name="theme-color" content="#13100e">
-<meta name="description" content="Croise deux ondes au même instant pour allumer les nœuds. Un jeu de réflexion tactile, jouable hors ligne.">
+<meta name="description" content="Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -9,13 +9,13 @@
 <link rel="manifest" href="resonance.webmanifest">
 <link rel="icon" type="image/png" href="icons/favicon-48.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<title>Résonance — jeu d'ondes et de réflexion, gratuit et hors ligne</title>
+<title>Jeu de réflexion gratuit : croise les ondes | Résonance</title>
 <link rel="canonical" href="https://resonance-jeu.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Résonance">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="Résonance — jeu d'ondes et de réflexion">
-<meta property="og:description" content="Croise deux ondes au même instant pour allumer les nœuds. Un jeu de réflexion tactile, gratuit et jouable hors ligne.">
+<meta property="og:title" content="Jeu de réflexion gratuit : croise les ondes | Résonance">
+<meta property="og:description" content="Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.">
 <meta property="og:url" content="https://resonance-jeu.github.io/">
 <meta property="og:image" content="https://resonance-jeu.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -24,6 +24,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/unbounded-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 </head><body>
+<noscript><p style="padding:24px;font:16px/1.5 system-ui,sans-serif">Résonance est un jeu de réflexion gratuit : croise deux ondes au même instant pour allumer les nœuds. Jeu d'ondes tactile, jouable hors ligne sur mobile et dans le navigateur. Active JavaScript pour jouer.</p></noscript>
 <style>@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}</style>
 <style>
 /* Layout: plein écran, canvas sous un HUD fin ; palettes à débloquer, « Seiche » par défaut. */
@@ -79,10 +80,11 @@ button{font:inherit}
   background:linear-gradient(to top, color-mix(in srgb,var(--ink) 97%,transparent) 60%, color-mix(in srgb,var(--ink) 60%,transparent) 85%, transparent)}
 .overlay.solid{background:var(--ink)}
 .overlay > :first-child{margin-top:auto}
-.overlay h1{font-family:var(--f-display);font-weight:900;font-size:clamp(44px,15vw,92px);line-height:.9;margin:0;letter-spacing:-.03em;text-wrap:balance}
-.overlay h1 em{font-style:normal;color:var(--saffron)}
+.overlay h1,.overlay h2.big{font-family:var(--f-display);font-weight:900;font-size:clamp(44px,15vw,92px);line-height:.9;margin:0;letter-spacing:-.03em;text-wrap:balance}
+.overlay h1 em,.overlay h2.big em{font-style:normal;color:var(--saffron)}
 .overlay h2{font-family:var(--f-display);font-weight:700;font-size:20px;margin:8px 0 0}
 .overlay .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--saffron)}
+.overlay h1 .kicker{display:block;font-weight:400;line-height:normal;margin-bottom:16px}
 .overlay p{font-family:var(--f-mono);font-size:14px;line-height:1.6;color:var(--bone);margin:0;max-width:38ch;opacity:.85}
 .rules{font-family:var(--f-mono);font-size:13px;line-height:1.55;color:var(--bone);opacity:.8;max-width:40ch;margin:0}
 .modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;width:100%;max-width:620px}
@@ -215,8 +217,7 @@ button{font:inherit}
 <div class="toast" id="toast" role="status"></div>
 
 <div class="overlay" id="menu" hidden>
-  <div class="kicker" data-i="kicker"></div>
-  <h1>Réso<em>nance</em></h1>
+  <h1><span class="kicker" data-i="kicker"></span> Réso<em>nance</em></h1>
   <p class="rules" data-i="rules"></p>
   <div class="modes">
     <button class="mode" id="mTuto"><strong data-i="m_tuto"></strong><small id="tutoLine"></small></button>
@@ -245,7 +246,7 @@ button{font:inherit}
 
 <div class="overlay solid" id="campView" hidden>
   <div class="kicker" data-i="m_camp"></div>
-  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="camp_title"></h1>
+  <h2 class="big" style="font-size:clamp(34px,10vw,60px)" data-i="camp_title"></h2>
   <p id="campSum"></p>
   <div id="campWorlds" style="display:grid;gap:4px;width:100%;max-width:620px"></div>
   <div class="row"><button class="btn" id="closeCamp" data-i="menu"></button></div>
@@ -253,7 +254,7 @@ button{font:inherit}
 
 <div class="overlay solid" id="setView" hidden>
   <div class="kicker" data-i="link_set"></div>
-  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="set_title"></h1>
+  <h2 class="big" style="font-size:clamp(34px,10vw,60px)" data-i="set_title"></h2>
   <div class="setrow"><div data-i="set_lang"></div><div class="seg wrap" data-k="lang" id="langSeg"></div></div>
   <div class="setrow"><div data-i="set_sound"></div><div class="seg" data-k="sound"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
   <div class="setrow"><div data-i="set_vib"></div><div class="seg" data-k="vib"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
@@ -267,7 +268,7 @@ button{font:inherit}
 
 <div class="overlay solid" id="statsView" hidden>
   <div class="kicker" data-i="stats_kicker"></div>
-  <h1 style="font-size:clamp(34px,10vw,60px)" data-i="stats_title"></h1>
+  <h2 class="big" style="font-size:clamp(34px,10vw,60px)" data-i="stats_title"></h2>
   <div class="stats" id="statsGrid"></div>
   <h2 id="achHead"></h2>
   <ul class="ach" id="achList"></ul>
@@ -276,7 +277,7 @@ button{font:inherit}
 
 <div class="overlay" id="end" hidden>
   <div class="kicker" id="endKicker"></div>
-  <h1 id="endTitle" style="font-size:clamp(36px,11vw,64px)"></h1>
+  <h2 class="big" id="endTitle" style="font-size:clamp(36px,11vw,64px)"></h2>
   <p id="endMsg"></p>
   <p id="endExtra" class="end-extra" hidden></p>
   <div id="sharePrev" class="share-prev" role="img" hidden><pre aria-hidden="true"></pre></div>
@@ -510,7 +511,7 @@ const E = {
 const I18N = {
 fr:{
  _name:"Français",
- kicker:"Jeu d'ondes · tactile",
+ kicker:"Jeu de réflexion gratuit · ondes",
  rules:"Touche l'écran pour lancer une onde. Deux ondes venues de directions différentes, au même instant, allument un nœud, qui émet à son tour une onde.",
  m_tuto:"Tutoriel", m_camp:"Campagne", m_arcade:"Arcade", m_daily:"Défi du jour", m_puzzle:"Puzzles", m_chrono:"Contre-la-montre", m_surv:"Survie", m_rhythm:"Rythme", m_melody:"Mélodie", m_coop:"Coop", m_duel:"Duel", m_zen:"Zen", m_editor:"Éditeur",
  record:"Record", stars:"Étoiles", solved:"Résolus", level:"Niveau", nodes:"Nœuds", duel_sub:"2 joueurs, 1 écran", editor_sub:"Crée et partage",
@@ -605,7 +606,7 @@ fr:{
 },
 en:{
  _name:"English",
- kicker:"Wave game · touch",
+ kicker:"Free puzzle game · waves",
  rules:"Tap the screen to send a wave. Two waves arriving from different directions at the same moment light a node, which then sends a wave of its own.",
  m_tuto:"Tutorial", m_camp:"Campaign", m_arcade:"Arcade", m_daily:"Daily challenge", m_puzzle:"Puzzles", m_chrono:"Time attack", m_surv:"Survival", m_rhythm:"Rhythm", m_melody:"Melody", m_coop:"Co-op", m_duel:"Duel", m_zen:"Zen", m_editor:"Editor",
  record:"Best", stars:"Stars", solved:"Solved", level:"Level", nodes:"Nodes", duel_sub:"2 players, 1 screen", editor_sub:"Build and share",
@@ -700,7 +701,7 @@ en:{
 },
 es:{
  _name:"Español",
- kicker:"Juego de ondas · táctil",
+ kicker:"Juego de lógica gratis · ondas",
  rules:"Toca la pantalla para lanzar una onda. Dos ondas que llegan desde direcciones distintas en el mismo instante encienden un nodo, que a su vez emite otra onda.",
  m_tuto:"Tutorial", m_camp:"Campaña", m_arcade:"Arcade", m_daily:"Reto diario", m_puzzle:"Puzles", m_chrono:"Contrarreloj", m_surv:"Supervivencia", m_rhythm:"Ritmo", m_melody:"Melodía", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Récord", stars:"Estrellas", solved:"Resueltos", level:"Nivel", nodes:"Nodos", duel_sub:"2 jugadores, 1 pantalla", editor_sub:"Crea y comparte",
@@ -795,7 +796,7 @@ es:{
 },
 de:{
  _name:"Deutsch",
- kicker:"Wellenspiel · Touch",
+ kicker:"Kostenloses Denkspiel · Wellen",
  rules:"Tippe auf den Bildschirm, um eine Welle auszusenden. Treffen zwei Wellen aus verschiedenen Richtungen im selben Moment auf einen Knoten, leuchtet er auf und sendet selbst eine Welle aus.",
  m_tuto:"Tutorial", m_camp:"Kampagne", m_arcade:"Arcade", m_daily:"Tägliche Aufgabe", m_puzzle:"Rätsel", m_chrono:"Zeitrennen", m_surv:"Überleben", m_rhythm:"Rhythmus", m_melody:"Melodie", m_coop:"Koop", m_duel:"Duell", m_zen:"Zen", m_editor:"Editor",
  record:"Rekord", stars:"Sterne", solved:"Gelöst", level:"Level", nodes:"Knoten", duel_sub:"2 Spieler, 1 Bildschirm", editor_sub:"Bauen und teilen",
@@ -890,7 +891,7 @@ de:{
 },
 it:{
  _name:"Italiano",
- kicker:"Gioco di onde · touch",
+ kicker:"Gioco di logica gratuito · onde",
  rules:"Tocca lo schermo per lanciare un'onda. Due onde che arrivano da direzioni diverse nello stesso istante accendono un nodo, che a sua volta emette un'onda.",
  m_tuto:"Tutorial", m_camp:"Campagna", m_arcade:"Arcade", m_daily:"Sfida del giorno", m_puzzle:"Puzzle", m_chrono:"A tempo", m_surv:"Sopravvivenza", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativa", m_duel:"Duello", m_zen:"Zen", m_editor:"Editor",
  record:"Record", stars:"Stelle", solved:"Risolti", level:"Livello", nodes:"Nodi", duel_sub:"2 giocatori, 1 schermo", editor_sub:"Crea e condividi",
@@ -985,7 +986,7 @@ it:{
 },
 pt:{
  _name:"Português",
- kicker:"Jogo de ondas · toque",
+ kicker:"Jogo de raciocínio grátis · ondas",
  rules:"Toque na tela para lançar uma onda. Duas ondas vindas de direções diferentes no mesmo instante acendem um nó, que por sua vez emite uma onda.",
  m_tuto:"Tutorial", m_camp:"Campanha", m_arcade:"Arcade", m_daily:"Desafio do dia", m_puzzle:"Quebra-cabeças", m_chrono:"Contra o tempo", m_surv:"Sobrevivência", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Recorde", stars:"Estrelas", solved:"Resolvidos", level:"Nível", nodes:"Nós", duel_sub:"2 jogadores, 1 tela", editor_sub:"Crie e compartilhe",
@@ -2325,5 +2326,45 @@ requestAnimationFrame(frame);
 
 <script>
 if('serviceWorker' in navigator){ addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Résonance",
+  "url": "https://resonance-jeu.github.io/",
+  "description": "Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.",
+  "image": "https://resonance-jeu.github.io/og-image.png",
+  "inLanguage": [
+    "fr",
+    "en",
+    "es",
+    "de",
+    "it",
+    "pt"
+  ],
+  "genre": [
+    "Réflexion",
+    "Puzzle",
+    "Rythme"
+  ],
+  "gamePlatform": [
+    "Android",
+    "Navigateur web"
+  ],
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "Android, Web",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Aulit42369",
+    "url": "https://aulit42369.github.io/Site/"
+  }
+}
 </script>
 </body></html>

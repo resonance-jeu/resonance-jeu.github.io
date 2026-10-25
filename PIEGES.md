@@ -17,3 +17,4 @@
 - **Couleur `dust` des thèmes** : texte secondaire, garder ≥ 4,5:1 sur l'`ink` du thème (vérifié le 25/10).
 - **`node --test tests/`** échoue sous Node 24 : lancer `node --test` à la racine.
 - **`id` du manifest** (`/`) : ne jamais le modifier (Chrome ne le met pas à jour après installation).
+- **JSON-LD en fin de `<body>`** (25/10) : `tests/defi.test.js` exige que `defi.js` soit le **premier** `<script>` de `index.html` ; un bloc `application/ld+json` dans le `<head>` fait échouer le test.
