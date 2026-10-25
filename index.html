@@ -93,10 +93,21 @@ button{font:inherit}
 .links{display:flex;gap:18px;flex-wrap:wrap}
 .linkbtn{background:none;border:0;color:var(--bone);font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
   padding:8px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.btn{font-family:var(--f-display);font-weight:700;font-size:15px;padding:14px 24px;border:0;border-radius:999px;background:var(--saffron);color:var(--ink);cursor:pointer}
+.btn{font-family:var(--f-display);font-weight:700;font-size:15px;padding:14px 24px;min-height:48px;border:0;border-radius:999px;background:var(--saffron);color:var(--ink);cursor:pointer}
 .btn.ghost{background:transparent;color:var(--bone);border:1.5px solid var(--bone)}
 .btn.small{font-size:13px;padding:10px 16px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
+#dailyLine{color:var(--bone);opacity:.82}
+.flame{display:inline-flex;align-items:center;gap:3px;margin-left:8px;color:var(--saffron);font-weight:500;font-variant-numeric:tabular-nums}
+.flame svg{width:9px;height:12px;fill:currentColor;transform-origin:50% 100%;animation:flick 1.8s ease-in-out infinite}
+@keyframes flick{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.86) skewX(-4deg)}}
+.share-prev{width:100%;max-width:420px;box-sizing:border-box;margin:0;padding:12px 16px;border-radius:12px;
+  background:color-mix(in srgb,var(--bone) 6%,var(--ink));border-left:3px solid var(--saffron);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rose) 22%,transparent)}
+.share-prev pre{margin:0;font-family:var(--f-mono);font-size:13px;line-height:1.55;color:var(--bone);white-space:pre-wrap;word-break:break-word}
+.end-extra{white-space:pre-line}
+.end-extra .flame{margin:0 6px 0 0}
+.sr-status{font-family:var(--f-mono);font-size:12px;color:var(--saffron);min-height:1em;margin:0}
+.share-lbl{font-family:var(--f-mono);font-size:12px;color:var(--bone)}
 .share{width:100%;max-width:420px;min-height:130px;font-family:var(--f-mono);font-size:13px;line-height:1.5;box-sizing:border-box;
   background:color-mix(in srgb,var(--bone) 8%,var(--ink));color:var(--bone);border:1px solid color-mix(in srgb,var(--bone) 25%,transparent);
   border-radius:12px;padding:12px;resize:none;-webkit-user-select:text;user-select:text;word-break:break-all}
@@ -153,7 +164,7 @@ button{font:inherit}
 .sp-title{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,11vw,60px);letter-spacing:-.03em;position:relative}
 .sp-title em{font-style:normal;color:var(--saffron)}
 @keyframes sp{0%{transform:scale(.1);opacity:.9}100%{transform:scale(1.25);opacity:0}}
-@media (prefers-reduced-motion: reduce){ .banner,.tip,.toast,.fade,.splash{transition:none} .sp-stage i{animation:none;opacity:.4} }
+@media (prefers-reduced-motion: reduce){ .banner,.tip,.toast,.fade,.splash{transition:none} .sp-stage i{animation:none;opacity:.4} .flame svg{animation:none} }
 .seg.wrap{flex-wrap:wrap;border-radius:16px}
 .seg.wrap button{flex:1 0 auto}
 </style>
@@ -252,7 +263,11 @@ button{font:inherit}
   <div class="kicker" id="endKicker"></div>
   <h1 id="endTitle" style="font-size:clamp(36px,11vw,64px)"></h1>
   <p id="endMsg"></p>
+  <p id="endExtra" class="end-extra" hidden></p>
+  <div id="sharePrev" class="share-prev" role="img" hidden><pre aria-hidden="true"></pre></div>
+  <label for="shareBox" id="shareLbl" class="share-lbl" data-i="st_manual" hidden></label>
   <textarea class="share" id="shareBox" hidden data-ia="a_text"></textarea>
+  <p id="shareStatus" class="sr-status" role="status" aria-live="polite"></p>
   <div class="row" id="endBtns"></div>
 </div>
 
@@ -261,6 +276,7 @@ button{font:inherit}
   <div class="sp-stage"><i></i><i></i><i></i><div class="sp-title">Réso<em>nance</em></div></div>
 </div>
 
+<script src="defi.js"></script>
 <script>
 /*ENGINE*/
 const TAU=Math.PI*2, K_MUD=2.2, ANG=0.6;
@@ -483,7 +499,7 @@ fr:{
  rules:"Touche l'écran pour lancer une onde. Deux ondes venues de directions différentes, au même instant, allument un nœud, qui émet à son tour une onde.",
  m_tuto:"Tutoriel", m_camp:"Campagne", m_arcade:"Arcade", m_daily:"Défi du jour", m_puzzle:"Puzzles", m_chrono:"Contre-la-montre", m_surv:"Survie", m_rhythm:"Rythme", m_melody:"Mélodie", m_coop:"Coop", m_duel:"Duel", m_zen:"Zen", m_editor:"Éditeur",
  record:"Record", stars:"Étoiles", solved:"Résolus", level:"Niveau", nodes:"Nœuds", duel_sub:"2 joueurs, 1 écran", editor_sub:"Crée et partage",
- tuto_todo:"Commence par ici", tuto_done:"Terminé · à revoir", daily_todo:"{d} · à faire", daily_today:"Aujourd'hui",
+ tuto_todo:"Commence par ici", tuto_done:"Terminé · à revoir", daily_todo:"#{n} · à faire", daily_today:"Aujourd'hui",
  palettes:"Palettes · {n} points cumulés", link_ach:"Succès", link_set:"Réglages",
  camp_title:"Cinq mers.", camp_sum:"{n} étoile sur {m}.|{n} étoiles sur {m}.", camp_sum2:"Chaque mer s'ouvre quand le gardien de la précédente est vaincu.",
  menu:"Menu", back:"Retour",
@@ -514,7 +530,8 @@ fr:{
  dl_k:"Duel", dl_tie:"Égalité.", dl_p1:"J1 gagne.", dl_p2:"J2 gagne.", dl_a:"Joueur 1 : {n} nœud.|Joueur 1 : {n} nœuds.", dl_b:"Joueur 2 : {n} nœud.|Joueur 2 : {n} nœuds.", rematch:"Revanche",
  pz_k:"Puzzles", pz_t:"Tous résolus.", pz_msg:"Les {n} grilles sont bouclées.", restart:"Recommencer",
  dy_k:"Défi du {d}", dy_t:"Accompli.", dy_best:"Meilleur aujourd'hui : {n}.", dy_tomorrow:"Nouvelles grilles demain.", share:"Partager", watch:"Revoir ×2",
- sh_head:"Résonance · défi du {d}", sh_chain:"chaîne ×{n}", sh_score:"Score {n}", sh_retries:"{n} reprise|{n} reprises",
+ share_res:"Partager le résultat", daily_done:"#{n} · fait ✓ · {s}", a_streak:"{n} jour de suite|{n} jours de suite", dy_streak:"Série : {n} jour (record {b})|Série : {n} jours (record {b})", dy_next:"Prochain défi dans {h} h {m}", sh_streak:"{n} jours de suite", st_shared:"Résultat partagé", st_copied:"Résultat copié", st_manual:"Copiez le texte ci-dessous", a_sum:"Défi {d} réussi, score {s}, série de {n} jour|Défi {d} réussi, score {s}, série de {n} jours",
+ sh_chain:"chaîne ×{n}", sh_retries:"{n} reprise|{n} reprises",
  rp_k:"Rejeu", rp_t:"Fin du rejeu.", rp_msg:"Ta meilleure partie du jour : {n} points.", watch_again:"Revoir encore",
  theme_aria:"Palette {t}", theme_lock:"Palette {t}, débloquée à {n} points",
  themes:["Seiche","Abysse","Braise","Lichen","Papier"],
@@ -577,7 +594,7 @@ en:{
  rules:"Tap the screen to send a wave. Two waves arriving from different directions at the same moment light a node, which then sends a wave of its own.",
  m_tuto:"Tutorial", m_camp:"Campaign", m_arcade:"Arcade", m_daily:"Daily challenge", m_puzzle:"Puzzles", m_chrono:"Time attack", m_surv:"Survival", m_rhythm:"Rhythm", m_melody:"Melody", m_coop:"Co-op", m_duel:"Duel", m_zen:"Zen", m_editor:"Editor",
  record:"Best", stars:"Stars", solved:"Solved", level:"Level", nodes:"Nodes", duel_sub:"2 players, 1 screen", editor_sub:"Build and share",
- tuto_todo:"Start here", tuto_done:"Done · replay it", daily_todo:"{d} · to play", daily_today:"Today",
+ tuto_todo:"Start here", tuto_done:"Done · replay it", daily_todo:"#{n} · to play", daily_today:"Today",
  palettes:"Palettes · {n} points earned", link_ach:"Achievements", link_set:"Settings",
  camp_title:"Five seas.", camp_sum:"{n} star out of {m}.|{n} stars out of {m}.", camp_sum2:"Each sea opens once the guardian of the previous one is beaten.",
  menu:"Menu", back:"Back",
@@ -608,7 +625,8 @@ en:{
  dl_k:"Duel", dl_tie:"Draw.", dl_p1:"P1 wins.", dl_p2:"P2 wins.", dl_a:"Player 1: {n} node.|Player 1: {n} nodes.", dl_b:"Player 2: {n} node.|Player 2: {n} nodes.", rematch:"Rematch",
  pz_k:"Puzzles", pz_t:"All solved.", pz_msg:"All {n} grids are done.", restart:"Start over",
  dy_k:"Challenge of {d}", dy_t:"Done.", dy_best:"Today's best: {n}.", dy_tomorrow:"New grids tomorrow.", share:"Share", watch:"Watch ×2",
- sh_head:"Résonance · challenge of {d}", sh_chain:"chain ×{n}", sh_score:"Score {n}", sh_retries:"{n} retry|{n} retries",
+ share_res:"Share result", daily_done:"#{n} · done ✓ · {s}", a_streak:"{n} day in a row|{n} days in a row", dy_streak:"Streak: {n} day (best {b})|Streak: {n} days (best {b})", dy_next:"Next challenge in {h} h {m}", sh_streak:"{n} days in a row", st_shared:"Result shared", st_copied:"Result copied", st_manual:"Copy the text below", a_sum:"Challenge {d} done, score {s}, {n}-day streak",
+ sh_chain:"chain ×{n}", sh_retries:"{n} retry|{n} retries",
  rp_k:"Replay", rp_t:"Replay over.", rp_msg:"Your best run today: {n} points.", watch_again:"Watch again",
  theme_aria:"{t} palette", theme_lock:"{t} palette, unlocks at {n} points",
  themes:["Cuttlefish","Abyss","Ember","Lichen","Paper"],
@@ -671,7 +689,7 @@ es:{
  rules:"Toca la pantalla para lanzar una onda. Dos ondas que llegan desde direcciones distintas en el mismo instante encienden un nodo, que a su vez emite otra onda.",
  m_tuto:"Tutorial", m_camp:"Campaña", m_arcade:"Arcade", m_daily:"Reto diario", m_puzzle:"Puzles", m_chrono:"Contrarreloj", m_surv:"Supervivencia", m_rhythm:"Ritmo", m_melody:"Melodía", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Récord", stars:"Estrellas", solved:"Resueltos", level:"Nivel", nodes:"Nodos", duel_sub:"2 jugadores, 1 pantalla", editor_sub:"Crea y comparte",
- tuto_todo:"Empieza aquí", tuto_done:"Hecho · repásalo", daily_todo:"{d} · pendiente", daily_today:"Hoy",
+ tuto_todo:"Empieza aquí", tuto_done:"Hecho · repásalo", daily_todo:"#{n} · pendiente", daily_today:"Hoy",
  palettes:"Paletas · {n} puntos acumulados", link_ach:"Logros", link_set:"Ajustes",
  camp_title:"Cinco mares.", camp_sum:"{n} estrella de {m}.|{n} estrellas de {m}.", camp_sum2:"Cada mar se abre al vencer al guardián del anterior.",
  menu:"Menú", back:"Volver",
@@ -702,7 +720,8 @@ es:{
  dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"Gana J1.", dl_p2:"Gana J2.", dl_a:"Jugador 1: {n} nodo.|Jugador 1: {n} nodos.", dl_b:"Jugador 2: {n} nodo.|Jugador 2: {n} nodos.", rematch:"Revancha",
  pz_k:"Puzles", pz_t:"Todos resueltos.", pz_msg:"Las {n} cuadrículas están completas.", restart:"Empezar de nuevo",
  dy_k:"Reto del {d}", dy_t:"Conseguido.", dy_best:"Mejor de hoy: {n}.", dy_tomorrow:"Nuevas cuadrículas mañana.", share:"Compartir", watch:"Ver ×2",
- sh_head:"Résonance · reto del {d}", sh_chain:"cadena ×{n}", sh_score:"Puntos {n}", sh_retries:"{n} reintento|{n} reintentos",
+ share_res:"Compartir resultado", daily_done:"#{n} · hecho ✓ · {s}", a_streak:"{n} día seguido|{n} días seguidos", dy_streak:"Racha: {n} día (récord {b})|Racha: {n} días (récord {b})", dy_next:"Próximo reto en {h} h {m}", sh_streak:"{n} días seguidos", st_shared:"Resultado compartido", st_copied:"Resultado copiado", st_manual:"Copia el texto de abajo", a_sum:"Reto {d} superado, puntos {s}, racha de {n} día|Reto {d} superado, puntos {s}, racha de {n} días",
+ sh_chain:"cadena ×{n}", sh_retries:"{n} reintento|{n} reintentos",
  rp_k:"Repetición", rp_t:"Fin de la repetición.", rp_msg:"Tu mejor partida de hoy: {n} puntos.", watch_again:"Ver otra vez",
  theme_aria:"Paleta {t}", theme_lock:"Paleta {t}, se desbloquea con {n} puntos",
  themes:["Sepia","Abismo","Brasa","Liquen","Papel"],
@@ -765,7 +784,7 @@ de:{
  rules:"Tippe auf den Bildschirm, um eine Welle auszusenden. Treffen zwei Wellen aus verschiedenen Richtungen im selben Moment auf einen Knoten, leuchtet er auf und sendet selbst eine Welle aus.",
  m_tuto:"Tutorial", m_camp:"Kampagne", m_arcade:"Arcade", m_daily:"Tägliche Aufgabe", m_puzzle:"Rätsel", m_chrono:"Zeitrennen", m_surv:"Überleben", m_rhythm:"Rhythmus", m_melody:"Melodie", m_coop:"Koop", m_duel:"Duell", m_zen:"Zen", m_editor:"Editor",
  record:"Rekord", stars:"Sterne", solved:"Gelöst", level:"Level", nodes:"Knoten", duel_sub:"2 Spieler, 1 Bildschirm", editor_sub:"Bauen und teilen",
- tuto_todo:"Hier anfangen", tuto_done:"Erledigt · wiederholen", daily_todo:"{d} · offen", daily_today:"Heute",
+ tuto_todo:"Hier anfangen", tuto_done:"Erledigt · wiederholen", daily_todo:"#{n} · offen", daily_today:"Heute",
  palettes:"Paletten · {n} Punkte gesammelt", link_ach:"Erfolge", link_set:"Einstellungen",
  camp_title:"Fünf Meere.", camp_sum:"{n} Stern von {m}.|{n} Sterne von {m}.", camp_sum2:"Jedes Meer öffnet sich, sobald der Wächter des vorherigen besiegt ist.",
  menu:"Menü", back:"Zurück",
@@ -796,7 +815,8 @@ de:{
  dl_k:"Duell", dl_tie:"Unentschieden.", dl_p1:"S1 gewinnt.", dl_p2:"S2 gewinnt.", dl_a:"Spieler 1: {n} Knoten.|Spieler 1: {n} Knoten.", dl_b:"Spieler 2: {n} Knoten.|Spieler 2: {n} Knoten.", rematch:"Revanche",
  pz_k:"Rätsel", pz_t:"Alle gelöst.", pz_msg:"Alle {n} Felder sind geschafft.", restart:"Von vorn",
  dy_k:"Aufgabe vom {d}", dy_t:"Geschafft.", dy_best:"Bester Wert heute: {n}.", dy_tomorrow:"Neue Felder morgen.", share:"Teilen", watch:"Ansehen ×2",
- sh_head:"Résonance · Aufgabe vom {d}", sh_chain:"Kette ×{n}", sh_score:"Punkte {n}", sh_retries:"{n} Wiederholung|{n} Wiederholungen",
+ share_res:"Ergebnis teilen", daily_done:"#{n} · erledigt ✓ · {s}", a_streak:"{n} Tag in Folge|{n} Tage in Folge", dy_streak:"Serie: {n} Tag (Rekord {b})|Serie: {n} Tage (Rekord {b})", dy_next:"Nächste Aufgabe in {h} h {m}", sh_streak:"{n} Tage in Folge", st_shared:"Ergebnis geteilt", st_copied:"Ergebnis kopiert", st_manual:"Kopiere den Text unten", a_sum:"Aufgabe {d} geschafft, Punkte {s}, Serie von {n} Tag|Aufgabe {d} geschafft, Punkte {s}, Serie von {n} Tagen",
+ sh_chain:"Kette ×{n}", sh_retries:"{n} Wiederholung|{n} Wiederholungen",
  rp_k:"Wiederholung", rp_t:"Wiederholung beendet.", rp_msg:"Dein bester Lauf heute: {n} Punkte.", watch_again:"Noch mal ansehen",
  theme_aria:"Palette {t}", theme_lock:"Palette {t}, ab {n} Punkten freigeschaltet",
  themes:["Sepia","Abgrund","Glut","Flechte","Papier"],
@@ -859,7 +879,7 @@ it:{
  rules:"Tocca lo schermo per lanciare un'onda. Due onde che arrivano da direzioni diverse nello stesso istante accendono un nodo, che a sua volta emette un'onda.",
  m_tuto:"Tutorial", m_camp:"Campagna", m_arcade:"Arcade", m_daily:"Sfida del giorno", m_puzzle:"Puzzle", m_chrono:"A tempo", m_surv:"Sopravvivenza", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativa", m_duel:"Duello", m_zen:"Zen", m_editor:"Editor",
  record:"Record", stars:"Stelle", solved:"Risolti", level:"Livello", nodes:"Nodi", duel_sub:"2 giocatori, 1 schermo", editor_sub:"Crea e condividi",
- tuto_todo:"Inizia da qui", tuto_done:"Fatto · da rivedere", daily_todo:"{d} · da fare", daily_today:"Oggi",
+ tuto_todo:"Inizia da qui", tuto_done:"Fatto · da rivedere", daily_todo:"#{n} · da fare", daily_today:"Oggi",
  palettes:"Palette · {n} punti accumulati", link_ach:"Obiettivi", link_set:"Impostazioni",
  camp_title:"Cinque mari.", camp_sum:"{n} stella su {m}.|{n} stelle su {m}.", camp_sum2:"Ogni mare si apre quando il guardiano del precedente è sconfitto.",
  menu:"Menu", back:"Indietro",
@@ -890,7 +910,8 @@ it:{
  dl_k:"Duello", dl_tie:"Pareggio.", dl_p1:"Vince G1.", dl_p2:"Vince G2.", dl_a:"Giocatore 1: {n} nodo.|Giocatore 1: {n} nodi.", dl_b:"Giocatore 2: {n} nodo.|Giocatore 2: {n} nodi.", rematch:"Rivincita",
  pz_k:"Puzzle", pz_t:"Tutti risolti.", pz_msg:"Tutte le {n} griglie sono completate.", restart:"Ricomincia",
  dy_k:"Sfida del {d}", dy_t:"Completata.", dy_best:"Migliore di oggi: {n}.", dy_tomorrow:"Nuove griglie domani.", share:"Condividi", watch:"Rivedi ×2",
- sh_head:"Résonance · sfida del {d}", sh_chain:"catena ×{n}", sh_score:"Punti {n}", sh_retries:"{n} ripresa|{n} riprese",
+ share_res:"Condividi il risultato", daily_done:"#{n} · fatto ✓ · {s}", a_streak:"{n} giorno di fila|{n} giorni di fila", dy_streak:"Serie: {n} giorno (record {b})|Serie: {n} giorni (record {b})", dy_next:"Prossima sfida tra {h} h {m}", sh_streak:"{n} giorni di fila", st_shared:"Risultato condiviso", st_copied:"Risultato copiato", st_manual:"Copia il testo qui sotto", a_sum:"Sfida {d} completata, punti {s}, serie di {n} giorno|Sfida {d} completata, punti {s}, serie di {n} giorni",
+ sh_chain:"catena ×{n}", sh_retries:"{n} ripresa|{n} riprese",
  rp_k:"Replay", rp_t:"Fine del replay.", rp_msg:"La tua partita migliore di oggi: {n} punti.", watch_again:"Rivedi ancora",
  theme_aria:"Palette {t}", theme_lock:"Palette {t}, si sblocca a {n} punti",
  themes:["Seppia","Abisso","Brace","Lichene","Carta"],
@@ -953,7 +974,7 @@ pt:{
  rules:"Toque na tela para lançar uma onda. Duas ondas vindas de direções diferentes no mesmo instante acendem um nó, que por sua vez emite uma onda.",
  m_tuto:"Tutorial", m_camp:"Campanha", m_arcade:"Arcade", m_daily:"Desafio do dia", m_puzzle:"Quebra-cabeças", m_chrono:"Contra o tempo", m_surv:"Sobrevivência", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Recorde", stars:"Estrelas", solved:"Resolvidos", level:"Nível", nodes:"Nós", duel_sub:"2 jogadores, 1 tela", editor_sub:"Crie e compartilhe",
- tuto_todo:"Comece por aqui", tuto_done:"Concluído · rever", daily_todo:"{d} · a fazer", daily_today:"Hoje",
+ tuto_todo:"Comece por aqui", tuto_done:"Concluído · rever", daily_todo:"#{n} · a fazer", daily_today:"Hoje",
  palettes:"Paletas · {n} pontos acumulados", link_ach:"Conquistas", link_set:"Configurações",
  camp_title:"Cinco mares.", camp_sum:"{n} estrela de {m}.|{n} estrelas de {m}.", camp_sum2:"Cada mar se abre quando o guardião do anterior é derrotado.",
  menu:"Menu", back:"Voltar",
@@ -984,7 +1005,8 @@ pt:{
  dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"J1 vence.", dl_p2:"J2 vence.", dl_a:"Jogador 1: {n} nó.|Jogador 1: {n} nós.", dl_b:"Jogador 2: {n} nó.|Jogador 2: {n} nós.", rematch:"Revanche",
  pz_k:"Quebra-cabeças", pz_t:"Todos resolvidos.", pz_msg:"As {n} grades estão concluídas.", restart:"Recomeçar",
  dy_k:"Desafio de {d}", dy_t:"Concluído.", dy_best:"Melhor de hoje: {n}.", dy_tomorrow:"Novas grades amanhã.", share:"Compartilhar", watch:"Rever ×2",
- sh_head:"Résonance · desafio de {d}", sh_chain:"corrente ×{n}", sh_score:"Pontos {n}", sh_retries:"{n} nova tentativa|{n} novas tentativas",
+ share_res:"Compartilhar resultado", daily_done:"#{n} · feito ✓ · {s}", a_streak:"{n} dia seguido|{n} dias seguidos", dy_streak:"Sequência: {n} dia (recorde {b})|Sequência: {n} dias (recorde {b})", dy_next:"Próximo desafio em {h} h {m}", sh_streak:"{n} dias seguidos", st_shared:"Resultado compartilhado", st_copied:"Resultado copiado", st_manual:"Copie o texto abaixo", a_sum:"Desafio {d} concluído, pontos {s}, sequência de {n} dia|Desafio {d} concluído, pontos {s}, sequência de {n} dias",
+ sh_chain:"corrente ×{n}", sh_retries:"{n} nova tentativa|{n} novas tentativas",
  rp_k:"Replay", rp_t:"Fim do replay.", rp_msg:"Sua melhor partida de hoje: {n} pontos.", watch_again:"Rever de novo",
  theme_aria:"Paleta {t}", theme_lock:"Paleta {t}, desbloqueada com {n} pontos",
  themes:["Sépia","Abismo","Brasa","Líquen","Papel"],
@@ -1073,7 +1095,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const store={ get(k,d){ try{ const v=localStorage.getItem(k); return v==null?d:v; }catch(e){ return d; } },
               set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} },
               json(k,d){ try{ const v=JSON.parse(this.get(k,'null')); return v==null?d:v; }catch(e){ return d; } } };
-const STEP=1/120, HOLD=0.25, VERSION=5;
+const STEP=1/120, HOLD=0.25, VERSION=6;
 const SET=Object.assign({ sound:true, vib:true, speed:1, cb:false, lang:null }, store.json('resonance.settings',{}));
 LANG = LANGS.includes(SET.lang) ? SET.lang : detectLang();
 
@@ -1105,7 +1127,7 @@ function applyLang(){
   document.documentElement.lang=LANG;
   document.querySelectorAll('[data-i]').forEach(el=>{ el.textContent=t(el.dataset.i); });
   document.querySelectorAll('[data-ia]').forEach(el=>{ el.setAttribute('aria-label',t(el.dataset.ia)); });
-  TODAY_LABEL=now.toLocaleDateString(LOCALES[LANG],{day:'numeric',month:'long'});
+  TODAY_LABEL=dayLabel(TODAY);
 }
 
 /* ---------- écran ---------- */
@@ -1145,10 +1167,16 @@ function startAudio(){ try{ if(!AC) AC=new (window.AudioContext||window.webkitAu
 
 /* ---------- aléa & date ---------- */
 function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let x=Math.imul(a^a>>>15,1|a); x=x+Math.imul(x^x>>>7,61|x)^x; return ((x^x>>>14)>>>0)/4294967296; }; }
-const now=new Date();
-const TODAY=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-let TODAY_LABEL='';
-const DAILY_SEED=now.getFullYear()*10000+(now.getMonth()+1)*100+now.getDate();
+// le jour change à minuit heure de Paris pour tout le monde (defi.js) ; une partie du défi garde son jour (S.defi)
+let TD=Defi.today(), TODAY=TD.key, TODAY_LABEL='';
+function dayLabel(key){ const [y,m,d]=key.split('-').map(Number); return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString(LOCALES[LANG],{day:'numeric',month:'long',timeZone:'UTC'}); }
+function refreshDay(){ TD=Defi.today(); TODAY=TD.key; TODAY_LABEL=dayLabel(TODAY); }
+function untilNext(key){ const [y,m,d]=key.split('-').map(Number); let c=Date.UTC(y,m-1,d+1)-7200000; if(Defi.parisDate(c).key===key) c+=3600000;
+  const ms=Math.max(0,c-Date.now()); return { h:Math.floor(ms/3600000), m:String(Math.floor(ms%3600000/60000)).padStart(2,'0') }; }
+const SHARE_URL='https://resonance-jeu.github.io/';
+function flame(n){ const f=document.createElement('span'); f.className='flame'; f.setAttribute('aria-label',t('a_streak',{n}));
+  f.innerHTML='<svg viewBox="0 0 9 12" aria-hidden="true"><path d="M4.6 0C5 2.4 8.6 4 8.6 7.6A4.1 4.1 0 0 1 .4 7.6C.4 5.6 1.7 4.4 2.5 3.4c.1 1.3.7 2.1 1.5 2.4C3.6 3.9 3.9 1.9 4.6 0z"/></svg>';
+  f.append(String(n)); return f; }
 const DAILY_LEVELS=[2,4,7,10,12,14];
 
 /* ---------- campagne ---------- */
@@ -1306,7 +1334,7 @@ function makeLevel(){
   else if(m==='custom') Ly=S.custom;
   else if(m==='tuto') Ly=JSON.parse(JSON.stringify(TUTO[S.level-1].L));
   else if(m==='camp'){ const {w,i}=S.camp; const F=WORLDS[w].F(i); if(i===9){ F.boss=true; F.n+=1; } Ly=genLevel(10,mulberry32(9000+w*100+i),{F}); }
-  else if(m==='daily'||m==='replay') Ly=genLevel(DAILY_LEVELS[S.level-1], mulberry32(DAILY_SEED*97+S.level));
+  else if(m==='daily'||m==='replay') Ly=genLevel(DAILY_LEVELS[S.level-1], mulberry32(Defi.seed('resonance',(S.defi||TD).key,S.level)));
   else if(m==='zen') Ly=genLevel(3+(S.level%5), Math.random, {noDrift:true,noFragile:true,noDecay:true});
   else if(m==='chrono') Ly=genLevel(Math.min(3+S.grids,9), Math.random, {noDrift:true,noFragile:true,noTwins:true});
   else if(m==='duel') Ly=genLevel(7, Math.random, {n:9,noDrift:true,noFragile:true,noTwins:true,noMud:true,noBattery:true});
@@ -1683,24 +1711,40 @@ function copyBox(btn,text){
   const done=()=>btn.textContent=t('copied'), fail=()=>btn.textContent=t('selected');
   try{ navigator.clipboard.writeText(text).then(done,fail); }catch(e){ fail(); }
 }
-function shareText(){
-  const lines=[t('sh_head',{d:TODAY_LABEL})];
-  S.dailyStats.forEach((s,i)=>{ if(!s) return; lines.push(`${i+1} ${'🟧'.repeat(s.used)}${'⬜'.repeat(Math.max(0,s.max-s.used))}${s.chain>1?' '+t('sh_chain',{n:s.chain}):''}`); });
-  lines.push(t('sh_score',{n:S.score})+(S.dailyRetries?' · '+t('sh_retries',{n:S.dailyRetries}):''));
-  return lines.join('\n');
+function shareText(td,streak){
+  // 6 niveaux, 2 par ligne : defi.js limite la grille à 5 lignes
+  const lv=[], lines=[];
+  S.dailyStats.forEach((s,i)=>{ if(!s) return; lv.push(`${i+1} ${'🟧'.repeat(s.used)}${'⬜'.repeat(Math.max(0,s.max-s.used))}${s.chain>1?' '+t('sh_chain',{n:s.chain}):''}`); });
+  for(let i=0;i<lv.length;i+=2) lines.push(lv.slice(i,i+2).join('  '));
+  return Defi.shareText({ nom:'Résonance', n:td.n, emoji:'〰️', score:fmt(S.score), lignes:lines,
+    detail:dayLabel(td.key)+(S.dailyRetries?' · '+t('sh_retries',{n:S.dailyRetries}):''), serie:streak, libelleSerie:t('sh_streak',{n:'{0}'}), url:SHARE_URL });
+}
+function shareResult(text){
+  const st=$('shareStatus'); st.textContent='';
+  Defi.share(text).then(r=>{
+    if(!r) return;
+    st.textContent=t(r==='partage'?'st_shared':r==='copie'?'st_copied':'st_manual');
+    if(r==='manuel'){ const b=$('shareBox'); b.value=text; b.readOnly=true; b.hidden=false; $('shareLbl').hidden=false; b.focus(); b.select(); }
+  });
 }
 function endDaily(){
   S.phase='over'; award('daily');
-  const key='resonance.daily.'+TODAY, prev=+store.get(key,-1);
-  if(S.score>prev){ store.set(key,S.score); store.set('resonance.dailyrun.'+TODAY, JSON.stringify({v:VERSION,score:S.score,runs:S.dailyRuns})); }
-  const run=store.json('resonance.dailyrun.'+TODAY,null);
-  showEnd({ kicker:t('dy_k',{d:TODAY_LABEL}), title:t('dy_t'), msg:`${t('e_score',{n:S.score})} ${t('dy_best',{n:Math.max(prev,S.score)})} ${t('dy_tomorrow')}`,
-    btns:[ {label:t('share'), keep:true, fn:(btn)=>{ award('share'); $('shareBox').readOnly=true; copyBox(btn,shareText()); }},
+  const td=S.defi||TD, key='resonance.daily.'+td.key, prev=+store.get(key,-1);
+  if(S.score>prev){ store.set(key,S.score); store.set('resonance.dailyrun.'+td.key, JSON.stringify({v:VERSION,score:S.score,runs:S.dailyRuns})); }
+  const run=store.json('resonance.dailyrun.'+td.key,null);
+  const st=Defi.record('resonance',td,S.score,''), text=shareText(td,st.count);
+  Defi.record('resonance',td,S.score,text);
+  showEnd({ kicker:t('dy_k',{d:dayLabel(td.key)}), title:t('dy_t'), msg:`${t('e_score',{n:S.score})} ${t('dy_best',{n:Math.max(prev,S.score)})}`,
+    btns:[ {label:t('share_res'), keep:true, fn:()=>{ award('share'); shareResult(text); }},
            ...(run&&run.v===VERSION?[{label:t('watch'), ghost:true, fn:startReplay}]:[]),
            {label:t('menu'), ghost:true, fn:toMenu} ] });
+  const pv=$('sharePrev'); pv.querySelector('pre').textContent=text; pv.hidden=false;
+  pv.setAttribute('aria-label',t('a_sum',{d:td.n,s:fmt(S.score),n:st.count}));
+  const ex=$('endExtra'), nx=untilNext(Defi.today().key); ex.textContent=''; // jour réel : un défi lancé la veille ne doit pas afficher 0 h 00
+  ex.append(flame(st.count),t('dy_streak',{n:st.count,b:st.best})+'\n'+t('dy_next',nx)); ex.hidden=false;
 }
 function startReplay(){
-  const run=store.json('resonance.dailyrun.'+TODAY,null);
+  const run=store.json('resonance.dailyrun.'+(S.defi||TD).key,null);
   if(!run||run.v!==VERSION){ toMenu(); return; }
   S.mode='replay'; S.replay=run; S.level=1; S.score=0;
   $('end').hidden=true; $('menu').hidden=true; makeLevel();
@@ -1714,6 +1758,7 @@ function showEnd({kicker,bad,title,msg,btns,box}){
   $('endKicker').textContent=kicker; $('endKicker').style.color=bad?'var(--rose)':'var(--saffron)';
   $('endTitle').textContent=title; $('endMsg').textContent=msg;
   const sb=$('shareBox'); sb.hidden=!box; if(box){ sb.readOnly=!!box.readOnly; sb.value=box.value||''; }
+  $('sharePrev').hidden=true; $('endExtra').hidden=true; $('shareLbl').hidden=true; $('shareStatus').textContent='';
   const row=$('endBtns'); row.innerHTML='';
   btns.forEach(b=>{ const el=document.createElement('button'); el.className='btn'+(b.ghost?' ghost':''); el.textContent=b.label;
     el.onclick=()=>{ startAudio(); if(!b.keep) $('end').hidden=true; b.fn(el); }; row.appendChild(el); });
@@ -1900,9 +1945,10 @@ function refreshMenu(){
   $('tutoLine').textContent = t(tutoDone?'tuto_done':'tuto_todo');
   $('campStars').textContent=`${campStars()}/${WORLDS.length*30}`;
   $('bestArcade').textContent=fmt(+store.get('resonance.best',0));
-  const d=store.get('resonance.daily.'+TODAY,null), dl=$('dailyLine'); dl.textContent='';
-  if(d==null) dl.textContent=t('daily_todo',{d:TODAY_LABEL});
-  else { dl.append(t('daily_today')+' '); const b=document.createElement('b'); b.textContent=fmt(+d); dl.appendChild(b); }
+  refreshDay();
+  const d=store.get('resonance.daily.'+TODAY,null), dl=$('dailyLine'), sr=Defi.serie('resonance',TD); dl.textContent='';
+  dl.textContent = d==null ? t('daily_todo',{n:TD.n}) : t('daily_done',{n:TD.n,s:fmt(+d)});
+  if(sr>0) dl.appendChild(flame(sr));
   $('puzCount').textContent=`${Math.min(+store.get('resonance.puzzle',0),PUZZLES.length)}/${PUZZLES.length}`;
   $('bestChrono').textContent=fmt(+store.get('resonance.chrono',0));
   $('bestSurv').textContent=`${store.get('resonance.surv',0)} s`;
@@ -1955,7 +2001,7 @@ function startMode(m){
     S.mode=m; S.score=0; S.zenLit=0; S.grids=0; S.fails=0; S.levelDepth=0; S.melodyFails=0; S.survT=0;
     S.level = m==='puzzle' ? Math.max(1,Math.min(+store.get('resonance.puzzle',0)+1, PUZZLES.length)) : 1;
     if(m==='chrono') S.timeLeft=60;
-    if(m==='daily'){ S.dailyRuns=[]; S.dailyStats=[]; S.dailyRetries=0; }
+    if(m==='daily'){ S.defi=Defi.today(); S.dailyRuns=[]; S.dailyStats=[]; S.dailyRetries=0; }
     makeLevel();
   });
 }
@@ -2240,7 +2286,7 @@ function frame(nowT){
   requestAnimationFrame(frame);
 }
 addEventListener('pagehide',saveStats);
-document.addEventListener('visibilitychange',()=>{ if(document.hidden) saveStats(); });
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) saveStats(); else if(S.phase==='menu') refreshMenu(); });
 
 buildLangSeg(); bindSettings(); applyLang();
 applyTheme(store.get('resonance.theme','seiche'));
