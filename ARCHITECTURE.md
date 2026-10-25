@@ -9,7 +9,8 @@ Rédigé le 24/10/2026 à partir du code réel (le dépôt n'avait pas de docume
 | `index.html` | jeu complet : CSS, HTML, moteur (`/*ENGINE*/`), textes `I18N`, logique des modes, menus | ≈ 2 300 (**écart** : bien au-delà de 400, historique) |
 | `defi.js` | Défi du jour : date de Paris, graine, série, texte et partage | 145 |
 | `sw.js` | cache hors ligne | 50 |
-| `privacy.html` | politique de confidentialité (Play Store) | 85 |
+| `privacy.html` | confidentialité + conditions d'utilisation + mentions légales, 6 langues (URL du Play Store, ne pas renommer) | ≈ 130 |
+| `404.html`, `robots.txt`, `sitemap.xml`, `og-image.png` | page introuvable (chemins absolus), référencement, aperçu des liens 1200×630 | |
 | `tests/defi.test.js` | tests du module commun (identique dans les 4 jeux, sauf la ligne `CHEMIN`) | 161 |
 | `tests/resonance-defi.test.js` | contrôles propres à Résonance | 39 |
 
@@ -41,7 +42,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.2.0`) ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.2.1`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes

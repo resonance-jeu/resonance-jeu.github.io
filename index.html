@@ -9,8 +9,21 @@
 <link rel="manifest" href="resonance.webmanifest">
 <link rel="icon" type="image/png" href="icons/favicon-48.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Résonance — jeu d'ondes et de réflexion, gratuit et hors ligne</title>
+<link rel="canonical" href="https://resonance-jeu.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Résonance">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Résonance — jeu d'ondes et de réflexion">
+<meta property="og:description" content="Croise deux ondes au même instant pour allumer les nœuds. Un jeu de réflexion tactile, gratuit et jouable hors ligne.">
+<meta property="og:url" content="https://resonance-jeu.github.io/">
+<meta property="og:image" content="https://resonance-jeu.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Résonance : deux ondes concentriques qui se croisent sous un nœud safran">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/unbounded-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
 </head><body>
-<title>Résonance</title>
 <style>@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/unbounded-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/unbounded-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'Unbounded';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/unbounded-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/ibm-plex-mono-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}</style>
 <style>
 /* Layout: plein écran, canvas sous un HUD fin ; palettes à débloquer, « Seiche » par défaut. */
@@ -124,6 +137,7 @@ button{font:inherit}
   padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--bone) 12%,transparent)}
 .setrow > div{font-family:var(--f-mono);font-size:14px;color:var(--bone);min-width:0}
 .setrow small{display:block;font-size:11.5px;color:var(--dust);margin-top:2px;max-width:34ch}
+.legal{margin:18px 0 0;font-size:13px}.legal a{color:var(--saffron);display:inline-block;padding:10px 4px}
 .seg{display:flex;border:1.5px solid color-mix(in srgb,var(--bone) 30%,transparent);border-radius:999px;overflow:hidden}
 .seg button{background:transparent;border:0;color:var(--bone);font-family:var(--f-mono);font-size:12px;padding:8px 12px;cursor:pointer}
 .seg button.on{background:var(--bone);color:var(--ink)}
@@ -247,6 +261,7 @@ button{font:inherit}
     <div class="seg" data-k="speed"><button data-v="0.8" data-i="slow"></button><button data-v="1" data-i="normal"></button><button data-v="1.2" data-i="fast"></button></div></div>
   <div class="setrow"><div><span data-i="set_cb"></span><small data-i="set_cb_note"></small></div>
     <div class="seg" data-k="cb"><button data-v="1" data-i="on"></button><button data-v="0" data-i="off"></button></div></div>
+  <p class="legal"><a href="privacy.html" data-i="legal"></a></p>
   <div class="row"><button class="btn" id="closeSet" data-i="back"></button></div>
 </div>
 
@@ -500,7 +515,7 @@ fr:{
  m_tuto:"Tutoriel", m_camp:"Campagne", m_arcade:"Arcade", m_daily:"Défi du jour", m_puzzle:"Puzzles", m_chrono:"Contre-la-montre", m_surv:"Survie", m_rhythm:"Rythme", m_melody:"Mélodie", m_coop:"Coop", m_duel:"Duel", m_zen:"Zen", m_editor:"Éditeur",
  record:"Record", stars:"Étoiles", solved:"Résolus", level:"Niveau", nodes:"Nœuds", duel_sub:"2 joueurs, 1 écran", editor_sub:"Crée et partage",
  tuto_todo:"Commence par ici", tuto_done:"Terminé · à revoir", daily_todo:"#{n} · à faire", daily_today:"Aujourd'hui",
- palettes:"Palettes · {n} points cumulés", link_ach:"Succès", link_set:"Réglages",
+ palettes:"Palettes · {n} points cumulés", link_ach:"Succès", link_set:"Réglages",legal:"Confidentialité, conditions et mentions légales",
  camp_title:"Cinq mers.", camp_sum:"{n} étoile sur {m}.|{n} étoiles sur {m}.", camp_sum2:"Chaque mer s'ouvre quand le gardien de la précédente est vaincu.",
  menu:"Menu", back:"Retour",
  set_title:"Réglages.", set_sound:"Son", set_vib:"Vibrations", on:"Activé", off:"Coupé", set_speed:"Vitesse des ondes",
@@ -595,7 +610,7 @@ en:{
  m_tuto:"Tutorial", m_camp:"Campaign", m_arcade:"Arcade", m_daily:"Daily challenge", m_puzzle:"Puzzles", m_chrono:"Time attack", m_surv:"Survival", m_rhythm:"Rhythm", m_melody:"Melody", m_coop:"Co-op", m_duel:"Duel", m_zen:"Zen", m_editor:"Editor",
  record:"Best", stars:"Stars", solved:"Solved", level:"Level", nodes:"Nodes", duel_sub:"2 players, 1 screen", editor_sub:"Build and share",
  tuto_todo:"Start here", tuto_done:"Done · replay it", daily_todo:"#{n} · to play", daily_today:"Today",
- palettes:"Palettes · {n} points earned", link_ach:"Achievements", link_set:"Settings",
+ palettes:"Palettes · {n} points earned", link_ach:"Achievements", link_set:"Settings",legal:"Privacy, terms and legal notice",
  camp_title:"Five seas.", camp_sum:"{n} star out of {m}.|{n} stars out of {m}.", camp_sum2:"Each sea opens once the guardian of the previous one is beaten.",
  menu:"Menu", back:"Back",
  set_title:"Settings.", set_sound:"Sound", set_vib:"Vibration", on:"On", off:"Off", set_speed:"Wave speed",
@@ -690,7 +705,7 @@ es:{
  m_tuto:"Tutorial", m_camp:"Campaña", m_arcade:"Arcade", m_daily:"Reto diario", m_puzzle:"Puzles", m_chrono:"Contrarreloj", m_surv:"Supervivencia", m_rhythm:"Ritmo", m_melody:"Melodía", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Récord", stars:"Estrellas", solved:"Resueltos", level:"Nivel", nodes:"Nodos", duel_sub:"2 jugadores, 1 pantalla", editor_sub:"Crea y comparte",
  tuto_todo:"Empieza aquí", tuto_done:"Hecho · repásalo", daily_todo:"#{n} · pendiente", daily_today:"Hoy",
- palettes:"Paletas · {n} puntos acumulados", link_ach:"Logros", link_set:"Ajustes",
+ palettes:"Paletas · {n} puntos acumulados", link_ach:"Logros", link_set:"Ajustes",legal:"Privacidad, condiciones y aviso legal",
  camp_title:"Cinco mares.", camp_sum:"{n} estrella de {m}.|{n} estrellas de {m}.", camp_sum2:"Cada mar se abre al vencer al guardián del anterior.",
  menu:"Menú", back:"Volver",
  set_title:"Ajustes.", set_sound:"Sonido", set_vib:"Vibración", on:"Activado", off:"Desactivado", set_speed:"Velocidad de las ondas",
@@ -785,7 +800,7 @@ de:{
  m_tuto:"Tutorial", m_camp:"Kampagne", m_arcade:"Arcade", m_daily:"Tägliche Aufgabe", m_puzzle:"Rätsel", m_chrono:"Zeitrennen", m_surv:"Überleben", m_rhythm:"Rhythmus", m_melody:"Melodie", m_coop:"Koop", m_duel:"Duell", m_zen:"Zen", m_editor:"Editor",
  record:"Rekord", stars:"Sterne", solved:"Gelöst", level:"Level", nodes:"Knoten", duel_sub:"2 Spieler, 1 Bildschirm", editor_sub:"Bauen und teilen",
  tuto_todo:"Hier anfangen", tuto_done:"Erledigt · wiederholen", daily_todo:"#{n} · offen", daily_today:"Heute",
- palettes:"Paletten · {n} Punkte gesammelt", link_ach:"Erfolge", link_set:"Einstellungen",
+ palettes:"Paletten · {n} Punkte gesammelt", link_ach:"Erfolge", link_set:"Einstellungen",legal:"Datenschutz, Nutzungsbedingungen und Impressum",
  camp_title:"Fünf Meere.", camp_sum:"{n} Stern von {m}.|{n} Sterne von {m}.", camp_sum2:"Jedes Meer öffnet sich, sobald der Wächter des vorherigen besiegt ist.",
  menu:"Menü", back:"Zurück",
  set_title:"Einstellungen.", set_sound:"Ton", set_vib:"Vibration", on:"An", off:"Aus", set_speed:"Wellentempo",
@@ -880,7 +895,7 @@ it:{
  m_tuto:"Tutorial", m_camp:"Campagna", m_arcade:"Arcade", m_daily:"Sfida del giorno", m_puzzle:"Puzzle", m_chrono:"A tempo", m_surv:"Sopravvivenza", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativa", m_duel:"Duello", m_zen:"Zen", m_editor:"Editor",
  record:"Record", stars:"Stelle", solved:"Risolti", level:"Livello", nodes:"Nodi", duel_sub:"2 giocatori, 1 schermo", editor_sub:"Crea e condividi",
  tuto_todo:"Inizia da qui", tuto_done:"Fatto · da rivedere", daily_todo:"#{n} · da fare", daily_today:"Oggi",
- palettes:"Palette · {n} punti accumulati", link_ach:"Obiettivi", link_set:"Impostazioni",
+ palettes:"Palette · {n} punti accumulati", link_ach:"Obiettivi", link_set:"Impostazioni",legal:"Privacy, condizioni e note legali",
  camp_title:"Cinque mari.", camp_sum:"{n} stella su {m}.|{n} stelle su {m}.", camp_sum2:"Ogni mare si apre quando il guardiano del precedente è sconfitto.",
  menu:"Menu", back:"Indietro",
  set_title:"Impostazioni.", set_sound:"Suono", set_vib:"Vibrazione", on:"Attivo", off:"Disattivo", set_speed:"Velocità delle onde",
@@ -975,7 +990,7 @@ pt:{
  m_tuto:"Tutorial", m_camp:"Campanha", m_arcade:"Arcade", m_daily:"Desafio do dia", m_puzzle:"Quebra-cabeças", m_chrono:"Contra o tempo", m_surv:"Sobrevivência", m_rhythm:"Ritmo", m_melody:"Melodia", m_coop:"Cooperativo", m_duel:"Duelo", m_zen:"Zen", m_editor:"Editor",
  record:"Recorde", stars:"Estrelas", solved:"Resolvidos", level:"Nível", nodes:"Nós", duel_sub:"2 jogadores, 1 tela", editor_sub:"Crie e compartilhe",
  tuto_todo:"Comece por aqui", tuto_done:"Concluído · rever", daily_todo:"#{n} · a fazer", daily_today:"Hoje",
- palettes:"Paletas · {n} pontos acumulados", link_ach:"Conquistas", link_set:"Configurações",
+ palettes:"Paletas · {n} pontos acumulados", link_ach:"Conquistas", link_set:"Configurações",legal:"Privacidade, termos e informações legais",
  camp_title:"Cinco mares.", camp_sum:"{n} estrela de {m}.|{n} estrelas de {m}.", camp_sum2:"Cada mar se abre quando o guardião do anterior é derrotado.",
  menu:"Menu", back:"Voltar",
  set_title:"Configurações.", set_sound:"Som", set_vib:"Vibração", on:"Ligado", off:"Desligado", set_speed:"Velocidade das ondas",
@@ -1102,10 +1117,10 @@ LANG = LANGS.includes(SET.lang) ? SET.lang : detectLang();
 /* ---------- palettes ---------- */
 const THEMES=[
   { id:'seiche', need:0,     ink:'#13100e', bone:'#efe3cf', acc:'#f2a541', rose:'#d9776b', dust:'#8a7d6c', p2:'#6fc2c0', wave:'sine',     base:1,    light:false },
-  { id:'abysse', need:3000,  ink:'#0a1417', bone:'#d3eaec', acc:'#ff8a65', rose:'#a89bff', dust:'#5b7a80', p2:'#f2c14e', wave:'sine',     base:0.75, light:false },
-  { id:'braise', need:8000,  ink:'#170c0a', bone:'#f5ddd0', acc:'#ff6b3d', rose:'#ffcf5a', dust:'#8c5f52', p2:'#7fc8ff', wave:'triangle', base:1,    light:false },
-  { id:'lichen', need:15000, ink:'#0f1411', bone:'#e2e8d8', acc:'#d8c65a', rose:'#c98bd6', dust:'#6f7d6c', p2:'#ef8f6f', wave:'sine',     base:1.25, light:false },
-  { id:'papier', need:30000, ink:'#f1ebe0', bone:'#1d1a17', acc:'#c2410c', rose:'#2f6f8f', dust:'#8b8174', p2:'#7a3e9d', wave:'triangle', base:1.5,  light:true }
+  { id:'abysse', need:3000,  ink:'#0a1417', bone:'#d3eaec', acc:'#ff8a65', rose:'#a89bff', dust:'#62848a', p2:'#f2c14e', wave:'sine',     base:0.75, light:false },
+  { id:'braise', need:8000,  ink:'#170c0a', bone:'#f5ddd0', acc:'#ff6b3d', rose:'#ffcf5a', dust:'#a26f60', p2:'#7fc8ff', wave:'triangle', base:1,    light:false },
+  { id:'lichen', need:15000, ink:'#0f1411', bone:'#e2e8d8', acc:'#d8c65a', rose:'#c98bd6', dust:'#748271', p2:'#ef8f6f', wave:'sine',     base:1.25, light:false },
+  { id:'papier', need:30000, ink:'#f1ebe0', bone:'#1d1a17', acc:'#c2410c', rose:'#2f6f8f', dust:'#71685e', p2:'#7a3e9d', wave:'triangle', base:1.5,  light:true }
 ];
 const themeName=i=>t('themes')[i];
 const rgb=h=>{ const n=parseInt(h.slice(1),16); return `${n>>16&255},${n>>8&255},${n&255}`; };

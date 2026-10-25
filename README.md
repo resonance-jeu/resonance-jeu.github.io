@@ -8,7 +8,8 @@ Jeu d'ondes tactile (PWA hors ligne, 6 langues), publié sur https://resonance-j
 - `index.html` : tout le jeu (moteur, modes, textes `I18N`, interface).
 - `defi.js` : module commun du Défi du jour (copie identique dans ÉCHO, LUMEN, Fragments et Résonance).
 - `sw.js` : service worker (cache hors ligne). **Changer `VERSION` à chaque mise à jour.**
-- `resonance.webmanifest`, `icons/`, `fonts/`, `privacy.html`.
+- `resonance.webmanifest`, `icons/`, `fonts/`, `privacy.html` (confidentialité, conditions, mentions légales).
+- `404.html`, `robots.txt`, `sitemap.xml`, `og-image.png` : page introuvable, référencement, aperçu des liens.
 - `tests/` : tests automatiques.
 
 ## Tests

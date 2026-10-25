@@ -10,6 +10,8 @@
   (un défi lancé à 23 h 58 et fini après minuit affichait « 0 h 00 »). Test de non-régression ajouté.
 - **24/10** — Création de `ARCHITECTURE.md`, `A_FAIRE.md`, `PIEGES.md`, README complété.
 
+- **25/10** — Checklist « avant lancement » : `privacy.html` complétée dans les 6 langues (version web, cookies, partage, conditions d'utilisation, mentions légales, contact = tickets GitHub au lieu de `[TON E-MAIL DE CONTACT]`), lien dans les Réglages (clé `legal`), `<title>` remis dans `<head>` + Open Graph + `og-image.png` 1200×630 + préchargement de la police titre, `404.html`, `robots.txt` + `sitemap.xml`, couleurs `dust` des thèmes Abysse/Braise/Lichen/Papier au contraste AA, correctif SW (une navigation vers `privacy.html` ou une 404 n'écrase plus la copie hors ligne du jeu), cache `resonance-1.2.1`.
+
 ## En cours
 
 ## À faire
@@ -18,7 +20,14 @@
 - Revue L99 : découper `index.html` (≈ 2 300 lignes).
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
+- **Appli Play Store** : en plus d'`index.html` et `defi.js`, copier **`privacy.html`** dans `5-SOURCES\android\assets\` (le lien des Réglages est relatif), monter `versionCode`, refaire l'AAB.
+- **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
+- Ajouter une adresse e-mail de contact publique dans `privacy.html` si souhaité.
+- Mesure d'audience : rien d'installé (à décider ; option sans cookie si oui).
+- Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
+
 ## Décisions prises
+- 25/10 : contact = page « Issues » du dépôt GitHub ; CGU et mentions légales dans `privacy.html` (URL déjà connue du Play Store).
 
 - 24/10 : le jour du défi change à minuit **heure de Paris** pour tout le monde (Q1, option sûre appliquée).
 - 24/10 : texte partagé traduit dans la langue du joueur (Q4) ; nom, `#n`, emoji et URL non traduits.

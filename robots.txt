@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://resonance-jeu.github.io/sitemap.xml

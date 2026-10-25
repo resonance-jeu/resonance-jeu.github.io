@@ -1,6 +1,6 @@
 // Service worker de Résonance : met tout le jeu en cache pour qu'il fonctionne hors ligne.
 // Change VERSION à chaque mise à jour du jeu pour que les joueurs reçoivent la nouvelle version.
-const VERSION = 'resonance-1.2.0';
+const VERSION = 'resonance-1.2.1';
 const FILES = [
   "./",
   "index.html",
@@ -36,14 +36,18 @@ self.addEventListener('activate', e => {
   );
 });
 
-// cache d'abord (jeu hors ligne), puis réseau ; la page elle-même passe par le réseau quand il est là, pour récupérer les mises à jour
+// cache d'abord (jeu hors ligne), puis réseau ; la page elle-même passe par le réseau quand il est là, pour récupérer les mises à jour.
+// Seule une vraie page du jeu (200, racine ou index.html) remplace la copie hors ligne './' : ni privacy.html ni une 404 ne doivent l'écraser.
 self.addEventListener('fetch', e => {
   const req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
-  if (req.mode === 'navigate' || new URL(req.url).pathname.endsWith('.webmanifest')) {
+  const url = new URL(req.url);
+  if (req.method !== 'GET' || url.origin !== self.location.origin) return;
+  if (req.mode === 'navigate' || url.pathname.endsWith('.webmanifest')) {
+    const jeu = req.mode === 'navigate' && (url.pathname.endsWith('/') || url.pathname.endsWith('/index.html'));
+    const cle = jeu ? './' : req;
     e.respondWith(
-      fetch(req).then(res => { const copy = res.clone(); caches.open(VERSION).then(c => c.put(req.mode === 'navigate' ? './' : req, copy)); return res; })
-        .catch(() => caches.match(req.mode === 'navigate' ? './' : req).then(r => r || caches.match('index.html')))
+      fetch(req).then(res => { if (res.ok) { const copy = res.clone(); caches.open(VERSION).then(c => c.put(cle, copy)); } return res; })
+        .catch(() => caches.match(cle, { ignoreSearch: true }).then(r => r || caches.match('./')))
     );
     return;
   }

@@ -11,5 +11,9 @@
   (compte à rebours) doit utiliser `Defi.today()`, sinon une partie finie après minuit affiche « 0 h 00 ».
 - **URL de partage fixe** : dans l'appli Android (WebView `file:///android_asset/`), `location.href` donnerait un lien `file://`.
 - **Appli Android** : elle embarque une copie de la PWA ; penser à copier `defi.js` en plus d'`index.html`, sinon le jeu ne démarre pas.
+- **`404.html` est servie à n'importe quelle profondeur** (`/a/b/c`) : tous ses liens, polices et icônes en chemin absolu (`/…`), jamais relatif. Elle n'est pas mise en cache par le SW.
+- **Aperçus de liens** : `og:image` doit rester une URL absolue (`https://resonance-jeu.github.io/og-image.png`) ; après modification de l'image, Facebook/Discord gardent l'ancienne en cache plusieurs jours.
+- **Lien des Réglages vers `privacy.html` relatif** : dans l'appli Android, `privacy.html` doit être copié dans `assets\` avec `index.html` et `defi.js`.
+- **Couleur `dust` des thèmes** : texte secondaire, garder ≥ 4,5:1 sur l'`ink` du thème (vérifié le 25/10).
 - **`node --test tests/`** échoue sous Node 24 : lancer `node --test` à la racine.
 - **`id` du manifest** (`/`) : ne jamais le modifier (Chrome ne le met pas à jour après installation).
