@@ -6,6 +6,8 @@ const FILES = [
   "index.html",
   "defi.js",
   "share-card.js",
+  "css/polices.css",
+  "css/jeu.css",
   "resonance.webmanifest",
   "privacy.html",
   "icons/apple-touch-icon.png",

@@ -146,7 +146,7 @@ function chargerPage({ maintenant = Date.UTC(2026, 9, 25, 10, 0), langues = ['fr
   const faireImages = n => {
     for (let i = 0; i < n; i++) { avancer(1000 / 60); const f = images; images = []; f.forEach(cb => garde('image', () => cb(horloge))); }
   };
-  const etat = () => JSON.stringify({ els: tous.map(e => e.etat()), lang: documentElement.lang, stock: [...g.localStorage._m || []] });
+  const etat = () => JSON.stringify({ els: tous.filter(e => !/^(STYLE|SCRIPT|LINK|META)$/.test(e.tagName)).map(e => e.etat()), lang: documentElement.lang, stock: [...g.localStorage._m || []] });
   return { g, erreurs, el: id => els.get(id), avancer, images: faireImages, etat, garde };
 }
 
