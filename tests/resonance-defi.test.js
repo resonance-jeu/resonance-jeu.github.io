@@ -4,13 +4,15 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const racine = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(racine, 'index.html'), 'utf8');
+const { scripts, sourceJeu, textes } = require('./outils-page.js');
+const html = sourceJeu(); // index.html + CSS + scripts du jeu
 const sw = fs.readFileSync(path.join(racine, 'sw.js'), 'utf8');
 
 test('index.html charge defi.js avant le script du jeu', () => {
-  const i = html.indexOf('<script src="defi.js"></script>');
-  assert.ok(i > 0);
-  assert.ok(i < html.indexOf('/*ENGINE*/') && i < html.indexOf('const I18N'));
+  const ordre = scripts();
+  const ou = mot => ordre.findIndex(s => s.code.includes(mot));
+  assert.equal(ordre[0].nom, 'defi.js');
+  assert.ok(ou('/*ENGINE*/') > 0 && ou('const I18N') > 0);
 });
 
 test('service worker : defi.js en cache, version resonance- changée', () => {
@@ -28,8 +30,7 @@ test('le défi n\'utilise plus l\'heure locale', () => {
 });
 
 test('nouveaux textes présents dans les 6 langues', () => {
-  const src = /<script>\s*(const I18N[\s\S]*?)<\/script>/.exec(html)[1];
-  const I18N = new Function('navigator', src + ';return I18N;')({ languages: ['fr'] });
+  const I18N = textes();
   const cles = ['share_res', 'daily_todo', 'daily_done', 'a_streak', 'dy_streak', 'dy_next', 'sh_streak', 'st_shared', 'st_copied', 'st_manual', 'a_sum', 'sh_chain', 'sh_retries'];
   for (const l of ['fr', 'en', 'es', 'de', 'it', 'pt']) {
     for (const k of cles) assert.equal(typeof I18N[l][k], 'string', `${l}.${k}`);

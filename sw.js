@@ -8,6 +8,7 @@ const FILES = [
   "share-card.js",
   "css/polices.css",
   "css/jeu.css",
+  "js/moteur.js",
   "resonance.webmanifest",
   "privacy.html",
   "icons/apple-touch-icon.png",

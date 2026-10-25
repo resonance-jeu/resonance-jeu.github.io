@@ -20,7 +20,7 @@ const styles = (html = lire('index.html')) => [...html.matchAll(/<link rel="styl
 // tout le code du jeu (HTML + CSS + scripts locaux, sauf defi.js et share-card.js), pour les contrôles de texte
 function sourceJeu() {
   const html = lire('index.html');
-  return [html, ...styles(html).map(lire), ...scripts(html).filter(s => !/^(defi|share-card)\.js$/.test(s.nom)).map(s => s.code)].join('\n');
+  return [html, ...styles(html).map(lire), ...scripts(html).filter(s => !s.nom.includes('#') && !/^(defi|share-card)\.js$/.test(s.nom)).map(s => s.code)].join('\n');
 }
 
 // ---------- faux navigateur ----------
@@ -172,4 +172,7 @@ function parcours(p) {
   return modes;
 }
 
-module.exports = { racine, lire, scripts, styles, sourceJeu, chargerPage, parcours };
+// objet I18N tel que la page le construit
+const textes = () => vm.runInContext('I18N', chargerPage().g);
+
+module.exports = { racine, lire, scripts, styles, sourceJeu, chargerPage, parcours, textes };

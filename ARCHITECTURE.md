@@ -16,7 +16,30 @@ Rédigé le 24/10/2026 à partir du code réel (le dépôt n'avait pas de docume
 | `tests/resonance-defi.test.js` | contrôles propres à Résonance | 39 |
 | `tests/share-card.test.js` | carte image (contexte 2D factice), ordre de partage, constante des autres jeux, textes 6 langues | ≈ 110 |
 
-Écart connu : `index.html` mélange plusieurs responsabilités. Le Défi du jour a été sorti dans `defi.js` pour ne pas le grossir
+### Plan de découpage (lot 18, 25/10/2026) — écrit avant de déplacer le code
+
+Refactorisation pure : le code est **déplacé tel quel**, sans changer comportement, rendu, textes, clés de sauvegarde ni id du manifest.
+Pas de bundler : fichiers statiques chargés par des balises classiques, dans l'ordre d'origine (`defi.js` reste le premier script).
+
+| Étape | Contenu d'origine (`index.html`) | Nouveau fichier |
+|---|---|---|
+| 1 | `<style>` des polices (une ligne) | `css/polices.css` (chemins `url(../fonts/…)`) |
+| 1 | `<style>` principal | `css/jeu.css` ; les deux `<link>` à la fin du `<head>`, après le style critique |
+| 2 | script `/*ENGINE*/` | `js/moteur.js` |
+| 3 | `const I18N = {…}` + fonctions `t`, `tip`, `fmt`… | `js/i18n.js` (objet `I18N` + fonctions) puis `js/i18n/fr.js` … `pt.js` (`I18N.fr = {…};`, même ordre fr, en, es, de, it, pt) |
+| 4 | IIFE du jeu, découpée à ses commentaires de section | `js/puzzles.js`, `js/socle.js`, `js/niveaux.js`, `js/partie.js`, `js/fins.js`, `js/ecrans.js`, `js/rendu.js`, `js/demarrage.js` |
+| 5 | `sw.js` | nouveaux fichiers dans `FILES`, `VERSION` montée |
+
+Point délicat de l'étape 4 : l'IIFE `(() => { … })()` est retirée, ses 156 noms deviennent des globaux de la page.
+Vérifié avant (analyse syntaxique) : aucun nom en collision avec `defi.js`, `share-card.js`, le moteur, les textes, ni avec
+`window` (`top`, `name`, `status`, `on…`) ; aucun `var`, aucun `return` au premier niveau. Les fichiers gardent l'ordre
+d'origine, donc tout code exécuté au chargement ne voit que des déclarations des fichiers précédents (les appels
+d'initialisation sont tous dans `js/demarrage.js`, le dernier).
+
+Contrôle à chaque étape : `node --test` + comparaison de l'état complet de la page (faux navigateur `tests/outils-page.js`,
+parcours de tous les modes en 3 langues) avec la version d'avant le découpage : doit être **identique**.
+
+Écart connu (avant lot 18) : `index.html` mélange plusieurs responsabilités. Le Défi du jour a été sorti dans `defi.js` pour ne pas le grossir
 davantage ; un découpage complet (moteur / textes / interface) est à proposer lors d'une revue L99.
 
 ## 2. Sources de vérité uniques

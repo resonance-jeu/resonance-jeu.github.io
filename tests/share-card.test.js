@@ -5,7 +5,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const ShareCard = require('../share-card.js');
 const racine = path.join(__dirname, '..');
-const html = fs.readFileSync(path.join(racine, 'index.html'), 'utf8');
+const { sourceJeu, textes } = require('./outils-page.js');
+const html = sourceJeu(); // index.html + CSS + scripts du jeu
 const sw = fs.readFileSync(path.join(racine, 'sw.js'), 'utf8');
 
 // contexte 2D factice : note les textes écrits, mesure 0,6 × la taille de police par caractère
@@ -90,8 +91,7 @@ test('autres jeux : une seule constante, 3 jeux, pas Résonance ; textes dans le
   assert.deepEqual(jeux.map(j => j.url), ['https://aulit42369.github.io/Echo/', 'https://lumen-jeu.github.io/', 'https://fragments-jeu.github.io/']);
   assert.ok(!jeux.some(j => /resonance/i.test(j.url)));
   assert.equal(html.split('lumen-jeu.github.io').length, 2, 'URL écrite ailleurs que dans la constante');
-  const src = /<script>\s*(const I18N[\s\S]*?)<\/script>/.exec(html)[1];
-  const I18N = new Function('navigator', src + ';return I18N;')({ languages: ['fr'] });
+  const I18N = textes();
   for (const l of ['fr', 'en', 'es', 'de', 'it', 'pt'])
     for (const k of ['share_img', 'st_saved', 'others', 'o_echo', 'o_lumen', 'o_frag']) assert.equal(typeof I18N[l][k], 'string', `${l}.${k}`);
   assert.equal(I18N.fr.o_echo, "Un labyrinthe dans le noir, guidé par l'écho");
