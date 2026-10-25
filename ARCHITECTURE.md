@@ -42,7 +42,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.2.2`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.2.3`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes
