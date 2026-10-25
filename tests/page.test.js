@@ -78,12 +78,13 @@ test('textes : chaque clé utilisée par le jeu existe dans les 6 langues', () =
 
 // ---------- niveaux, campagne, thèmes ----------
 const bloc = nom => {
-  const m = new RegExp('const ' + nom + '\\s*=[\\s\\S]*?\\];\\n').exec(src);
+  const m = nom === 'PUZZLES' ? /const PUZZLES = \/\*PUZZLES\*\/[\s\S]*?\/\*\/PUZZLES\*\/;/.exec(src)
+    : new RegExp('const ' + nom + '\\s*=[\\s\\S]*?\\];\\n').exec(src);
   assert.ok(m, nom + ' introuvable');
   return m[0];
 };
 // empreintes FNV des données du jeu : à changer seulement si on modifie volontairement les niveaux
-const EMPREINTES = { PUZZLES: 4288707579, WORLDS: 2111402137, TUTO: 1622002211, THEMES: 1826396846, DAILY_LEVELS: 3106552057, ACH: 833907628, MODES: 4053985306 };
+const EMPREINTES = { PUZZLES: 3279723807, WORLDS: 2111402137, TUTO: 1622002211, THEMES: 1826396846, DAILY_LEVELS: 3106552057, ACH: 833907628, MODES: 4053985306 };
 
 test('niveaux, campagne, tutoriel, thèmes et succès inchangés', () => {
   const vu = {};

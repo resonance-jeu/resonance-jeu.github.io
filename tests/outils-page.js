@@ -90,7 +90,7 @@ function fauxStockage() {
 // charge index.html dans le faux navigateur. Renvoie { g, erreurs, el, avancer, images, etat }.
 function chargerPage({ maintenant = Date.UTC(2026, 9, 25, 10, 0), langues = ['fr-FR'], stockage } = {}) {
   const html = lire('index.html');
-  const corps = html.slice(html.indexOf('<body>'));
+  const corps = html.slice(html.indexOf('<body>')).replace(/<script\b[\s\S]*?<\/script>/g, ''); // le code n'est pas du HTML
   const els = new Map(); const tous = [];
   for (const m of corps.matchAll(/<([a-zA-Z][\w-]*)((?:\s+[\w-]+(?:="[^"]*")?)*)\s*\/?>/g)) {
     const attrs = {}; for (const a of m[2].matchAll(/([\w-]+)(?:="([^"]*)")?/g)) attrs[a[1]] = a[2] ?? '';

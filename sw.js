@@ -1,6 +1,6 @@
 // Service worker de Résonance : met tout le jeu en cache pour qu'il fonctionne hors ligne.
 // Change VERSION à chaque mise à jour du jeu pour que les joueurs reçoivent la nouvelle version.
-const VERSION = 'resonance-1.3.0';
+const VERSION = 'resonance-1.3.1';
 const FILES = [
   "./",
   "index.html",
@@ -16,6 +16,14 @@ const FILES = [
   "js/i18n/de.js",
   "js/i18n/it.js",
   "js/i18n/pt.js",
+  "js/puzzles.js",
+  "js/socle.js",
+  "js/niveaux.js",
+  "js/partie.js",
+  "js/fins.js",
+  "js/ecrans.js",
+  "js/rendu.js",
+  "js/demarrage.js",
   "resonance.webmanifest",
   "privacy.html",
   "icons/apple-touch-icon.png",
