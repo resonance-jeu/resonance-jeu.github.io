@@ -18,3 +18,5 @@
 - **`node --test tests/`** échoue sous Node 24 : lancer `node --test` à la racine.
 - **`id` du manifest** (`/`) : ne jamais le modifier (Chrome ne le met pas à jour après installation).
 - **JSON-LD en fin de `<body>`** (25/10) : `tests/defi.test.js` exige que `defi.js` soit le **premier** `<script>` de `index.html` ; un bloc `application/ld+json` dans le `<head>` fait échouer le test.
+
+- **Fichier `google9ad7f8bd44912903.html` (25/10)** : validation Google Search Console (propriété + sitemap envoyé). Ne jamais le supprimer ni le renommer, sinon la propriété perd sa validation.
