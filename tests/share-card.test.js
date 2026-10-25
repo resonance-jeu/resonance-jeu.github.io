@@ -80,7 +80,7 @@ test('partage : sans partage de fichiers → téléchargement', async () => {
 });
 
 test('share-card.js chargé après defi.js, mis en cache par le SW', () => {
-  assert.ok(html.indexOf('<script src="share-card.js"></script>') > html.indexOf('<script src="defi.js"></script>'));
+  assert.ok(html.search(/<script src="share-card\.js(\?v=[^"]+)?"><\/script>/) > html.indexOf('<script src="defi.js"></script>'));
   assert.match(sw, /"share-card\.js"/);
 });
 

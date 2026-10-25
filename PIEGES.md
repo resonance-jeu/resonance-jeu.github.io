@@ -1,6 +1,6 @@
 # Pièges — Résonance
 
-- **Version du cache** : toute modification de `index.html`, d'un fichier `css/`, `js/` ou de `defi.js` doit s'accompagner d'un changement de `VERSION` dans `sw.js`,
+- **Version du cache** : toute modification de `index.html`, d'un fichier `css/`, `js/` ou de `defi.js` doit s'accompagner d'un changement de `VERSION` dans `sw.js` **et du même `?v=` sur tous les `<link>`/`<script src>` de `index.html`** (le test `page.test.js` vérifie qu'ils concordent),
   sinon les joueurs installés gardent l'ancienne version. Tout nouveau fichier va aussi dans `FILES`.
 - **`defi.js` est commun aux 4 jeux** : ne jamais le modifier ici seul. Modifier les 4 copies ensemble puis mettre à jour
   la constante `EMPREINTE` de `tests/defi.test.js` dans les 4 dépôts.
@@ -30,8 +30,9 @@
   ne pas nommer une fonction globale `onload`, `onresize`… (elle deviendrait un gestionnaire de `window`), ni une variable `top`, `name`, `status`.
 - **Nouveau fichier CSS/JS** : l'ajouter dans `index.html`, dans `FILES` de `sw.js` (le test `page.test.js` le vérifie) et dans `assets\` de l'appli Android.
 - **CSS dans `css/`** : les chemins des polices sont relatifs à la feuille (`url(../fonts/…)`), pas à la page.
-- **Mélange de versions après une mise à jour** : le SW sert les CSS/JS depuis son cache, la page `index.html` depuis le réseau. Pendant la
-  visite qui installe la nouvelle version, une page nouvelle peut tourner avec les anciens scripts (jusqu'au rechargement suivant). Sans
-  conséquence tant qu'une mise à jour ne renomme pas un id HTML utilisé par les scripts ; sinon prévoir un paramètre de version dans les `src`.
-- **Tests de la page** : `tests/outils-page.js` est un faux navigateur minimal (pas de rendu réel). Le test `t('score')` est un écart connu
-  exclu (voir `A_FAIRE.md`).
+- **Paramètre `?v=` (25/10, cache `resonance-1.3.2`)** : le SW sert les CSS/JS depuis son cache et la page depuis le réseau ; sans paramètre, une page
+  nouvelle pouvait tourner avec d'anciens scripts pendant la visite qui installe la mise à jour. Les CSS/JS sont donc demandés en `fichier?v=<VERSION>`
+  et mis en cache sous cette URL exacte (`CODE` dans `sw.js`). Exception : `defi.js` reste sans paramètre (balise exacte exigée par le test commun aux 4 jeux).
+- **Appli Android et `?v=`** : dans `assets/index.html`, les `?v=…` sont **retirés** à la copie (commande dans le GUIDE). Pas de SW dans la WebView,
+  les fichiers embarqués sont toujours de la même version, et on évite de dépendre de la gestion des paramètres sur `file:///android_asset/`.
+- **Tests de la page** : `tests/outils-page.js` est un faux navigateur minimal (pas de rendu réel).

@@ -28,7 +28,7 @@ Ordre de chargement (balises `<script>` classiques, sans bundler) : `defi.js` �
 | `js/demarrage.js` | boucle d'animation, initialisation, `window.resonanceBack` (retour Android), écran d'accueil — **toujours le dernier** | 53 |
 | `defi.js` | Défi du jour : date de Paris, graine, série, texte et partage | 145 |
 | `share-card.js` | carte image 1080×1920 du Défi du jour (palette active, polices, ondes) + partage : pont Android `window.AndroidShare`, sinon `navigator.share({files,text})`, sinon téléchargement | ≈ 150 |
-| `sw.js` | cache hors ligne (liste `FILES` : tous les CSS/JS ci-dessus) | 74 |
+| `sw.js` | cache hors ligne (`CODE` : CSS/JS ci-dessus, mis en cache en `?v=<VERSION>` ; `FILES`) | 79 |
 | `privacy.html` | confidentialité + conditions d'utilisation + mentions légales, 6 langues (URL du Play Store, ne pas renommer) | ≈ 130 |
 | `404.html`, `robots.txt`, `sitemap.xml`, `og-image.png` | page introuvable (chemins absolus), référencement, aperçu des liens 1200×630 | |
 | `tests/defi.test.js` | tests du module commun (identique dans les 4 jeux, sauf la ligne `CHEMIN`) | 161 |
@@ -88,7 +88,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.1`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.2`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes
@@ -102,7 +102,8 @@ avec `Intl` toutes les heures 2026-2035), série (faux localStorage), texte part
 partage (natif / annulé / copie / manuel), copie identique de `defi.js`, chargement de `defi.js` et SW, textes dans les 6 langues.
 Page entière (`tests/page.test.js`, faux navigateur sans dépendance) : chargement sans erreur dans les 6 langues, parcours des 13 modes
 (tirs, retour Android), mêmes clés dans les 6 langues, chaque clé utilisée présente, empreintes FNV des puzzles/campagne/tutoriel/thèmes/succès,
-liste des clés localStorage, chaque fichier local de la page présent dans `FILES`. Le rendu visuel et le son : vérification manuelle sur téléphone.
+liste des clés localStorage, chaque fichier local de la page présent dans `FILES`, `?v=` de `index.html` = `VERSION` de `sw.js`,
+SW simulé hors ligne qui sert chaque CSS/JS avec son `?v=`. Le rendu visuel et le son : vérification manuelle sur téléphone.
 
 ## 8. Risques connus
 

@@ -15,7 +15,7 @@ I18N.de = {
  stats_kicker:"Dein Weg", stats_title:"Erfolge.", ach_head:"Erfolge · {n}/{m}",
  st_waves:"Gesendete Wellen", st_lit:"Erleuchtete Knoten", st_chain:"Längste Kette", st_prec:"Durchschnittliche Präzision", st_time:"Spielzeit", st_min:"{n} Min.", st_batt:"Zurückerhaltene Impulse", st_stars:"Sterne", st_arcade:"Arcade-Rekord",
  lb_arcade:"Level", lb_daily:"Aufgabe", lb_zen:"Zen", lb_chrono:"Zeit", lb_puzzle:"Rätsel", lb_duel:"Duell", lb_replay:"Wiederholung", lb_surv:"Zeit", lb_melody:"Melodie", lb_custom:"Feld", lb_camp:"Kampagne", lb_tuto:"Tutorial", lb_coop:"Koop", lb_rhythm:"Leben",
- sc_score:"Punkte", sc_nodes:"Knoten", sc_try:"Versuch", sc_off:"Dunkel", sc_step:"Schritt",
+ sc_score:"Punkte", score:"Punkte", sc_nodes:"Knoten", sc_try:"Versuch", sc_off:"Dunkel", sc_step:"Schritt",
  freeze:"Frost", a_freeze:"Frostwelle vorbereiten", a_menu:"Zurück zum Menü", a_pulses:"Verbleibende Impulse", a_canvas:"Spielfeld", a_splash:"Spiel betreten", p1:"S1", p2:"S2", hold_high:"hoch", hold_low:"tief",
  ed_title:"Editor", ed_nodes:"{n} Knoten|{n} Knoten", ed_test:"Testen", ed_code:"Code", a_minus:"Weniger Impulse", a_plus:"Mehr Impulse", a_pulses_ed:"Erlaubte Impulse",
  tl_node:"Knoten", tl_prism:"Prisma", tl_wall:"Mauer", tl_mirror:"Spiegel", tl_mud:"Schlamm", tl_portal:"Portal", tl_erase:"Radierer",

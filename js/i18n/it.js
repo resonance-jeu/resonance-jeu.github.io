@@ -15,7 +15,7 @@ I18N.it = {
  stats_kicker:"Il tuo percorso", stats_title:"Obiettivi.", ach_head:"Obiettivi · {n}/{m}",
  st_waves:"Onde lanciate", st_lit:"Nodi accesi", st_chain:"Catena più lunga", st_prec:"Precisione media", st_time:"Tempo di gioco", st_min:"{n} min", st_batt:"Impulsi recuperati", st_stars:"Stelle", st_arcade:"Record arcade",
  lb_arcade:"Livello", lb_daily:"Sfida", lb_zen:"Zen", lb_chrono:"Tempo", lb_puzzle:"Puzzle", lb_duel:"Duello", lb_replay:"Replay", lb_surv:"Tempo", lb_melody:"Melodia", lb_custom:"Griglia", lb_camp:"Campagna", lb_tuto:"Tutorial", lb_coop:"Coop", lb_rhythm:"Vite",
- sc_score:"Punti", sc_nodes:"Nodi", sc_try:"Tentativo", sc_off:"Spenti", sc_step:"Passo",
+ sc_score:"Punti", score:"Punti", sc_nodes:"Nodi", sc_try:"Tentativo", sc_off:"Spenti", sc_step:"Passo",
  freeze:"Gelo", a_freeze:"Prepara un'onda di gelo", a_menu:"Torna al menu", a_pulses:"Impulsi rimasti", a_canvas:"Area di gioco", a_splash:"Entra nel gioco", p1:"G1", p2:"G2", hold_high:"acuta", hold_low:"grave",
  ed_title:"Editor", ed_nodes:"{n} nodo|{n} nodi", ed_test:"Prova", ed_code:"Codice", a_minus:"Meno impulsi", a_plus:"Più impulsi", a_pulses_ed:"Impulsi concessi",
  tl_node:"Nodo", tl_prism:"Prisma", tl_wall:"Muro", tl_mirror:"Specchio", tl_mud:"Fango", tl_portal:"Portale", tl_erase:"Gomma",

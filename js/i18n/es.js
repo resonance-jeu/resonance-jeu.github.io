@@ -15,7 +15,7 @@ I18N.es = {
  stats_kicker:"Tu recorrido", stats_title:"Logros.", ach_head:"Logros · {n}/{m}",
  st_waves:"Ondas lanzadas", st_lit:"Nodos encendidos", st_chain:"Cadena más larga", st_prec:"Precisión media", st_time:"Tiempo de juego", st_min:"{n} min", st_batt:"Impulsos recuperados", st_stars:"Estrellas", st_arcade:"Récord arcade",
  lb_arcade:"Nivel", lb_daily:"Reto", lb_zen:"Zen", lb_chrono:"Tiempo", lb_puzzle:"Puzle", lb_duel:"Duelo", lb_replay:"Repetición", lb_surv:"Tiempo", lb_melody:"Melodía", lb_custom:"Cuadrícula", lb_camp:"Campaña", lb_tuto:"Tutorial", lb_coop:"Coop", lb_rhythm:"Vidas",
- sc_score:"Puntos", sc_nodes:"Nodos", sc_try:"Intento", sc_off:"Apagados", sc_step:"Paso",
+ sc_score:"Puntos", score:"Puntos", sc_nodes:"Nodos", sc_try:"Intento", sc_off:"Apagados", sc_step:"Paso",
  freeze:"Hielo", a_freeze:"Preparar una onda de hielo", a_menu:"Volver al menú", a_pulses:"Impulsos restantes", a_canvas:"Zona de juego", a_splash:"Entrar en el juego", p1:"J1", p2:"J2", hold_high:"aguda", hold_low:"grave",
  ed_title:"Editor", ed_nodes:"{n} nodo|{n} nodos", ed_test:"Probar", ed_code:"Código", a_minus:"Menos impulsos", a_plus:"Más impulsos", a_pulses_ed:"Impulsos permitidos",
  tl_node:"Nodo", tl_prism:"Prisma", tl_wall:"Muro", tl_mirror:"Espejo", tl_mud:"Lodo", tl_portal:"Portal", tl_erase:"Borrar",

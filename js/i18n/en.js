@@ -15,7 +15,7 @@ I18N.en = {
  stats_kicker:"Your journey", stats_title:"Achievements.", ach_head:"Achievements · {n}/{m}",
  st_waves:"Waves sent", st_lit:"Nodes lit", st_chain:"Longest chain", st_prec:"Average precision", st_time:"Time played", st_min:"{n} min", st_batt:"Pulses refunded", st_stars:"Stars", st_arcade:"Arcade best",
  lb_arcade:"Level", lb_daily:"Challenge", lb_zen:"Zen", lb_chrono:"Time", lb_puzzle:"Puzzle", lb_duel:"Duel", lb_replay:"Replay", lb_surv:"Time", lb_melody:"Melody", lb_custom:"Grid", lb_camp:"Campaign", lb_tuto:"Tutorial", lb_coop:"Co-op", lb_rhythm:"Lives",
- sc_score:"Score", sc_nodes:"Nodes", sc_try:"Try", sc_off:"Unlit", sc_step:"Step",
+ sc_score:"Score", score:"Score", sc_nodes:"Nodes", sc_try:"Try", sc_off:"Unlit", sc_step:"Step",
  freeze:"Freeze", a_freeze:"Ready a freeze wave", a_menu:"Back to menu", a_pulses:"Pulses left", a_canvas:"Play area", a_splash:"Enter the game", p1:"P1", p2:"P2", hold_high:"high", hold_low:"low",
  ed_title:"Editor", ed_nodes:"{n} node|{n} nodes", ed_test:"Test", ed_code:"Code", a_minus:"Fewer pulses", a_plus:"More pulses", a_pulses_ed:"Pulses allowed",
  tl_node:"Node", tl_prism:"Prism", tl_wall:"Wall", tl_mirror:"Mirror", tl_mud:"Mud", tl_portal:"Portal", tl_erase:"Eraser",

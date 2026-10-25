@@ -8,14 +8,35 @@ const vm = require('node:vm');
 const racine = path.join(__dirname, '..');
 const lire = f => fs.readFileSync(path.join(racine, f), 'utf8');
 
-// scripts de index.html dans l'ordre d'exécution : { nom, code } (le JSON-LD n'est pas un script)
+const sansParam = u => u.replace(/\?.*$/, ''); // « js/x.js?v=resonance-… » → fichier « js/x.js »
+// scripts de index.html dans l'ordre d'exécution : { nom (fichier), url (avec ?v=), code } (le JSON-LD n'est pas un script)
 function scripts(html = lire('index.html')) {
   return [...html.matchAll(/<script(?:\s+src="([^"]+)")?(\s+type="[^"]*")?>([\s\S]*?)<\/script>/g)]
     .filter(m => !m[2])
-    .map((m, i) => (m[1] ? { nom: m[1], code: lire(m[1]) } : { nom: 'index.html#' + i, code: m[3] }));
+    .map((m, i) => (m[1] ? { nom: sansParam(m[1]), url: m[1], code: lire(sansParam(m[1])) } : { nom: 'index.html#' + i, code: m[3] }));
 }
-// feuilles de style locales de index.html
-const styles = (html = lire('index.html')) => [...html.matchAll(/<link rel="stylesheet" href="([^"]+)">/g)].map(m => m[1]);
+// feuilles de style locales de index.html : URL telles qu'écrites (avec ?v=)
+const urlsStyles = (html = lire('index.html')) => [...html.matchAll(/<link rel="stylesheet" href="([^"]+)">/g)].map(m => m[1]);
+const styles = (html = lire('index.html')) => urlsStyles(html).map(sansParam);
+
+// exécute sw.js avec un faux environnement de service worker : { VERSION, FILES, installer(), requete(url, enLigne) }
+function serviceWorker() {
+  const ecoute = {}; const cache = new Map(); // un seul cache suffit ici : clé = URL absolue complète (avec ?v=)
+  const base = 'https://resonance-jeu.github.io/';
+  const g = { self: { location: { origin: 'https://resonance-jeu.github.io' }, addEventListener: (t, f) => (ecoute[t] = f), skipWaiting: () => Promise.resolve(),
+      clients: { claim: () => Promise.resolve() } }, URL, Promise, console,
+    caches: { open: () => Promise.resolve({ addAll: l => { l.forEach(u => cache.set(new URL(u, base).href, 'cache:' + u)); return Promise.resolve(); },
+        put: (k, v) => { cache.set(typeof k === 'string' ? new URL(k, base).href : k.url, v); return Promise.resolve(); } }),
+      match: (r, o = {}) => { const u = typeof r === 'string' ? new URL(r, base).href : r.url; return Promise.resolve(cache.get(o.ignoreSearch ? u.replace(/\?.*$/, '') : u)); },
+      keys: () => Promise.resolve([]), delete: () => Promise.resolve(true) },
+    fetch: () => Promise.reject(new Error('hors ligne')) };
+  vm.createContext(g);
+  vm.runInContext(lire('sw.js') + ';this.VERSION=VERSION;this.FILES=FILES;', g);
+  return { VERSION: g.VERSION, FILES: g.FILES,
+    installer: () => new Promise(ok => ecoute.install({ waitUntil: p => p.then(ok) })),
+    requete: url => new Promise(ok => { let rep = null; ecoute.fetch({ request: { url: new URL(url, base).href, method: 'GET', mode: 'no-cors' }, respondWith: p => { rep = p; } });
+      ok(rep ? rep : Promise.resolve('réseau (pas de réponse du SW)')); }) };
+}
 
 // tout le code du jeu (HTML + CSS + scripts locaux, sauf defi.js et share-card.js), pour les contrôles de texte
 function sourceJeu() {
@@ -175,4 +196,4 @@ function parcours(p) {
 // objet I18N tel que la page le construit
 const textes = () => vm.runInContext('I18N', chargerPage().g);
 
-module.exports = { racine, lire, scripts, styles, sourceJeu, chargerPage, parcours, textes };
+module.exports = { racine, lire, scripts, styles, urlsStyles, serviceWorker, sourceJeu, chargerPage, parcours, textes };

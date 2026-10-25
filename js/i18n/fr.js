@@ -15,7 +15,7 @@ I18N.fr = {
  stats_kicker:"Ton parcours", stats_title:"Succès.", ach_head:"Succès · {n}/{m}",
  st_waves:"Ondes lancées", st_lit:"Nœuds allumés", st_chain:"Plus longue chaîne", st_prec:"Précision moyenne", st_time:"Temps de jeu", st_min:"{n} min", st_batt:"Impulsions rendues", st_stars:"Étoiles", st_arcade:"Record arcade",
  lb_arcade:"Niveau", lb_daily:"Défi", lb_zen:"Zen", lb_chrono:"Temps", lb_puzzle:"Puzzle", lb_duel:"Duel", lb_replay:"Rejeu", lb_surv:"Temps", lb_melody:"Mélodie", lb_custom:"Grille", lb_camp:"Campagne", lb_tuto:"Tutoriel", lb_coop:"Coop", lb_rhythm:"Vies",
- sc_score:"Score", sc_nodes:"Nœuds", sc_try:"Essai", sc_off:"Éteints", sc_step:"Étape",
+ sc_score:"Score", score:"Score", sc_nodes:"Nœuds", sc_try:"Essai", sc_off:"Éteints", sc_step:"Étape",
  freeze:"Gel", a_freeze:"Préparer une onde de gel", a_menu:"Retour au menu", a_pulses:"Impulsions restantes", a_canvas:"Zone de jeu", a_splash:"Entrer dans le jeu", p1:"J1", p2:"J2", hold_high:"aigu", hold_low:"grave",
  ed_title:"Éditeur", ed_nodes:"{n} nœud|{n} nœuds", ed_test:"Tester", ed_code:"Code", a_minus:"Moins d'impulsions", a_plus:"Plus d'impulsions", a_pulses_ed:"Impulsions accordées",
  tl_node:"Nœud", tl_prism:"Prisme", tl_wall:"Mur", tl_mirror:"Miroir", tl_mud:"Vase", tl_portal:"Portail", tl_erase:"Gomme",
