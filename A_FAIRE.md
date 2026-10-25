@@ -20,6 +20,8 @@
 - **25/10** — Lot 18 : refactorisation pure de `index.html` (2 408 → 206 lignes) en `css/` (2 fichiers) et `js/` (15 fichiers, le plus gros 244 lignes), sans changement de comportement, de textes, de clés de sauvegarde ni d'id du manifest. Tests ajoutés d'abord (`tests/page.test.js` : chargement sans erreur, parcours des 13 modes, 6 langues, clés i18n, empreintes des niveaux, clés localStorage, fichiers du SW) ; état complet de la page comparé à l'original à chaque étape : identique. Cache `resonance-1.3.1`. Appli Android 1.3.0 (code 4) reconstruite avec les nouveaux fichiers.
 - **25/10** — Suite du lot 18 : texte `score` ajouté dans les 6 langues (même mot que `sc_score` : Score, Puntos, Punkte, Punti, Pontos ; la carte image affichait « score »), exception du test retirée. CSS/JS demandés en `?v=<VERSION>` (même valeur que la version du cache, vérifiée par un test ; SW simulé hors ligne sur ces URL), cache `resonance-1.3.2`. Appli 1.3.0 (code 4) reconstruite (`?v=` retirés de `assets/index.html`).
 
+- **25/10** — Contact **aulit42369@gmail.com** dans `privacy.html` (6 langues, lien `mailto:`, tickets GitHub en second), dans `4-FICHE-PLAY-STOREprivacy-policy.html` (remplace `[TON E-MAIL DE CONTACT]`) et en fin des 6 `full-description.txt`. Cache `resonance-1.3.3` (et `?v=` de `index.html`). Appli 1.3.0 (code 4) reconstruite avec la nouvelle `privacy.html` (empreinte SHA-256 du certificat vérifiée, 32 assets dont 10 polices, aucun `?v=`).
+
 ## En cours
 
 ## À faire
@@ -29,14 +31,13 @@
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
 - **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
-- Ajouter une adresse e-mail de contact publique dans `privacy.html` si souhaité.
 - Mesure d'audience : rien d'installé (à décider ; option sans cookie si oui).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
 
 ## Décisions prises
 - 25/10 : pas d'avis dans l'appli (In-App Review) : il faut la bibliothèque Play Core, impossible simplement sans Gradle. Alternative possible, non faite : un bouton qui ouvre la fiche Play Store.
 - 25/10 : FileProvider d'AndroidX remplacé par `ImageProvider` (≈ 60 lignes, un seul fichier fixe) : pas d'AndroidX sans Gradle, donc pas de `res/xml` de chemins.
-- 25/10 : contact = page « Issues » du dépôt GitHub ; CGU et mentions légales dans `privacy.html` (URL déjà connue du Play Store).
+- 25/10 (décision d'Olivier) : contact public = **aulit42369@gmail.com** (lien `mailto:` dans `privacy.html`, toutes les langues), les tickets GitHub restent proposés en second. CGU et mentions légales dans `privacy.html` (URL déjà connue du Play Store).
 
 - 24/10 : le jour du défi change à minuit **heure de Paris** pour tout le monde (Q1, option sûre appliquée).
 - 24/10 : texte partagé traduit dans la langue du joueur (Q4) ; nom, `#n`, emoji et URL non traduits.
