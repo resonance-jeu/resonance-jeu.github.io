@@ -7,6 +7,7 @@ Jeu d'ondes tactile (PWA hors ligne, 6 langues), publié sur https://resonance-j
 
 - `index.html` : tout le jeu (moteur, modes, textes `I18N`, interface).
 - `defi.js` : module commun du Défi du jour (copie identique dans ÉCHO, LUMEN, Fragments et Résonance).
+- `share-card.js` : carte image 1080×1920 du Défi du jour et son partage (pont Android, partage natif, téléchargement).
 - `sw.js` : service worker (cache hors ligne). **Changer `VERSION` à chaque mise à jour.**
 - `resonance.webmanifest`, `icons/`, `fonts/`, `privacy.html` (confidentialité, conditions, mentions légales).
 - `404.html`, `robots.txt`, `sitemap.xml`, `og-image.png` : page introuvable, référencement, aperçu des liens.
@@ -26,4 +27,4 @@ Ne pas écrire `node --test tests/` (échoue sous Node 24).
 
 6 niveaux identiques pour tout le monde, qui changent à **minuit heure de Paris**. Numéro `#n` commun aux 4 jeux
 (#1 = 01/10/2026). Série de jours consécutifs (`resonance.defi.v1`), partage : partage natif du téléphone,
-sinon copie, sinon texte à copier à la main.
+sinon copie, sinon texte à copier à la main. Bouton « Partager l'image » : carte 1080×1920 (format story) aux couleurs de la palette active.

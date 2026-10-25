@@ -97,6 +97,11 @@ button{font:inherit}
 .mode.primary{background:var(--saffron);border-color:var(--saffron);color:var(--ink)}
 .mode.primary small,.mode.primary small b{color:var(--ink)}
 .mode:focus-visible,.btn:focus-visible,.sw:focus-visible,.tool:focus-visible,.linkbtn:focus-visible,.seg button:focus-visible,.cell:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+a.mode{text-decoration:none}
+.others{display:flex;flex-direction:column;gap:8px;width:100%;max-width:620px}
+.others-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.mode.other{border-color:color-mix(in srgb,var(--p2) 45%,transparent)}
+.mode.other strong span{color:var(--p2)}
 .themes{display:flex;flex-direction:column;gap:8px;width:100%;max-width:620px}
 .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust)}
 .swatches{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
@@ -239,6 +244,10 @@ button{font:inherit}
     <div class="lbl" id="totalLine"></div>
     <div class="swatches" id="swatches"></div>
   </div>
+  <div class="others">
+    <div class="lbl" data-i="others"></div>
+    <div class="others-list" id="othersList"></div>
+  </div>
   <div class="links">
     <button class="linkbtn" id="openStats"><span data-i="link_ach"></span> · <span id="achCount">0</span></button>
     <button class="linkbtn" id="openSet" data-i="link_set"></button>
@@ -294,6 +303,7 @@ button{font:inherit}
 </div>
 
 <script src="defi.js"></script>
+<script src="share-card.js"></script>
 <script>
 /*ENGINE*/
 const TAU=Math.PI*2, K_MUD=2.2, ANG=0.6;
@@ -547,6 +557,7 @@ fr:{
  dl_k:"Duel", dl_tie:"Égalité.", dl_p1:"J1 gagne.", dl_p2:"J2 gagne.", dl_a:"Joueur 1 : {n} nœud.|Joueur 1 : {n} nœuds.", dl_b:"Joueur 2 : {n} nœud.|Joueur 2 : {n} nœuds.", rematch:"Revanche",
  pz_k:"Puzzles", pz_t:"Tous résolus.", pz_msg:"Les {n} grilles sont bouclées.", restart:"Recommencer",
  dy_k:"Défi du {d}", dy_t:"Accompli.", dy_best:"Meilleur aujourd'hui : {n}.", dy_tomorrow:"Nouvelles grilles demain.", share:"Partager", watch:"Revoir ×2",
+ share_img:"Partager l'image", st_saved:"Image enregistrée", others:"Les autres jeux d'Aulit", o_echo:"Un labyrinthe dans le noir, guidé par l'écho", o_lumen:"Reliez les orbes, faites monter la lumière", o_frag:"Party game : chacun tient une pièce du dossier",
  share_res:"Partager le résultat", daily_done:"#{n} · fait ✓ · {s}", a_streak:"{n} jour de suite|{n} jours de suite", dy_streak:"Série : {n} jour (record {b})|Série : {n} jours (record {b})", dy_next:"Prochain défi dans {h} h {m}", sh_streak:"{n} jours de suite", st_shared:"Résultat partagé", st_copied:"Résultat copié", st_manual:"Copiez le texte ci-dessous", a_sum:"Défi {d} réussi, score {s}, série de {n} jour|Défi {d} réussi, score {s}, série de {n} jours",
  sh_chain:"chaîne ×{n}", sh_retries:"{n} reprise|{n} reprises",
  rp_k:"Rejeu", rp_t:"Fin du rejeu.", rp_msg:"Ta meilleure partie du jour : {n} points.", watch_again:"Revoir encore",
@@ -642,6 +653,7 @@ en:{
  dl_k:"Duel", dl_tie:"Draw.", dl_p1:"P1 wins.", dl_p2:"P2 wins.", dl_a:"Player 1: {n} node.|Player 1: {n} nodes.", dl_b:"Player 2: {n} node.|Player 2: {n} nodes.", rematch:"Rematch",
  pz_k:"Puzzles", pz_t:"All solved.", pz_msg:"All {n} grids are done.", restart:"Start over",
  dy_k:"Challenge of {d}", dy_t:"Done.", dy_best:"Today's best: {n}.", dy_tomorrow:"New grids tomorrow.", share:"Share", watch:"Watch ×2",
+ share_img:"Share image", st_saved:"Image saved", others:"More games by Aulit", o_echo:"A maze in the dark, guided by echoes", o_lumen:"Link the orbs, raise the light", o_frag:"Party game: everyone holds one piece of the case",
  share_res:"Share result", daily_done:"#{n} · done ✓ · {s}", a_streak:"{n} day in a row|{n} days in a row", dy_streak:"Streak: {n} day (best {b})|Streak: {n} days (best {b})", dy_next:"Next challenge in {h} h {m}", sh_streak:"{n} days in a row", st_shared:"Result shared", st_copied:"Result copied", st_manual:"Copy the text below", a_sum:"Challenge {d} done, score {s}, {n}-day streak",
  sh_chain:"chain ×{n}", sh_retries:"{n} retry|{n} retries",
  rp_k:"Replay", rp_t:"Replay over.", rp_msg:"Your best run today: {n} points.", watch_again:"Watch again",
@@ -737,6 +749,7 @@ es:{
  dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"Gana J1.", dl_p2:"Gana J2.", dl_a:"Jugador 1: {n} nodo.|Jugador 1: {n} nodos.", dl_b:"Jugador 2: {n} nodo.|Jugador 2: {n} nodos.", rematch:"Revancha",
  pz_k:"Puzles", pz_t:"Todos resueltos.", pz_msg:"Las {n} cuadrículas están completas.", restart:"Empezar de nuevo",
  dy_k:"Reto del {d}", dy_t:"Conseguido.", dy_best:"Mejor de hoy: {n}.", dy_tomorrow:"Nuevas cuadrículas mañana.", share:"Compartir", watch:"Ver ×2",
+ share_img:"Compartir imagen", st_saved:"Imagen guardada", others:"Los otros juegos de Aulit", o_echo:"Un laberinto a oscuras, guiado por el eco", o_lumen:"Une los orbes, haz subir la luz", o_frag:"Party game: cada uno tiene una pieza del caso",
  share_res:"Compartir resultado", daily_done:"#{n} · hecho ✓ · {s}", a_streak:"{n} día seguido|{n} días seguidos", dy_streak:"Racha: {n} día (récord {b})|Racha: {n} días (récord {b})", dy_next:"Próximo reto en {h} h {m}", sh_streak:"{n} días seguidos", st_shared:"Resultado compartido", st_copied:"Resultado copiado", st_manual:"Copia el texto de abajo", a_sum:"Reto {d} superado, puntos {s}, racha de {n} día|Reto {d} superado, puntos {s}, racha de {n} días",
  sh_chain:"cadena ×{n}", sh_retries:"{n} reintento|{n} reintentos",
  rp_k:"Repetición", rp_t:"Fin de la repetición.", rp_msg:"Tu mejor partida de hoy: {n} puntos.", watch_again:"Ver otra vez",
@@ -832,6 +845,7 @@ de:{
  dl_k:"Duell", dl_tie:"Unentschieden.", dl_p1:"S1 gewinnt.", dl_p2:"S2 gewinnt.", dl_a:"Spieler 1: {n} Knoten.|Spieler 1: {n} Knoten.", dl_b:"Spieler 2: {n} Knoten.|Spieler 2: {n} Knoten.", rematch:"Revanche",
  pz_k:"Rätsel", pz_t:"Alle gelöst.", pz_msg:"Alle {n} Felder sind geschafft.", restart:"Von vorn",
  dy_k:"Aufgabe vom {d}", dy_t:"Geschafft.", dy_best:"Bester Wert heute: {n}.", dy_tomorrow:"Neue Felder morgen.", share:"Teilen", watch:"Ansehen ×2",
+ share_img:"Bild teilen", st_saved:"Bild gespeichert", others:"Die anderen Spiele von Aulit", o_echo:"Ein Labyrinth im Dunkeln, geführt vom Echo", o_lumen:"Verbinde die Kugeln, lass das Licht steigen", o_frag:"Partyspiel: Jeder hält ein Stück der Akte",
  share_res:"Ergebnis teilen", daily_done:"#{n} · erledigt ✓ · {s}", a_streak:"{n} Tag in Folge|{n} Tage in Folge", dy_streak:"Serie: {n} Tag (Rekord {b})|Serie: {n} Tage (Rekord {b})", dy_next:"Nächste Aufgabe in {h} h {m}", sh_streak:"{n} Tage in Folge", st_shared:"Ergebnis geteilt", st_copied:"Ergebnis kopiert", st_manual:"Kopiere den Text unten", a_sum:"Aufgabe {d} geschafft, Punkte {s}, Serie von {n} Tag|Aufgabe {d} geschafft, Punkte {s}, Serie von {n} Tagen",
  sh_chain:"Kette ×{n}", sh_retries:"{n} Wiederholung|{n} Wiederholungen",
  rp_k:"Wiederholung", rp_t:"Wiederholung beendet.", rp_msg:"Dein bester Lauf heute: {n} Punkte.", watch_again:"Noch mal ansehen",
@@ -927,6 +941,7 @@ it:{
  dl_k:"Duello", dl_tie:"Pareggio.", dl_p1:"Vince G1.", dl_p2:"Vince G2.", dl_a:"Giocatore 1: {n} nodo.|Giocatore 1: {n} nodi.", dl_b:"Giocatore 2: {n} nodo.|Giocatore 2: {n} nodi.", rematch:"Rivincita",
  pz_k:"Puzzle", pz_t:"Tutti risolti.", pz_msg:"Tutte le {n} griglie sono completate.", restart:"Ricomincia",
  dy_k:"Sfida del {d}", dy_t:"Completata.", dy_best:"Migliore di oggi: {n}.", dy_tomorrow:"Nuove griglie domani.", share:"Condividi", watch:"Rivedi ×2",
+ share_img:"Condividi l'immagine", st_saved:"Immagine salvata", others:"Gli altri giochi di Aulit", o_echo:"Un labirinto al buio, guidato dall'eco", o_lumen:"Collega le sfere, fai salire la luce", o_frag:"Party game: ognuno tiene un pezzo del fascicolo",
  share_res:"Condividi il risultato", daily_done:"#{n} · fatto ✓ · {s}", a_streak:"{n} giorno di fila|{n} giorni di fila", dy_streak:"Serie: {n} giorno (record {b})|Serie: {n} giorni (record {b})", dy_next:"Prossima sfida tra {h} h {m}", sh_streak:"{n} giorni di fila", st_shared:"Risultato condiviso", st_copied:"Risultato copiato", st_manual:"Copia il testo qui sotto", a_sum:"Sfida {d} completata, punti {s}, serie di {n} giorno|Sfida {d} completata, punti {s}, serie di {n} giorni",
  sh_chain:"catena ×{n}", sh_retries:"{n} ripresa|{n} riprese",
  rp_k:"Replay", rp_t:"Fine del replay.", rp_msg:"La tua partita migliore di oggi: {n} punti.", watch_again:"Rivedi ancora",
@@ -1022,6 +1037,7 @@ pt:{
  dl_k:"Duelo", dl_tie:"Empate.", dl_p1:"J1 vence.", dl_p2:"J2 vence.", dl_a:"Jogador 1: {n} nó.|Jogador 1: {n} nós.", dl_b:"Jogador 2: {n} nó.|Jogador 2: {n} nós.", rematch:"Revanche",
  pz_k:"Quebra-cabeças", pz_t:"Todos resolvidos.", pz_msg:"As {n} grades estão concluídas.", restart:"Recomeçar",
  dy_k:"Desafio de {d}", dy_t:"Concluído.", dy_best:"Melhor de hoje: {n}.", dy_tomorrow:"Novas grades amanhã.", share:"Compartilhar", watch:"Rever ×2",
+ share_img:"Compartilhar imagem", st_saved:"Imagem salva", others:"Os outros jogos de Aulit", o_echo:"Um labirinto no escuro, guiado pelo eco", o_lumen:"Ligue as esferas, faça a luz subir", o_frag:"Party game: cada um tem uma peça do dossiê",
  share_res:"Compartilhar resultado", daily_done:"#{n} · feito ✓ · {s}", a_streak:"{n} dia seguido|{n} dias seguidos", dy_streak:"Sequência: {n} dia (recorde {b})|Sequência: {n} dias (recorde {b})", dy_next:"Próximo desafio em {h} h {m}", sh_streak:"{n} dias seguidos", st_shared:"Resultado compartilhado", st_copied:"Resultado copiado", st_manual:"Copie o texto abaixo", a_sum:"Desafio {d} concluído, pontos {s}, sequência de {n} dia|Desafio {d} concluído, pontos {s}, sequência de {n} dias",
  sh_chain:"corrente ×{n}", sh_retries:"{n} nova tentativa|{n} novas tentativas",
  rp_k:"Replay", rp_t:"Fim do replay.", rp_msg:"Sua melhor partida de hoje: {n} pontos.", watch_again:"Rever de novo",
@@ -1191,6 +1207,8 @@ function refreshDay(){ TD=Defi.today(); TODAY=TD.key; TODAY_LABEL=dayLabel(TODAY
 function untilNext(key){ const [y,m,d]=key.split('-').map(Number); let c=Date.UTC(y,m-1,d+1)-7200000; if(Defi.parisDate(c).key===key) c+=3600000;
   const ms=Math.max(0,c-Date.now()); return { h:Math.floor(ms/3600000), m:String(Math.floor(ms%3600000/60000)).padStart(2,'0') }; }
 const SHARE_URL='https://resonance-jeu.github.io/';
+// liens des autres jeux : à remplacer par le lien Play Store quand l'appli sera publiée
+const AUTRES_JEUX=[{nom:'ÉCHO',d:'o_echo',url:'https://aulit42369.github.io/Echo/'},{nom:'LUMEN',d:'o_lumen',url:'https://lumen-jeu.github.io/'},{nom:'Fragments',d:'o_frag',url:'https://fragments-jeu.github.io/'}];
 function flame(n){ const f=document.createElement('span'); f.className='flame'; f.setAttribute('aria-label',t('a_streak',{n}));
   f.innerHTML='<svg viewBox="0 0 9 12" aria-hidden="true"><path d="M4.6 0C5 2.4 8.6 4 8.6 7.6A4.1 4.1 0 0 1 .4 7.6C.4 5.6 1.7 4.4 2.5 3.4c.1 1.3.7 2.1 1.5 2.4C3.6 3.9 3.9 1.9 4.6 0z"/></svg>';
   f.append(String(n)); return f; }
@@ -1744,6 +1762,21 @@ function shareResult(text){
     if(r==='manuel'){ const b=$('shareBox'); b.value=text; b.readOnly=true; b.hidden=false; $('shareLbl').hidden=false; b.focus(); b.select(); }
   });
 }
+// carte image 1080×1920 préparée dès l'écran de fin : le clic partage tout de suite (le partage natif exige un geste récent)
+function shareCard(td,streak){
+  const cs=getComputedStyle(document.documentElement), v=k=>cs.getPropertyValue('--'+k).trim();
+  return ShareCard.render(document,{ kicker:dayLabel(td.key), titre:t('m_daily')+' #'+td.n, scoreLbl:t('score'), score:fmt(S.score),
+    niveaux:S.dailyStats.map(s=>s&&{used:s.used,max:s.max,extra:s.chain>1?t('sh_chain',{n:s.chain}):''}),
+    serie:streak>=2?t('sh_streak',{n:streak}):'', url:SHARE_URL,
+    couleurs:{ink:v('ink'),bone:v('bone'),acc:v('saffron'),rose:v('rose'),dust:v('dust'),p2:v('p2')} });
+}
+function shareImage(card,text,td){
+  const st=$('shareStatus'); st.textContent='';
+  card.then(c=>ShareCard.share(c,text,'resonance-defi-'+td.n+'.png')).then(r=>{
+    if(r==='partage'||r==='telechargement') st.textContent=t(r==='partage'?'st_shared':'st_saved');
+    else if(r==='echec') shareResult(text); // image impossible : on garde au moins le texte
+  },()=>shareResult(text));
+}
 function endDaily(){
   S.phase='over'; award('daily');
   const td=S.defi||TD, key='resonance.daily.'+td.key, prev=+store.get(key,-1);
@@ -1751,8 +1784,10 @@ function endDaily(){
   const run=store.json('resonance.dailyrun.'+td.key,null);
   const st=Defi.record('resonance',td,S.score,''), text=shareText(td,st.count);
   Defi.record('resonance',td,S.score,text);
+  const card=shareCard(td,st.count); card.catch(()=>{});
   showEnd({ kicker:t('dy_k',{d:dayLabel(td.key)}), title:t('dy_t'), msg:`${t('e_score',{n:S.score})} ${t('dy_best',{n:Math.max(prev,S.score)})}`,
     btns:[ {label:t('share_res'), keep:true, fn:()=>{ award('share'); shareResult(text); }},
+           {label:t('share_img'), keep:true, ghost:true, fn:()=>{ award('share'); shareImage(card,text,td); }},
            ...(run&&run.v===VERSION?[{label:t('watch'), ghost:true, fn:startReplay}]:[]),
            {label:t('menu'), ghost:true, fn:toMenu} ] });
   const pv=$('sharePrev'); pv.querySelector('pre').textContent=text; pv.hidden=false;
@@ -2305,6 +2340,8 @@ function frame(nowT){
 addEventListener('pagehide',saveStats);
 document.addEventListener('visibilitychange',()=>{ if(document.hidden) saveStats(); else if(S.phase==='menu') refreshMenu(); });
 
+$('othersList').append(...AUTRES_JEUX.map(j=>{ const a=document.createElement('a'); a.className='mode other'; a.href=j.url; a.target='_blank'; a.rel='noopener';
+  a.innerHTML='<strong>'+j.nom+' <span aria-hidden="true">↗</span></strong><small data-i="'+j.d+'"></small>'; return a; }));
 buildLangSeg(); bindSettings(); applyLang();
 applyTheme(store.get('resonance.theme','seiche'));
 if(+store.get('resonance.total',0) < TH.need) applyTheme('seiche');

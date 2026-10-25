@@ -20,3 +20,7 @@
 - **JSON-LD en fin de `<body>`** (25/10) : `tests/defi.test.js` exige que `defi.js` soit le **premier** `<script>` de `index.html` ; un bloc `application/ld+json` dans le `<head>` fait échouer le test.
 
 - **Fichier `google9ad7f8bd44912903.html` (25/10)** : validation Google Search Console (propriété + sitemap envoyé). Ne jamais le supprimer ni le renommer, sinon la propriété perd sa validation.
+- **Carte image (25/10)** : `share-card.js` doit être dans `FILES` de `sw.js` **et** copié dans `assets\` de l'appli Android. La carte est préparée dès l'écran de fin : le partage natif exige un geste récent du joueur, ne pas la générer seulement au clic.
+- **Pont `AndroidShare`** : limité au partage d'une image PNG (en-tête PNG vérifié, nom de fichier fixe, texte coupé à 1 000 caractères). Ne jamais y ajouter d'accès fichier générique : toute page chargée dans la WebView peut l'appeler.
+- **Liens externes dans l'appli** : `shouldOverrideUrlLoading` ne garde que `file:///android_asset/` ; un lien http(s) touché s'ouvre dans le navigateur, le reste est bloqué.
+- **Build Android sous Windows** : ne pas remettre `aapt2 link -A assets` : `aapt2.exe` écrit `assets/fonts\x.woff2` et `unzip` en fait `assets/fonts_x.woff2` (polices perdues dans la 1.2.0). Vérifier après build : `unzip -Z1 <apk> | grep assets/fonts/`.

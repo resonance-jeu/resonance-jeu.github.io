@@ -15,21 +15,26 @@
 - **25/10** — Titre « Résonance » du menu : il débordait à droite sur téléphone (15vw, ≈ 6,9× la taille de police). Ramené à `clamp(34px,12vw,92px)` pour le seul `<h1>`, mesuré dans Chrome de 320 à 768 px : tient partout. `VERSION` `resonance-1.2.3`.
 - **25/10** — Passe SEO éditoriale (requête « jeu de réflexion gratuit ») : `<title>`, description, Open Graph alignés ; un seul `<h1>` (le sur-titre traduit `kicker`, devenu « Jeu de réflexion gratuit · ondes » dans les 6 langues, est placé dans le `<h1>` du menu ; les 4 autres titres d'écran passent en `<h2 class="big">`, même rendu) ; paragraphe `<noscript>` ; données structurées `VideoGame` en fin de `<body>` ; `VERSION` `resonance-1.2.2`. L'appli Android embarque ces fichiers : reportés dans la 1.2.0 (25/10).
 
+- **25/10** — Lot 4 : bouton « Partager l'image » sur l'écran de fin du Défi du jour : carte 1080×1920 (logo, ondes croisées, « Défi du jour #N », score, grille des 6 niveaux, série, URL) aux couleurs de la palette active, préparée dès l'écran de fin ; module `share-card.js` (pont Android, sinon partage natif avec fichier, sinon téléchargement ; si le pont échoue, repli sur le partage du texte). Lot 6 : carte « Les autres jeux d'Aulit » dans le menu (ÉCHO, LUMEN, Fragments ; constante `AUTRES_JEUX`), 6 langues. Lot 5 (avis dans l'appli) non fait : voir Décisions. Cache `resonance-1.3.0`, tests 23 verts.
+- **25/10** — Appli Android **1.3.0 (code 4)** : pont de partage d'image + `ImageProvider`, liens web ouverts dans le navigateur, correctif du build Windows (les polices étaient perdues dans la 1.2.0 : `assets/fonts_…`). La 1.2.0 jamais publiée est supprimée.
+
 ## En cours
 
 ## À faire
 
-- Appli Android (Play Store) : copier `index.html` **et** `defi.js` dans `5-SOURCES\android\assets\`, monter `versionCode`, refaire l'AAB signé.
+- Appli 1.3.0 : tester sur téléphone (partage de l'image vers une appli, lien d'un autre jeu qui ouvre le navigateur, polices du jeu, retour depuis la Confidentialité), puis envoyer `Resonance-1.3.0.aab` sur la Play Console. À chaque mise à jour : copier `index.html`, `defi.js`, `privacy.html`, `share-card.js` dans `5-SOURCES\android\assets\`, monter `versionCode`.
+- Quand ÉCHO / LUMEN / Fragments seront sur le Play Store : remplacer les liens de `AUTRES_JEUX`.
 - Revue L99 : découper `index.html` (≈ 2 300 lignes).
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
-- **Appli Play Store** : en plus d'`index.html` et `defi.js`, copier **`privacy.html`** dans `5-SOURCES\android\assets\` (le lien des Réglages est relatif), monter `versionCode`, refaire l'AAB.
 - **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
 - Ajouter une adresse e-mail de contact publique dans `privacy.html` si souhaité.
 - Mesure d'audience : rien d'installé (à décider ; option sans cookie si oui).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
 
 ## Décisions prises
+- 25/10 : pas d'avis dans l'appli (In-App Review) : il faut la bibliothèque Play Core, impossible simplement sans Gradle. Alternative possible, non faite : un bouton qui ouvre la fiche Play Store.
+- 25/10 : FileProvider d'AndroidX remplacé par `ImageProvider` (≈ 60 lignes, un seul fichier fixe) : pas d'AndroidX sans Gradle, donc pas de `res/xml` de chemins.
 - 25/10 : contact = page « Issues » du dépôt GitHub ; CGU et mentions légales dans `privacy.html` (URL déjà connue du Play Store).
 
 - 24/10 : le jour du défi change à minuit **heure de Paris** pour tout le monde (Q1, option sûre appliquée).
