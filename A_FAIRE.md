@@ -17,14 +17,16 @@
 
 - **25/10** — Lot 4 : bouton « Partager l'image » sur l'écran de fin du Défi du jour : carte 1080×1920 (logo, ondes croisées, « Défi du jour #N », score, grille des 6 niveaux, série, URL) aux couleurs de la palette active, préparée dès l'écran de fin ; module `share-card.js` (pont Android, sinon partage natif avec fichier, sinon téléchargement ; si le pont échoue, repli sur le partage du texte). Lot 6 : carte « Les autres jeux d'Aulit » dans le menu (ÉCHO, LUMEN, Fragments ; constante `AUTRES_JEUX`), 6 langues. Lot 5 (avis dans l'appli) non fait : voir Décisions. Cache `resonance-1.3.0`, tests 23 verts.
 - **25/10** — Appli Android **1.3.0 (code 4)** : pont de partage d'image + `ImageProvider`, liens web ouverts dans le navigateur, correctif du build Windows (les polices étaient perdues dans la 1.2.0 : `assets/fonts_…`). La 1.2.0 jamais publiée est supprimée.
+- **25/10** — Lot 18 : refactorisation pure de `index.html` (2 408 → 206 lignes) en `css/` (2 fichiers) et `js/` (15 fichiers, le plus gros 244 lignes), sans changement de comportement, de textes, de clés de sauvegarde ni d'id du manifest. Tests ajoutés d'abord (`tests/page.test.js` : chargement sans erreur, parcours des 13 modes, 6 langues, clés i18n, empreintes des niveaux, clés localStorage, fichiers du SW) ; état complet de la page comparé à l'original à chaque étape : identique. Cache `resonance-1.3.1`. Appli Android 1.3.0 (code 4) reconstruite avec les nouveaux fichiers.
 
 ## En cours
 
 ## À faire
 
-- Appli 1.3.0 : tester sur téléphone (partage de l'image vers une appli, lien d'un autre jeu qui ouvre le navigateur, polices du jeu, retour depuis la Confidentialité), puis envoyer `Resonance-1.3.0.aab` sur la Play Console. À chaque mise à jour : copier `index.html`, `defi.js`, `privacy.html`, `share-card.js` dans `5-SOURCES\android\assets\`, monter `versionCode`.
+- Appli 1.3.0 : tester sur téléphone (partage de l'image vers une appli, lien d'un autre jeu qui ouvre le navigateur, polices du jeu, retour depuis la Confidentialité, un mode de chaque type depuis le découpage du lot 18), puis envoyer `Resonance-1.3.0.aab` sur la Play Console. À chaque mise à jour : copier `index.html`, `defi.js`, `privacy.html`, `share-card.js`, `css/`, `js/` (avec `js/i18n/`) et `fonts/` dans `5-SOURCES\android\assets\`, monter `versionCode`.
 - Quand ÉCHO / LUMEN / Fragments seront sur le Play Store : remplacer les liens de `AUTRES_JEUX`.
-- Revue L99 : découper `index.html` (≈ 2 300 lignes).
+- Écart trouvé par les tests du lot 18 (non corrigé : refactorisation pure) : `t('score')` (libellé du score sur la carte image du défi) n'a pas de texte dans `I18N`, la carte affiche « score » en minuscules dans toutes les langues. Ajouter une clé `score` dans les 6 langues puis retirer l'exception du test.
+- À décider : paramètre de version dans les `src` des scripts (évite le mélange nouvelle page / anciens scripts pendant la visite qui installe une mise à jour, voir `PIEGES.md`).
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
 - **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
