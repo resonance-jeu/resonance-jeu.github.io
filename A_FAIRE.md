@@ -21,10 +21,12 @@
 - **25/10** — Suite du lot 18 : texte `score` ajouté dans les 6 langues (même mot que `sc_score` : Score, Puntos, Punkte, Punti, Pontos ; la carte image affichait « score »), exception du test retirée. CSS/JS demandés en `?v=<VERSION>` (même valeur que la version du cache, vérifiée par un test ; SW simulé hors ligne sur ces URL), cache `resonance-1.3.2`. Appli 1.3.0 (code 4) reconstruite (`?v=` retirés de `assets/index.html`).
 
 - **25/10** — Contact **aulit42369@gmail.com** dans `privacy.html` (6 langues, lien `mailto:`, tickets GitHub en second), dans `4-FICHE-PLAY-STOREprivacy-policy.html` (remplace `[TON E-MAIL DE CONTACT]`) et en fin des 6 `full-description.txt`. Cache `resonance-1.3.3` (et `?v=` de `index.html`). Appli 1.3.0 (code 4) reconstruite avec la nouvelle `privacy.html` (empreinte SHA-256 du certificat vérifiée, 32 assets dont 10 polices, aucun `?v=`).
+- **26/10** : politique conforme LCEN/RGPD : mentions légales complètes (éditeur et directeur de la publication Aulit42369, personne physique non professionnelle anonyme, identité communiquée à l'hébergeur ; GitHub, Inc. avec adresse, téléphone, page de contact), transferts hors UE (DPF / clauses types) dans « Hébergement », contact et réclamation CNIL dans « Vos droits », ajout des rubriques « Enfants » et « Tes droits », 6 langues, le français fait foi. Cache et `?v=` `resonance-1.3.4`.
 
 ## En cours
 
 ## À faire
+- Appli Android : recopier le nouveau `privacy.html` dans `assets\` à la prochaine version ; vérifier la fiche « Sécurité des données » de la Play Console.
 
 - Appli 1.3.0 : tester sur téléphone (partage de l'image vers une appli, lien d'un autre jeu qui ouvre le navigateur, polices du jeu, retour depuis la Confidentialité, un mode de chaque type depuis le découpage du lot 18), puis envoyer `Resonance-1.3.0.aab` sur la Play Console. À chaque mise à jour : copier `index.html`, `defi.js`, `privacy.html`, `share-card.js`, `css/`, `js/` (avec `js/i18n/`) et `fonts/` dans `5-SOURCES\android\assets\`, retirer les `?v=` de `assets\index.html` (commande dans le GUIDE), monter `versionCode`.
 - Quand ÉCHO / LUMEN / Fragments seront sur le Play Store : remplacer les liens de `AUTRES_JEUX`.
