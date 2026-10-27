@@ -62,6 +62,9 @@ parcours de tous les modes en 3 langues) avec la version d'avant le découpage :
 
 Écart résolu (lot 18) : plus aucun fichier au-delà de 400 lignes.
 
+Accessibilité (28/10) : canvas, HUD, calques et écrans (`#c` … `#splash`) sont dans un `<main>` sans style (tous en `position: fixed`, rendu inchangé). Pas de pied de page (canvas plein écran) : lien `privacy.html` dans les Réglages.
+Documents de cadrage dans `docs/` : `PRD.md`, `TRD.md`, `APP_FLOW.md`, `DESIGN_BRIEF.md`, `BACKEND_SCHEMA.md`, `IMPLEMENTATION_PLAN.md`.
+
 ## 2. Sources de vérité uniques
 
 - Textes : objet `I18N` (`js/i18n.js`, un fichier par langue dans `js/i18n/`). Le nom du jeu, `#n` et les emoji ne se traduisent pas.
@@ -88,7 +91,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.3`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.5`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes

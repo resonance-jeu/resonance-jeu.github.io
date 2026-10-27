@@ -22,6 +22,7 @@
 
 - **25/10** — Contact **aulit42369@gmail.com** dans `privacy.html` (6 langues, lien `mailto:`, tickets GitHub en second), dans `4-FICHE-PLAY-STOREprivacy-policy.html` (remplace `[TON E-MAIL DE CONTACT]`) et en fin des 6 `full-description.txt`. Cache `resonance-1.3.3` (et `?v=` de `index.html`). Appli 1.3.0 (code 4) reconstruite avec la nouvelle `privacy.html` (empreinte SHA-256 du certificat vérifiée, 32 assets dont 10 polices, aucun `?v=`).
 - **26/10** : politique conforme LCEN/RGPD : mentions légales complètes (éditeur et directeur de la publication Aulit42369, personne physique non professionnelle anonyme, identité communiquée à l'hébergeur ; GitHub, Inc. avec adresse, téléphone, page de contact), transferts hors UE (DPF / clauses types) dans « Hébergement », contact et réclamation CNIL dans « Vos droits », ajout des rubriques « Enfants » et « Tes droits », 6 langues, le français fait foi. Cache et `?v=` `resonance-1.3.4`.
+- **28/10** : accessibilité : tout le jeu (canvas, HUD, menus, écrans) enveloppé dans `<main>` (comme Fragments), rendu et comportement identiques (positions comparées avant/après dans Chromium sans tête, 0 erreur console) ; script en ligne inchangé donc empreinte CSP inchangée ; pas de pied de page. Cache et `?v=` `resonance-1.3.5`. Docs de cadrage créées dans `docs/`. Appli Android : reporter `index.html` à la prochaine version.
 
 ## En cours
 
