@@ -91,7 +91,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.5`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.6`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes
@@ -111,3 +111,6 @@ SW simulé hors ligne qui sert chaque CSS/JS avec son `?v=`. Le rendu visuel et 
 ## 8. Risques connus
 
 Voir `PIEGES.md`.
+
+## Statistiques de visite (28/10/2026)
+GoatCounter sans cookie, chemins `/resonance/…`, chargé par le script d'une ligne en fin de `index.html` uniquement sur `*.github.io` et sans `skipgc` (détail : `docs/TRD.md`, section Traceurs). `privacy.html` le déclare dans toutes ses langues, avec le bouton « Ne pas être compté ». Test : `tests/statistiques.test.js` (identique dans les 4 jeux, seul `PREFIXE` change).

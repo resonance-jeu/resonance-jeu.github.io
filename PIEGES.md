@@ -36,3 +36,5 @@
 - **Appli Android et `?v=`** : dans `assets/index.html`, les `?v=…` sont **retirés** à la copie (commande dans le GUIDE). Pas de SW dans la WebView,
   les fichiers embarqués sont toujours de la même version, et on évite de dépendre de la gestion des paramètres sur `file:///android_asset/`.
 - **Tests de la page** : `tests/outils-page.js` est un faux navigateur minimal (pas de rendu réel).
+
+- **Compteur GoatCounter (28/10)** : script en ligne d'une ligne en fin de `index.html`, son empreinte `sha256` est dans la CSP : le modifier = recalculer l'empreinte (`tests/statistiques.test.js`). Ne jamais retirer la garde `github.io` : compter dans une appli Android obligerait à déclarer des analytics sur le Play Store. Garder `count.v4.js` + `integrity` (pas `count.js`), comme le Site.

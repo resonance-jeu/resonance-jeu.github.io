@@ -23,18 +23,19 @@
 - **25/10** — Contact **aulit42369@gmail.com** dans `privacy.html` (6 langues, lien `mailto:`, tickets GitHub en second), dans `4-FICHE-PLAY-STOREprivacy-policy.html` (remplace `[TON E-MAIL DE CONTACT]`) et en fin des 6 `full-description.txt`. Cache `resonance-1.3.3` (et `?v=` de `index.html`). Appli 1.3.0 (code 4) reconstruite avec la nouvelle `privacy.html` (empreinte SHA-256 du certificat vérifiée, 32 assets dont 10 polices, aucun `?v=`).
 - **26/10** : politique conforme LCEN/RGPD : mentions légales complètes (éditeur et directeur de la publication Aulit42369, personne physique non professionnelle anonyme, identité communiquée à l'hébergeur ; GitHub, Inc. avec adresse, téléphone, page de contact), transferts hors UE (DPF / clauses types) dans « Hébergement », contact et réclamation CNIL dans « Vos droits », ajout des rubriques « Enfants » et « Tes droits », 6 langues, le français fait foi. Cache et `?v=` `resonance-1.3.4`.
 - **28/10** : accessibilité : tout le jeu (canvas, HUD, menus, écrans) enveloppé dans `<main>` (comme Fragments), rendu et comportement identiques (positions comparées avant/après dans Chromium sans tête, 0 erreur console) ; script en ligne inchangé donc empreinte CSP inchangée ; pas de pied de page. Cache et `?v=` `resonance-1.3.5`. Docs de cadrage créées dans `docs/`. Appli Android : reporter `index.html` à la prochaine version.
+- **28/10** : mesure d'audience **GoatCounter sans cookie** (même compte et même méthode que le Site) : chemins `/resonance/…`, comptée seulement sur `*.github.io` (jamais dans l'appli Android, une WebView, en local), opposition `skipgc` + bouton « Ne pas être compté » dans `privacy.html` (toutes les langues, texte repris du Site, liste des traceurs et date mises à jour), CSP élargie (empreinte du script, `gc.zgo.at`, `aulit42369.goatcounter.com`), cache `resonance-1.3.6`, `tests/statistiques.test.js`. Vérifié dans Chrome sans tête (URL github.io simulée : un envoi `/resonance/` ; local et `skipgc` : aucun ; 0 erreur console/CSP).
 
 ## En cours
 
 ## À faire
-- Appli Android : recopier le nouveau `privacy.html` dans `assets\` à la prochaine version ; vérifier la fiche « Sécurité des données » de la Play Console.
+- Appli Android : recopier le nouveau `privacy.html` **et** `index.html` (compteur GoatCounter du 28/10, inactif dans la WebView grâce à la garde `github.io`) dans `assets\` à la prochaine version ; vérifier la fiche « Sécurité des données » de la Play Console (appli : aucune donnée collectée, rien à déclarer pour GoatCounter).
 
 - Appli 1.3.0 : tester sur téléphone (partage de l'image vers une appli, lien d'un autre jeu qui ouvre le navigateur, polices du jeu, retour depuis la Confidentialité, un mode de chaque type depuis le découpage du lot 18), puis envoyer `Resonance-1.3.0.aab` sur la Play Console. À chaque mise à jour : copier `index.html`, `defi.js`, `privacy.html`, `share-card.js`, `css/`, `js/` (avec `js/i18n/`) et `fonts/` dans `5-SOURCES\android\assets\`, retirer les `?v=` de `assets\index.html` (commande dans le GUIDE), monter `versionCode`.
 - Quand ÉCHO / LUMEN / Fragments seront sur le Play Store : remplacer les liens de `AUTRES_JEUX`.
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
 - **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
-- Mesure d'audience : rien d'installé (à décider ; option sans cookie si oui).
+- Mesure d'audience : vérifier dans le tableau de bord `aulit42369.goatcounter.com` que les visites arrivent sous `/resonance/` (quelques minutes après une visite).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
 
 ## Décisions prises
