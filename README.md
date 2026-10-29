@@ -10,7 +10,7 @@ Jeu d'ondes tactile (PWA hors ligne, 6 langues), publié sur https://resonance-j
 - `defi.js` : module commun du Défi du jour (copie identique dans ÉCHO, LUMEN, Fragments et Résonance).
 - `share-card.js` : carte image 1080×1920 du Défi du jour et son partage (pont Android, partage natif, téléchargement).
 - `sw.js` : service worker (cache hors ligne). **Changer `VERSION` à chaque mise à jour.**
-- `resonance.webmanifest`, `icons/`, `fonts/`, `privacy.html` (confidentialité, conditions, mentions légales).
+- `manifest.webmanifest`, `icons/`, `fonts/`, `privacy.html` (confidentialité, conditions, mentions légales).
 - `404.html`, `robots.txt`, `sitemap.xml`, `og-image.png` : page introuvable, référencement, aperçu des liens.
 - `tests/` : tests automatiques.
 

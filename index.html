@@ -1,13 +1,13 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-vw1AL+3OFJyM3kdV6psMzEwLmkHT+5RRcSeBgv981Lk=' 'sha256-W9ZhrVpSPghDlGuDsmNfuTJsfB2WONFXOKBB+hAlTP8=' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://aulit42369.goatcounter.com; media-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' data: blob: https://aulit42369.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <style>[hidden]{display:none!important}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style><meta name="theme-color" content="#13100e">
-<meta name="description" content="Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.">
+<meta name="description" content="Deux ondes se propagent. Quand elles arrivent ensemble sur un nœud, il s'allume. À toi de trouver comment les faire se croiser.">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Résonance">
-<link rel="manifest" href="resonance.webmanifest">
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icons/favicon-48.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>Jeu de réflexion gratuit : croise les ondes | Résonance</title>
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Résonance">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Jeu de réflexion gratuit : croise les ondes | Résonance">
-<meta property="og:description" content="Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.">
+<meta property="og:description" content="Deux ondes se propagent. Quand elles arrivent ensemble sur un nœud, il s'allume. À toi de trouver comment les faire se croiser.">
 <meta property="og:url" content="https://resonance-jeu.github.io/">
 <meta property="og:image" content="https://resonance-jeu.github.io/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -24,8 +24,8 @@
 <meta property="og:image:alt" content="Résonance : deux ondes concentriques qui se croisent sous un nœud safran">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="fonts/unbounded-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/polices.css?v=resonance-1.3.6">
-<link rel="stylesheet" href="css/jeu.css?v=resonance-1.3.6">
+<link rel="stylesheet" href="css/polices.css?v=resonance-1.3.7">
+<link rel="stylesheet" href="css/jeu.css?v=resonance-1.3.7">
 </head><body>
 <noscript><p style="padding:24px;font:16px/1.5 system-ui,sans-serif">Résonance est un jeu de réflexion gratuit : croise deux ondes au même instant pour allumer les nœuds. Jeu d'ondes tactile, jouable hors ligne sur mobile et dans le navigateur. Active JavaScript pour jouer.</p></noscript>
 
@@ -144,25 +144,25 @@
 </main>
 
 <script src="defi.js"></script>
-<script src="share-card.js?v=resonance-1.3.6"></script>
-<script src="js/moteur.js?v=resonance-1.3.6"></script>
+<script src="share-card.js?v=resonance-1.3.7"></script>
+<script src="js/moteur.js?v=resonance-1.3.7"></script>
 
-<script src="js/i18n.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/fr.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/en.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/es.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/de.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/it.js?v=resonance-1.3.6"></script>
-<script src="js/i18n/pt.js?v=resonance-1.3.6"></script>
+<script src="js/i18n.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/fr.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/en.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/es.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/de.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/it.js?v=resonance-1.3.7"></script>
+<script src="js/i18n/pt.js?v=resonance-1.3.7"></script>
 
-<script src="js/puzzles.js?v=resonance-1.3.6"></script>
-<script src="js/socle.js?v=resonance-1.3.6"></script>
-<script src="js/niveaux.js?v=resonance-1.3.6"></script>
-<script src="js/partie.js?v=resonance-1.3.6"></script>
-<script src="js/fins.js?v=resonance-1.3.6"></script>
-<script src="js/ecrans.js?v=resonance-1.3.6"></script>
-<script src="js/rendu.js?v=resonance-1.3.6"></script>
-<script src="js/demarrage.js?v=resonance-1.3.6"></script>
+<script src="js/puzzles.js?v=resonance-1.3.7"></script>
+<script src="js/socle.js?v=resonance-1.3.7"></script>
+<script src="js/niveaux.js?v=resonance-1.3.7"></script>
+<script src="js/partie.js?v=resonance-1.3.7"></script>
+<script src="js/fins.js?v=resonance-1.3.7"></script>
+<script src="js/ecrans.js?v=resonance-1.3.7"></script>
+<script src="js/rendu.js?v=resonance-1.3.7"></script>
+<script src="js/demarrage.js?v=resonance-1.3.7"></script>
 
 <script>
 if('serviceWorker' in navigator){ addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }
@@ -173,7 +173,7 @@ if('serviceWorker' in navigator){ addEventListener('load',()=>{ navigator.servic
   "@type": "VideoGame",
   "name": "Résonance",
   "url": "https://resonance-jeu.github.io/",
-  "description": "Jeu de réflexion gratuit et hors ligne : croise deux ondes au même instant pour allumer les nœuds. Campagne, défi du jour, duel et mode zen, sur mobile et web.",
+  "description": "Deux ondes se propagent. Quand elles arrivent ensemble sur un nœud, il s'allume. À toi de trouver comment les faire se croiser.",
   "image": "https://resonance-jeu.github.io/og-image.png",
   "inLanguage": [
     "fr",

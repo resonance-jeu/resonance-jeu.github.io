@@ -1,6 +1,6 @@
 // Service worker de Résonance : met tout le jeu en cache pour qu'il fonctionne hors ligne.
 // Change VERSION à chaque mise à jour du jeu pour que les joueurs reçoivent la nouvelle version.
-const VERSION = 'resonance-1.3.6';
+const VERSION = 'resonance-1.3.7';
 // Code du jeu : index.html le demande avec ?v=<VERSION> (même valeur, vérifiée par tests/page.test.js), pour qu'une page
 // nouvelle ne tourne jamais avec d'anciens scripts restés en cache. À chaque version : changer VERSION ici ET les ?v= de index.html.
 const CODE = [
@@ -29,13 +29,13 @@ const FILES = [
   "index.html",
   "defi.js",
   ...CODE.map(f => f + '?v=' + VERSION),
-  "resonance.webmanifest",
+  "manifest.webmanifest",
   "privacy.html",
   "icons/apple-touch-icon.png",
   "icons/favicon-48.png",
   "icons/icon-192.png",
   "icons/icon-512.png",
-  "icons/icon-maskable-512.png",
+  "icons/maskable-512.png",
   "fonts/ibm-plex-mono-latin-400-normal.woff2",
   "fonts/ibm-plex-mono-latin-500-normal.woff2",
   "fonts/ibm-plex-mono-latin-ext-400-normal.woff2",

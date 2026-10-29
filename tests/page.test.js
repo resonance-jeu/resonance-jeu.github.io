@@ -141,7 +141,7 @@ test('hors ligne, le SW sert chaque script et CSS de la page avec son ?v=', asyn
 });
 
 test('manifest : id inchangé ; SW : seule la page du jeu remplace la copie hors ligne', () => {
-  const man = JSON.parse(lire('resonance.webmanifest'));
+  const man = JSON.parse(lire('manifest.webmanifest'));
   assert.equal(man.id, '/');
   const sw = lire('sw.js');
   assert.ok(sw.includes("url.pathname.endsWith('/') || url.pathname.endsWith('/index.html')"));

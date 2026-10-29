@@ -8,8 +8,8 @@
 
 ## PWA
 - Hébergement : GitHub Pages, `https://resonance-jeu.github.io/` (organisation dédiée).
-- `sw.js` : constante `VERSION` (`resonance-1.3.6` au 28/10/2026) ; les CSS/JS sont demandés en `?v=<VERSION>` (même valeur dans `index.html`, vérifiée par `tests/page.test.js`) ; ne purge que les caches `resonance-*`.
-- Manifest `resonance.webmanifest`, `id: "/"` : ne jamais le changer.
+- `sw.js` : constante `VERSION` (`resonance-1.3.7` au 28/10/2026) ; les CSS/JS sont demandés en `?v=<VERSION>` (même valeur dans `index.html`, vérifiée par `tests/page.test.js`) ; ne purge que les caches `resonance-*`.
+- Manifest `manifest.webmanifest`, `id: "/"` : ne jamais le changer.
 - CSP en balise meta : `script-src 'self'` + empreintes `sha256` des deux scripts en ligne (enregistrement du service worker, compteur GoatCounter) + `https://gc.zgo.at` ; `connect-src`/`img-src` + `https://aulit42369.goatcounter.com`. Modifier un de ces scripts = recalculer son empreinte.
 
 ## Traceurs (28/10/2026)

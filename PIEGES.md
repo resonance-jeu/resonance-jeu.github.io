@@ -38,3 +38,10 @@
 - **Tests de la page** : `tests/outils-page.js` est un faux navigateur minimal (pas de rendu réel).
 
 - **Compteur GoatCounter (28/10)** : script en ligne d'une ligne en fin de `index.html`, son empreinte `sha256` est dans la CSP : le modifier = recalculer l'empreinte (`tests/statistiques.test.js`). Ne jamais retirer la garde `github.io` : compter dans une appli Android obligerait à déclarer des analytics sur le Play Store. Garder `count.v4.js` + `integrity` (pas `count.js`), comme le Site.
+
+## Identités d'appli (manifest `id`) — NE JAMAIS CHANGER (29/10)
+Chrome identifie une PWA installée par son `id` ; en changer = une autre appli, l'ancienne reste orpheline. Valeurs en ligne des 5 apps :
+ÉCHO `/Echo/` (aulit42369.github.io/Echo/) · LUMEN `/` (lumen-jeu.github.io) · Fragments `/fragments/` (fragments-jeu.github.io, volontairement différent de `/`) · Résonance `/` (resonance-jeu.github.io) · CRA `/Cra/` (cra-aulit.github.io/Cra/).
+`tests/manifest-sw.test.js` (identique dans les 5 projets) fige ces valeurs : si tu le modifies, copie-le à l'identique dans les 4 autres.
+
+- **Zoom** : le viewport n'interdit plus le zoom (accessibilité) ; `touch-action: none` sur le canvas empêche le pincement pendant le jeu. Ne pas le retirer.
