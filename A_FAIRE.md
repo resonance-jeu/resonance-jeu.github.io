@@ -50,3 +50,4 @@
 - 24/10 : score et série restent comptés pour le jour du lancement ; seul le compte à rebours suit le jour réel.
 
 - **29/10** : accessibilité et cohérence des 4 jeux + CRA : zoom de la page autorisé (viewport sans `user-scalable=no`), `touch-action:none` gardé sur la zone de jeu ; `:focus-visible` rétabli ; test commun `tests/manifest-sw.test.js` (identique dans les 4 jeux et CRA). `resonance.webmanifest` -> `manifest.webmanifest`, `icon-maskable-512.png` -> `maskable-512.png` (mêmes noms que les 3 autres jeux), cache `resonance-1.3.7`. Meta description réécrite. À voir au prochain build Android : l'`index.html` embarqué dans `JEUX\Resonance-PlayStore-1.1.0\…\assets` cite encore l'ancien nom (la WebView n'embarque ni manifest ni icônes, aucun effet).
+- **29/10** : ÉCHO a déménagé sur https://echo-jeu.github.io/ : lien « autres jeux » mis à jour, cache `resonance-1.3.8`, test commun `manifest-sw` recopié (ÉCHO `/`).

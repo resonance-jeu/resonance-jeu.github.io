@@ -15,7 +15,7 @@ const manifest = JSON.parse(lire(lienManifest));
 // préfixe de cache attendu = premier mot du nom court, sans accent ni majuscule (ÉCHO -> echo, CRA IZENCIA -> cra)
 const prefixe = manifest.short_name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().split(/\s+/)[0] + '-';
 // Identités déjà publiées : ne JAMAIS les changer (une autre identité = une autre appli pour Chrome, l'ancienne installation est orpheline).
-const IDS = { 'echo-': '/Echo/', 'lumen-': '/', 'fragments-': '/fragments/', 'resonance-': '/', 'cra-': '/Cra/' };
+const IDS = { 'echo-': '/', 'lumen-': '/', 'fragments-': '/fragments/', 'resonance-': '/', 'cra-': '/Cra/' };
 
 // Exécute sw.js, déclenche install puis activate, et rend le nom du cache, les fichiers demandés et les caches supprimés.
 async function lancerSW() {

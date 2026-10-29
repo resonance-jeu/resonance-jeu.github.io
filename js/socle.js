@@ -86,7 +86,7 @@ function untilNext(key){ const [y,m,d]=key.split('-').map(Number); let c=Date.UT
   const ms=Math.max(0,c-Date.now()); return { h:Math.floor(ms/3600000), m:String(Math.floor(ms%3600000/60000)).padStart(2,'0') }; }
 const SHARE_URL='https://resonance-jeu.github.io/';
 // liens des autres jeux : à remplacer par le lien Play Store quand l'appli sera publiée
-const AUTRES_JEUX=[{nom:'ÉCHO',d:'o_echo',url:'https://aulit42369.github.io/Echo/'},{nom:'LUMEN',d:'o_lumen',url:'https://lumen-jeu.github.io/'},{nom:'Fragments',d:'o_frag',url:'https://fragments-jeu.github.io/'}];
+const AUTRES_JEUX=[{nom:'ÉCHO',d:'o_echo',url:'https://echo-jeu.github.io/'},{nom:'LUMEN',d:'o_lumen',url:'https://lumen-jeu.github.io/'},{nom:'Fragments',d:'o_frag',url:'https://fragments-jeu.github.io/'}];
 function flame(n){ const f=document.createElement('span'); f.className='flame'; f.setAttribute('aria-label',t('a_streak',{n}));
   f.innerHTML='<svg viewBox="0 0 9 12" aria-hidden="true"><path d="M4.6 0C5 2.4 8.6 4 8.6 7.6A4.1 4.1 0 0 1 .4 7.6C.4 5.6 1.7 4.4 2.5 3.4c.1 1.3.7 2.1 1.5 2.4C3.6 3.9 3.9 1.9 4.6 0z"/></svg>';
   f.append(String(n)); return f; }

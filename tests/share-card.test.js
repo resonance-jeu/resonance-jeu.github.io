@@ -88,7 +88,7 @@ test('autres jeux : une seule constante, 3 jeux, pas Résonance ; textes dans le
   const m = /const AUTRES_JEUX=(\[[^\n]*\]);/.exec(html);
   assert.ok(m, 'constante AUTRES_JEUX absente');
   const jeux = new Function('return ' + m[1])();
-  assert.deepEqual(jeux.map(j => j.url), ['https://aulit42369.github.io/Echo/', 'https://lumen-jeu.github.io/', 'https://fragments-jeu.github.io/']);
+  assert.deepEqual(jeux.map(j => j.url), ['https://echo-jeu.github.io/', 'https://lumen-jeu.github.io/', 'https://fragments-jeu.github.io/']);
   assert.ok(!jeux.some(j => /resonance/i.test(j.url)));
   assert.equal(html.split('lumen-jeu.github.io').length, 2, 'URL écrite ailleurs que dans la constante');
   const I18N = textes();
