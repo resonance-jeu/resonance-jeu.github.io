@@ -9,7 +9,7 @@ au même instant sur un nœud l'allument, et il émet à son tour une onde. Grat
 ## Joueurs visés
 - Joueurs mobiles qui cherchent un « jeu de réflexion gratuit » (requête SEO visée), en 6 langues.
 - Communauté du stream d'Aulit42369 (Défi du jour commun aux 4 jeux, partage du résultat).
-- Profil précis (âge, pays) : à confirmer par Olivier.
+- Profil estimé : 12 ans et plus, surtout France et pays francophones, le reste du monde via les 6 langues du jeu (proposé par Claude le 29/10/2026, à corriger si besoin).
 
 ## Fonctions (présentes dans le code)
 | Fonction | Détail |
