@@ -92,7 +92,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
 - 05/11/2026 : adresse officielle resonance.aulit42369.fr (serveur d'Olivier, copie de `main` toutes les 5 min) ; github.io en secours ; appli Android à recompiler par Olivier. Liens des autres jeux sur `echo.`, `lumen.`, `fragments.aulit42369.fr`, Site sur `aulit42369.fr/Site/`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
-- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.8`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
+- Caches : préfixe `resonance-` (version actuelle `resonance-1.3.10`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
 
 ## 6. Dépendances externes

@@ -26,6 +26,7 @@
 - **28/10** : mesure d'audience **GoatCounter sans cookie** (même compte et même méthode que le Site) : chemins `/resonance/…`, comptée seulement sur `*.github.io` (jamais dans l'appli Android, une WebView, en local), opposition `skipgc` + bouton « Ne pas être compté » dans `privacy.html` (toutes les langues, texte repris du Site, liste des traceurs et date mises à jour), CSP élargie (empreinte du script, `gc.zgo.at`, `aulit42369.goatcounter.com`), cache `resonance-1.3.6`, `tests/statistiques.test.js`. Vérifié dans Chrome sans tête (URL github.io simulée : un envoi `/resonance/` ; local et `skipgc` : aucun ; 0 erreur console/CSP).
 
 - **05/11/2026** : adresse officielle resonance.aulit42369.fr ; github.io en secours ; appli Android à recompiler par Olivier. Canonical, Open Graph, JSON-LD, sitemap, robots, `SHARE_URL`, `AUTRES_JEUX` (echo./lumen./fragments.aulit42369.fr), lien du Site (`aulit42369.fr/Site/`) ; GoatCounter compte aussi sur `*.aulit42369.fr` (empreinte CSP recalculée) ; cache `resonance-1.3.9`. `assets\` de l'appli recopiés (32 fichiers, aucun `?v=`).
+- **05/11/2026** : `privacy.html` (6 langues) : hébergeur OVH SAS (Roubaix ; serveur à Beauharnois, Canada, aucun journal des visites), GitHub Pages en copie de secours ; date 05/11/2026 ; cache `resonance-1.3.10` ; recopiée dans `assets\` de l'appli.
 
 ## En cours
 
@@ -37,7 +38,6 @@
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
 - Appli Android : recompiler (`assets\` déjà à jour au 05/11, nouvelles adresses), monter `versionCode`.
-- `privacy.html` : la rubrique « Hébergement » / mentions légales ne cite que GitHub, Inc. ; l'adresse officielle est servie par le serveur OVH d'Olivier depuis le 05/11 : ajouter OVH comme hébergeur (6 langues) après vérification de l'entité contractante.
 - **URL de politique du Play Store** dans la Play Console : passer à `https://resonance.aulit42369.fr/privacy.html` (ancienne `https://resonance-jeu.github.io/privacy.html` toujours valide) (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
 - Mesure d'audience : vérifier dans le tableau de bord `aulit42369.goatcounter.com` que les visites arrivent sous `/resonance/` (quelques minutes après une visite).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
