@@ -2,6 +2,7 @@
 
 ## Fait
 
+- **05/11/2026 : CSP stricte sur toutes les pages** (`index`, `privacy`, `404`) : plus aucun script en ligne (compteur GoatCounter → `js/stats.js`, code de `privacy.html` → `js/privacy.js`, enregistrement du service worker → fin de `js/demarrage.js`), `script-src 'self' https://gc.zgo.at`, `base-uri`/`object-src`/`form-action` `'none'`, `data:`/`blob:` retirés là où rien ne s'en sert ; cache `resonance-1.3.11` ; `tests/csp.test.js` (commun aux 4 jeux). Vérifié dans Chromium sans tête : 0 violation CSP, 0 erreur JS, GoatCounter envoie bien sur le domaine officiel.
 - **24/10** — Défi du jour unifié (idée 14) : module commun `defi.js` (même fichier que ÉCHO, LUMEN, Fragments),
   jour qui change à minuit heure de Paris, graine `Defi.seed('resonance', jour, niveau)`, numéro `#n`, série de jours
   consécutifs (picto flamme), écran de fin avec aperçu, « Partager le résultat » (partage natif, puis copie, puis texte à copier),

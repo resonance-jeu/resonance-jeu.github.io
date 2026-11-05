@@ -10,12 +10,12 @@
 - Hébergement : adresse officielle `https://resonance.aulit42369.fr/` (serveur OVH d'Olivier, copie de la branche `main` toutes les 5 min, depuis le 05/11/2026) ; GitHub Pages `https://resonance-jeu.github.io/` (organisation dédiée) reste en ligne en secours.
 - `sw.js` : constante `VERSION` (`resonance-1.3.8` au 29/10/2026) ; les CSS/JS sont demandés en `?v=<VERSION>` (même valeur dans `index.html`, vérifiée par `tests/page.test.js`) ; ne purge que les caches `resonance-*`.
 - Manifest `manifest.webmanifest`, `id: "/"` : ne jamais le changer.
-- CSP en balise meta : `script-src 'self'` + empreintes `sha256` des deux scripts en ligne (enregistrement du service worker, compteur GoatCounter) + `https://gc.zgo.at` ; `connect-src`/`img-src` + `https://aulit42369.goatcounter.com`. Modifier un de ces scripts = recalculer son empreinte.
+- CSP en balise meta sur **toutes** les pages (`index`, `privacy`, `404`), vérifiée par `tests/csp.test.js` : `script-src 'self' https://gc.zgo.at` (aucun script en ligne : compteur dans `js/stats.js`, code de la confidentialité dans `js/privacy.js`), `connect-src`/`img-src` + `https://aulit42369.goatcounter.com`, `object-src 'none'`, `base-uri 'none'`, `form-action 'none'` ; `style-src` garde `'unsafe-inline'` (attributs `style`). `frame-ancestors` est impossible en meta (en-tête Caddy).
 
 ## Traceurs (28/10/2026)
 - Aucun cookie. Seul traceur : **GoatCounter**, mesure d'audience sans cookie (compte `aulit42369.goatcounter.com`, le même que le Site et la vitrine de La Cabane), chemins préfixés `/resonance/…` (option `path`) pour distinguer le jeu dans le tableau de bord.
 - Script d'une ligne en fin de `index.html` : charge `count.v4.js` (version figée + SRI `sha384`, comme le Site) **seulement** si `location.hostname` se termine par `github.io` ou `aulit42369.fr` (jamais dans une appli Android, une WebView, `file://` ni en local) et si `localStorage.skipgc` ≠ `'t'`. L'appli Android embarque une copie de `index.html` (WebView `file:///android_asset/`) : la garde `github.io` l'empêche de compter, elle ne doit jamais être retirée.
-- CSP : empreinte `sha256` de ce script + `https://gc.zgo.at` dans `script-src`, `https://aulit42369.goatcounter.com` dans `connect-src` et `img-src`. Modifier le script = recalculer l'empreinte (`tests/statistiques.test.js` échoue sinon).
+- CSP : `https://gc.zgo.at` dans `script-src`, `https://aulit42369.goatcounter.com` dans `connect-src` et `img-src` ; le script est le fichier `js/stats.js` (plus d'empreinte à recalculer).
 - Le SW ignore les requêtes d'autres origines : `count.js` et les envois ne sont jamais mis en cache.
 - Opposition : bouton « Ne pas être compté » de `privacy.html` (toutes les langues), clé locale `skipgc` ; bouton masqué hors `github.io` / `aulit42369.fr`.
 

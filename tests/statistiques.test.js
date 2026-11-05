@@ -4,13 +4,14 @@ const test = require('node:test');
 const assert = require('node:assert');
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
 const vm = require('vm');
 
 const PREFIXE = '/resonance';
 const racine = path.join(__dirname, '..');
 const html = fs.readFileSync(path.join(racine, 'index.html'), 'utf8');
-const js = (html.match(/<script>([^<]*goatcounter[^<]*)<\/script>/) || [])[1];
+// Script sorti de la page (05/11/2026) : la CSP n'autorise plus aucun script en ligne.
+const STATS = 'js/stats.js';
+const js = fs.readFileSync(path.join(racine, STATS), 'utf8');
 const csp = html.match(/Content-Security-Policy" content="([^"]+)"/)[1];
 const directive = (nom) => (csp.split(';').map((d) => d.trim()).find((d) => d.startsWith(nom + ' ')) || '');
 
@@ -28,10 +29,10 @@ function lancer(hostname, skipgc) {
   return { ajoute, gc: win.goatcounter };
 }
 
-test('script GoatCounter présent, empreinte et domaines autorisés par la CSP', () => {
-  assert.ok(js, 'script en ligne GoatCounter absent');
-  const h = "'sha256-" + crypto.createHash('sha256').update(js).digest('base64') + "'";
-  assert.ok(directive('script-src').includes(h), 'empreinte du script absente de script-src');
+test('script GoatCounter chargé depuis son fichier, domaines autorisés par la CSP', () => {
+  assert.ok(html.includes('<script src="' + STATS), STATS + ' absent de index.html');
+  assert.match(js, /goatcounter/);
+  assert.doesNotMatch(directive('script-src'), /unsafe-inline|sha256-/, 'script-src ne doit autoriser aucun script en ligne');
   assert.ok(directive('script-src').includes('https://gc.zgo.at'));
   assert.ok(directive('connect-src').includes('https://aulit42369.goatcounter.com'));
   assert.ok(directive('img-src').includes('https://aulit42369.goatcounter.com'));
@@ -58,7 +59,7 @@ test('ne compte jamais hors github.io (appli Android, WebView, fichier, local)',
 
 test('respecte « Ne pas être compté » (skipgc) et propose le bouton dans privacy.html', () => {
   assert.strictEqual(lancer('exemple.github.io', 't').ajoute, null);
-  const privacy = fs.readFileSync(path.join(racine, 'privacy.html'), 'utf8');
+  const privacy = fs.readFileSync(path.join(racine, 'privacy.html'), 'utf8') + fs.readFileSync(path.join(racine, 'js/privacy.js'), 'utf8');
   assert.match(privacy, /GoatCounter/);
   assert.match(privacy, /data-gc="Ne pas être compté\|Être compté de nouveau"/);
   assert.match(privacy, /localStorage\.setItem\('skipgc', 't'\)/);

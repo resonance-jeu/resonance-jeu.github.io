@@ -51,3 +51,4 @@ const leave=()=>{ if(sp.classList.contains('hide')) return; sp.classList.add('hi
 sp.addEventListener('pointerdown',()=>{ startAudio(); leave(); });
 setTimeout(leave, reduce?200:1600);
 requestAnimationFrame(frame);
+if('serviceWorker' in navigator){ addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); }); }

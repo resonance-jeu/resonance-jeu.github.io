@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Résonance · Confidentialité / Privacy</title>
 <style>
 :root{--ink:#13100e;--bone:#efe3cf;--saffron:#f2a541;--dust:#8a7d6c}
@@ -163,25 +164,6 @@ Hosting: questo gioco (resonance.aulit42369.fr) è ospitato da OVH SAS — 2 rue
 <p>Editor e diretor da publicação: Aulit42369, pessoa física que publica este jogo a título não profissional e optou pelo anonimato; seus dados de identificação foram informados à hospedagem, como permite a lei francesa nº 2004-575, de 21 de junho de 2004, para a confiança na economia digital (LCEN).<br>
 Hospedagem: este jogo (resonance.aulit42369.fr) é hospedado pela OVH SAS — 2 rue Kellermann, 59100 Roubaix, França — <a href="https://www.ovhcloud.com" rel="noopener">ovhcloud.com</a> (servidor localizado em Beauharnois, Canadá). Uma cópia de reserva é publicada pela GitHub, Inc. (GitHub Pages, resonance-jeu.github.io) — 88 Colin P Kelly Jr St, San Francisco, CA 94107, Estados Unidos — telefone: +1 877 448 4820 — <a href="https://support.github.com/contact" rel="noopener">support.github.com/contact</a>.</p>
 <p>Dúvidas: <a href="mailto:aulit42369@gmail.com">aulit42369@gmail.com</a>, ou abra uma issue na <a href="https://github.com/resonance-jeu/resonance-jeu.github.io/issues" rel="noopener">página do jogo no GitHub</a>.</p></section>
-</main><script>
-// « Ne pas être compté » : GoatCounter ne compte rien quand localStorage.skipgc === 't' (même règle que le Site).
-// Hors github.io et aulit42369.fr (appli Android, local) le jeu ne compte rien : le bouton est masqué.
-(function () {
-  var web = /(^|\.)(github\.io|aulit42369\.fr)$/.test(location.hostname);
-  function off() { try { return localStorage.getItem('skipgc') === 't'; } catch (e) { return false; } }
-  function maj() {
-    var i = off() ? 1 : 0;
-    document.querySelectorAll('.gc-choix').forEach(function (el) { el.hidden = !web; });
-    document.querySelectorAll('[data-gc]').forEach(function (b) { b.textContent = b.getAttribute('data-gc').split('|')[i]; b.setAttribute('aria-pressed', String(!!i)); });
-    document.querySelectorAll('[data-gc-etat]').forEach(function (s) { s.textContent = s.getAttribute('data-gc-etat').split('|')[i]; });
-  }
-  document.addEventListener('click', function (e) {
-    if (!e.target.closest('[data-gc]')) return;
-    try { if (off()) localStorage.removeItem('skipgc'); else localStorage.setItem('skipgc', 't'); } catch (err) { /* stockage bloqué */ }
-    maj();
-  });
-  maj();
-})();
-</script>
+</main><script src="js/privacy.js"></script>
 </body>
 </html>
