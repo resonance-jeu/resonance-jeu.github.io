@@ -7,17 +7,17 @@
 - Ordre de chargement imposé : `defi.js` → `share-card.js` → `js/moteur.js` → `js/i18n.js` → `js/i18n/*.js` → `js/puzzles.js` → `js/socle.js` → … → `js/demarrage.js` (toujours dernier).
 
 ## PWA
-- Hébergement : GitHub Pages, `https://resonance-jeu.github.io/` (organisation dédiée).
+- Hébergement : adresse officielle `https://resonance.aulit42369.fr/` (serveur OVH d'Olivier, copie de la branche `main` toutes les 5 min, depuis le 05/11/2026) ; GitHub Pages `https://resonance-jeu.github.io/` (organisation dédiée) reste en ligne en secours.
 - `sw.js` : constante `VERSION` (`resonance-1.3.8` au 29/10/2026) ; les CSS/JS sont demandés en `?v=<VERSION>` (même valeur dans `index.html`, vérifiée par `tests/page.test.js`) ; ne purge que les caches `resonance-*`.
 - Manifest `manifest.webmanifest`, `id: "/"` : ne jamais le changer.
 - CSP en balise meta : `script-src 'self'` + empreintes `sha256` des deux scripts en ligne (enregistrement du service worker, compteur GoatCounter) + `https://gc.zgo.at` ; `connect-src`/`img-src` + `https://aulit42369.goatcounter.com`. Modifier un de ces scripts = recalculer son empreinte.
 
 ## Traceurs (28/10/2026)
 - Aucun cookie. Seul traceur : **GoatCounter**, mesure d'audience sans cookie (compte `aulit42369.goatcounter.com`, le même que le Site et la vitrine de La Cabane), chemins préfixés `/resonance/…` (option `path`) pour distinguer le jeu dans le tableau de bord.
-- Script d'une ligne en fin de `index.html` : charge `count.v4.js` (version figée + SRI `sha384`, comme le Site) **seulement** si `location.hostname` se termine par `github.io` (jamais dans une appli Android, une WebView, `file://` ni en local) et si `localStorage.skipgc` ≠ `'t'`. L'appli Android embarque une copie de `index.html` (WebView `file:///android_asset/`) : la garde `github.io` l'empêche de compter, elle ne doit jamais être retirée.
+- Script d'une ligne en fin de `index.html` : charge `count.v4.js` (version figée + SRI `sha384`, comme le Site) **seulement** si `location.hostname` se termine par `github.io` ou `aulit42369.fr` (jamais dans une appli Android, une WebView, `file://` ni en local) et si `localStorage.skipgc` ≠ `'t'`. L'appli Android embarque une copie de `index.html` (WebView `file:///android_asset/`) : la garde `github.io` l'empêche de compter, elle ne doit jamais être retirée.
 - CSP : empreinte `sha256` de ce script + `https://gc.zgo.at` dans `script-src`, `https://aulit42369.goatcounter.com` dans `connect-src` et `img-src`. Modifier le script = recalculer l'empreinte (`tests/statistiques.test.js` échoue sinon).
 - Le SW ignore les requêtes d'autres origines : `count.js` et les envois ne sont jamais mis en cache.
-- Opposition : bouton « Ne pas être compté » de `privacy.html` (toutes les langues), clé locale `skipgc` ; bouton masqué hors `github.io`.
+- Opposition : bouton « Ne pas être compté » de `privacy.html` (toutes les langues), clé locale `skipgc` ; bouton masqué hors `github.io` / `aulit42369.fr`.
 
 ## Android
 - Appli **WebView** (Java, sans Gradle) qui embarque une copie de la PWA : `F:\Stream\files\JEUX\Resonance-PlayStore-1.1.0` (hors de ce dépôt).

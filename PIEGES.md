@@ -12,7 +12,7 @@
 - **URL de partage fixe** : dans l'appli Android (WebView `file:///android_asset/`), `location.href` donnerait un lien `file://`.
 - **Appli Android** : elle embarque une copie de la PWA ; copier **tous** les fichiers web (`index.html`, `defi.js`, `share-card.js`, `privacy.html`, `css/`, `js/` avec `js/i18n/`, `fonts/`), sinon le jeu ne démarre pas.
 - **`404.html` est servie à n'importe quelle profondeur** (`/a/b/c`) : tous ses liens, polices et icônes en chemin absolu (`/…`), jamais relatif. Elle n'est pas mise en cache par le SW.
-- **Aperçus de liens** : `og:image` doit rester une URL absolue (`https://resonance-jeu.github.io/og-image.png`) ; après modification de l'image, Facebook/Discord gardent l'ancienne en cache plusieurs jours.
+- **Aperçus de liens** : `og:image` doit rester une URL absolue (`https://resonance.aulit42369.fr/og-image.png`) ; après modification de l'image, Facebook/Discord gardent l'ancienne en cache plusieurs jours.
 - **Lien des Réglages vers `privacy.html` relatif** : dans l'appli Android, `privacy.html` doit être copié dans `assets\` avec `index.html` et `defi.js`.
 - **Couleur `dust` des thèmes** : texte secondaire, garder ≥ 4,5:1 sur l'`ink` du thème (vérifié le 25/10).
 - **`node --test tests/`** échoue sous Node 24 : lancer `node --test` à la racine.
@@ -37,7 +37,7 @@
   les fichiers embarqués sont toujours de la même version, et on évite de dépendre de la gestion des paramètres sur `file:///android_asset/`.
 - **Tests de la page** : `tests/outils-page.js` est un faux navigateur minimal (pas de rendu réel).
 
-- **Compteur GoatCounter (28/10)** : script en ligne d'une ligne en fin de `index.html`, son empreinte `sha256` est dans la CSP : le modifier = recalculer l'empreinte (`tests/statistiques.test.js`). Ne jamais retirer la garde `github.io` : compter dans une appli Android obligerait à déclarer des analytics sur le Play Store. Garder `count.v4.js` + `integrity` (pas `count.js`), comme le Site.
+- **Compteur GoatCounter (28/10)** : script en ligne d'une ligne en fin de `index.html`, son empreinte `sha256` est dans la CSP : le modifier = recalculer l'empreinte (`tests/statistiques.test.js`). Ne jamais retirer la garde `github.io` / `aulit42369.fr` : compter dans une appli Android obligerait à déclarer des analytics sur le Play Store. Garder `count.v4.js` + `integrity` (pas `count.js`), comme le Site.
 
 ## Identités d'appli (manifest `id`) — NE JAMAIS CHANGER (29/10)
 Chrome identifie une PWA installée par son `id` ; en changer = une autre appli, l'ancienne reste orpheline. Valeurs en ligne des 5 apps :

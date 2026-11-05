@@ -71,7 +71,7 @@ Documents de cadrage dans `docs/` : `PRD.md`, `TRD.md`, `APP_FLOW.md`, `DESIGN_B
 - Thèmes : tableau `THEMES` de `js/socle.js`.
 - Date du jour, graine, série, format du texte partagé : `defi.js`, **commun aux 4 jeux** (empreinte FNV vérifiée par le test).
 - Liens des autres jeux d'Aulit : constante `AUTRES_JEUX` de `js/socle.js` (une seule ; à remplacer par les liens Play Store quand les applis seront publiées) ; descriptions dans `I18N` (`o_echo`, `o_lumen`, `o_frag`).
-- URL de partage : `SHARE_URL` dans `js/socle.js` (`https://resonance-jeu.github.io/`, jamais `location.href`).
+- URL de partage : `SHARE_URL` dans `js/socle.js` (`https://resonance.aulit42369.fr/`, jamais `location.href`).
 
 ## 3. Persistance (localStorage de l'appareil, rien sur serveur)
 
@@ -90,6 +90,7 @@ Aucun secret, aucun réseau en dehors du chargement de la page. Le texte partag�
 ## 5. Identité
 
 - Organisation GitHub `resonance-jeu`, dépôt `resonance-jeu.github.io`.
+- 05/11/2026 : adresse officielle resonance.aulit42369.fr (serveur d'Olivier, copie de `main` toutes les 5 min) ; github.io en secours ; appli Android à recompiler par Olivier. Liens des autres jeux sur `echo.`, `lumen.`, `fragments.aulit42369.fr`, Site sur `aulit42369.fr/Site/`.
 - Manifest : `id: "/"` (**ne jamais changer**), `scope` et `start_url` `./`.
 - Caches : préfixe `resonance-` (version actuelle `resonance-1.3.8`, reprise dans le `?v=` des CSS/JS de `index.html`) ; seule une navigation vers la racine ou `index.html` (réponse 200) remplace la copie hors ligne `./` ; le SW ne supprime que les caches `resonance-*`.
 - Jeu dans `defi.js` : `'resonance'`.
@@ -113,4 +114,4 @@ SW simulé hors ligne qui sert chaque CSS/JS avec son `?v=`. Le rendu visuel et 
 Voir `PIEGES.md`.
 
 ## Statistiques de visite (28/10/2026)
-GoatCounter sans cookie, chemins `/resonance/…`, chargé par le script d'une ligne en fin de `index.html` uniquement sur `*.github.io` et sans `skipgc` (détail : `docs/TRD.md`, section Traceurs). `privacy.html` le déclare dans toutes ses langues, avec le bouton « Ne pas être compté ». Test : `tests/statistiques.test.js` (identique dans les 4 jeux, seul `PREFIXE` change).
+GoatCounter sans cookie, chemins `/resonance/…`, chargé par le script d'une ligne en fin de `index.html` uniquement sur `*.github.io` ou `*.aulit42369.fr` et sans `skipgc` (détail : `docs/TRD.md`, section Traceurs). `privacy.html` le déclare dans toutes ses langues, avec le bouton « Ne pas être compté ». Test : `tests/statistiques.test.js` (identique dans les 4 jeux, seul `PREFIXE` change).

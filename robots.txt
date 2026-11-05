@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://resonance-jeu.github.io/sitemap.xml
+Sitemap: https://resonance.aulit42369.fr/sitemap.xml

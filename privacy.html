@@ -165,9 +165,9 @@ Hospedagem: GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, Estad
 <p>Dúvidas: <a href="mailto:aulit42369@gmail.com">aulit42369@gmail.com</a>, ou abra uma issue na <a href="https://github.com/resonance-jeu/resonance-jeu.github.io/issues" rel="noopener">página do jogo no GitHub</a>.</p></section>
 </main><script>
 // « Ne pas être compté » : GoatCounter ne compte rien quand localStorage.skipgc === 't' (même règle que le Site).
-// Hors github.io (appli Android, local) le jeu ne compte rien : le bouton est masqué.
+// Hors github.io et aulit42369.fr (appli Android, local) le jeu ne compte rien : le bouton est masqué.
 (function () {
-  var web = /(^|\.)github\.io$/.test(location.hostname);
+  var web = /(^|\.)(github\.io|aulit42369\.fr)$/.test(location.hostname);
   function off() { try { return localStorage.getItem('skipgc') === 't'; } catch (e) { return false; } }
   function maj() {
     var i = off() ? 1 : 0;

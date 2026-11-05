@@ -1,6 +1,6 @@
 # Résonance
 
-Jeu d'ondes tactile (PWA hors ligne, 6 langues), publié sur https://resonance-jeu.github.io/ et sur le Play Store
+Jeu d'ondes tactile (PWA hors ligne, 6 langues), publié sur https://resonance.aulit42369.fr/ (adresse officielle depuis le 05/11/2026 ; https://resonance-jeu.github.io/ reste en ligne en secours) et sur le Play Store
 (appli Android WebView qui embarque une copie de la PWA, dans `F:\Stream\files\JEUX\Resonance-PlayStore-1.1.0`).
 
 ## Fichiers

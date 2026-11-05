@@ -46,10 +46,12 @@ test('compte seulement sur github.io, avec count.v4.js figé + SRI et le chemin 
   assert.strictEqual(ajoute['data-goatcounter'], 'https://aulit42369.goatcounter.com/count');
   const canon = new URL(html.match(/rel="canonical" href="([^"]+)"/)[1]).pathname;
   assert.strictEqual(gc.path(canon), PREFIXE + '/');
+  // adresse officielle depuis le 05/11/2026 (github.io reste en secours)
+  assert.ok(lancer('resonance.aulit42369.fr', null).ajoute, 'rien chargé sur aulit42369.fr');
 });
 
 test('ne compte jamais hors github.io (appli Android, WebView, fichier, local)', () => {
-  for (const h of ['', 'localhost', '127.0.0.1', 'appassets.androidplatform.net', 'github.io.exemple.com', 'faux-github.io.net']) {
+  for (const h of ['', 'localhost', '127.0.0.1', 'appassets.androidplatform.net', 'github.io.exemple.com', 'faux-github.io.net', 'aulit42369.fr.exemple.com', 'fauxaulit42369.fr']) {
     assert.strictEqual(lancer(h, null).ajoute, null, 'compté sur « ' + h + ' »');
   }
 });

@@ -25,6 +25,8 @@
 - **28/10** : accessibilité : tout le jeu (canvas, HUD, menus, écrans) enveloppé dans `<main>` (comme Fragments), rendu et comportement identiques (positions comparées avant/après dans Chromium sans tête, 0 erreur console) ; script en ligne inchangé donc empreinte CSP inchangée ; pas de pied de page. Cache et `?v=` `resonance-1.3.5`. Docs de cadrage créées dans `docs/`. Appli Android : reporter `index.html` à la prochaine version.
 - **28/10** : mesure d'audience **GoatCounter sans cookie** (même compte et même méthode que le Site) : chemins `/resonance/…`, comptée seulement sur `*.github.io` (jamais dans l'appli Android, une WebView, en local), opposition `skipgc` + bouton « Ne pas être compté » dans `privacy.html` (toutes les langues, texte repris du Site, liste des traceurs et date mises à jour), CSP élargie (empreinte du script, `gc.zgo.at`, `aulit42369.goatcounter.com`), cache `resonance-1.3.6`, `tests/statistiques.test.js`. Vérifié dans Chrome sans tête (URL github.io simulée : un envoi `/resonance/` ; local et `skipgc` : aucun ; 0 erreur console/CSP).
 
+- **05/11/2026** : adresse officielle resonance.aulit42369.fr ; github.io en secours ; appli Android à recompiler par Olivier. Canonical, Open Graph, JSON-LD, sitemap, robots, `SHARE_URL`, `AUTRES_JEUX` (echo./lumen./fragments.aulit42369.fr), lien du Site (`aulit42369.fr/Site/`) ; GoatCounter compte aussi sur `*.aulit42369.fr` (empreinte CSP recalculée) ; cache `resonance-1.3.9`. `assets\` de l'appli recopiés (32 fichiers, aucun `?v=`).
+
 ## En cours
 
 ## À faire
@@ -34,7 +36,9 @@
 - Quand ÉCHO / LUMEN / Fragments seront sur le Play Store : remplacer les liens de `AUTRES_JEUX`.
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
-- **URL de politique du Play Store à vérifier** dans la Play Console : `https://resonance-jeu.github.io/privacy.html` (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
+- Appli Android : recompiler (`assets\` déjà à jour au 05/11, nouvelles adresses), monter `versionCode`.
+- `privacy.html` : la rubrique « Hébergement » / mentions légales ne cite que GitHub, Inc. ; l'adresse officielle est servie par le serveur OVH d'Olivier depuis le 05/11 : ajouter OVH comme hébergeur (6 langues) après vérification de l'entité contractante.
+- **URL de politique du Play Store** dans la Play Console : passer à `https://resonance.aulit42369.fr/privacy.html` (ancienne `https://resonance-jeu.github.io/privacy.html` toujours valide) (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
 - Mesure d'audience : vérifier dans le tableau de bord `aulit42369.goatcounter.com` que les visites arrivent sous `/resonance/` (quelques minutes après une visite).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
 

@@ -9,7 +9,7 @@
 ## Prochaines étapes (d'après `A_FAIRE.md`)
 1. Tester l'appli 1.3.0 sur téléphone (partage de l'image, lien d'un autre jeu, polices, retour depuis la Confidentialité, un mode de chaque type), puis envoyer `Resonance-1.3.0.aab`.
 2. À la prochaine version Android : recopier les fichiers web dans `assets\` (dont `privacy.html` et `index.html` avec `<main>`), retirer les `?v=`, monter `versionCode`.
-3. Vérifier dans la Play Console l'URL de politique `https://resonance-jeu.github.io/privacy.html` et la fiche « Sécurité des données ».
+3. Vérifier dans la Play Console l'URL de politique `https://resonance.aulit42369.fr/privacy.html` (depuis le 05/11/2026 ; ancienne `https://resonance-jeu.github.io/privacy.html` toujours valide) et la fiche « Sécurité des données ».
 4. Remplacer les liens de `AUTRES_JEUX` par les liens Play Store quand les autres jeux seront publiés.
 5. Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*`.
 

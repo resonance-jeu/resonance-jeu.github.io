@@ -26,7 +26,7 @@ test('le défi n\'utilise plus l\'heure locale', () => {
   assert.ok(!/DAILY_SEED/.test(html));
   assert.match(html, /Defi\.seed\('resonance',\(S\.defi\|\|TD\)\.key,S\.level\)/);
   assert.match(html, /VERSION=6/);
-  assert.ok(html.includes("SHARE_URL='https://resonance-jeu.github.io/'"));
+  assert.ok(html.includes("SHARE_URL='https://resonance.aulit42369.fr/'"));
 });
 
 test('nouveaux textes présents dans les 6 langues', () => {

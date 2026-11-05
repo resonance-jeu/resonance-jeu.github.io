@@ -88,9 +88,9 @@ test('autres jeux : une seule constante, 3 jeux, pas Résonance ; textes dans le
   const m = /const AUTRES_JEUX=(\[[^\n]*\]);/.exec(html);
   assert.ok(m, 'constante AUTRES_JEUX absente');
   const jeux = new Function('return ' + m[1])();
-  assert.deepEqual(jeux.map(j => j.url), ['https://echo-jeu.github.io/', 'https://lumen-jeu.github.io/', 'https://fragments-jeu.github.io/']);
+  assert.deepEqual(jeux.map(j => j.url), ['https://echo.aulit42369.fr/', 'https://lumen.aulit42369.fr/', 'https://fragments.aulit42369.fr/']);
   assert.ok(!jeux.some(j => /resonance/i.test(j.url)));
-  assert.equal(html.split('lumen-jeu.github.io').length, 2, 'URL écrite ailleurs que dans la constante');
+  assert.equal(html.split('lumen.aulit42369.fr').length, 2, 'URL écrite ailleurs que dans la constante');
   const I18N = textes();
   for (const l of ['fr', 'en', 'es', 'de', 'it', 'pt'])
     for (const k of ['share_img', 'st_saved', 'others', 'o_echo', 'o_lumen', 'o_frag']) assert.equal(typeof I18N[l][k], 'string', `${l}.${k}`);
