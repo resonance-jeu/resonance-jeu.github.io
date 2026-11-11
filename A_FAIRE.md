@@ -41,7 +41,8 @@
 - Purger un jour les anciennes clés `resonance.daily.*` / `resonance.dailyrun.*` (une par jour, jamais supprimées).
 
 - Appli Android : recompiler (`assets\` déjà à jour au 05/11, nouvelles adresses), monter `versionCode`.
-- **URL de politique du Play Store** dans la Play Console : passer à `https://resonance.aulit42369.fr/privacy.html` (ancienne `https://resonance-jeu.github.io/privacy.html` toujours valide) (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
+- **Play Store : pas encore publié** (11/11/2026) : validation d'identité d'Olivier dans la Play Console, puis 12 testeurs, puis la fiche (même étape pour les 4 jeux).
+- **URL de politique du Play Store** à saisir dans la fiche : `https://resonance.aulit42369.fr/privacy.html` (ancienne `https://resonance-jeu.github.io/privacy.html` toujours valide) (l'exemple du guide `aulit42369.github.io/Site/resonance/privacy.html` renvoie 404).
 - Mesure d'audience : vérifier dans le tableau de bord `aulit42369.goatcounter.com` que les visites arrivent sous `/resonance/` (quelques minutes après une visite).
 - Accueil : 13 modes ; un seul est mis en avant (`.mode.primary` : Tutoriel puis Campagne), à garder.
 
