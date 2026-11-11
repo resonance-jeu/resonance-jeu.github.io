@@ -23,7 +23,7 @@ I18N.pt = {
  nt:["Nó simples","Nó de três arcos","Bateria","Nó agudo","Nó grave","Nó frágil","Nó com contagem regressiva"],
  max_nodes:"No máximo 14 nós", max_mud:"No máximo 4 poças", max_portal:"No máximo 3 portais", need_node:"Coloque pelo menos um nó", loaded:"Grade carregada", ach_toast:"Conquista · {n}",
  code_k:"Código da grade", code_t:"Compartilhar.", code_msg:"Copie este código para compartilhar sua grade, ou cole um código recebido e toque em Carregar.", copy:"Copiar", load:"Carregar", close:"Fechar", copied:"Copiado", selected:"Selecionado, copie", bad_code:"Código ilegível", a_text:"Texto",
- mk_pulse:"+1 impulso", mk_wrong:"nota errada", mk_broken:"quebrado", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"no tempo!", mk_miss:"perdido",
+ mk_perfect:"PERFEITO", mk_pulse:"+1 impulso", mk_wrong:"nota errada", mk_broken:"quebrado", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"no tempo!", mk_miss:"perdido",
  bn_harmony:"Harmonia", bn_newgrid:"Nova grade", bn_gridfull:"Grade completa", bn_step:"Etapa {n}", bn_next:"Próxima", bn_tutodone:"Tutorial concluído", bn_solved:"Resolvido",
  bn_puz:"Quebra-cabeça {k} · {n} tentativa|Quebra-cabeça {k} · {n} tentativas", bn_melody:"Melodia {n}", bn_wrongs:"{n} nota errada|{n} notas erradas", bn_clean:"Sem nota errada", bn_level:"Nível {n}", bn_coop:"Coop {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · impulsos poupados", bn_full:"Ressonância completa", bn_almost:"Quase", bn_retry:"De novo", bn_missed:"Errou",
  e_nopulse:"Sem impulsos", e_silence:"Silêncio.", e_left:"{n} nó ainda apagado.|{n} nós ainda apagados.", e_score:"Pontos: {n}.", replay_lvl:"Jogar o nível de novo", retry:"Tentar de novo", map:"Mapa", replay:"Jogar de novo",

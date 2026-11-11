@@ -23,7 +23,7 @@ I18N.fr = {
  nt:["Nœud simple","Nœud à trois arcs","Batterie","Nœud aigu","Nœud grave","Nœud fragile","Nœud à rebours"],
  max_nodes:"14 nœuds au maximum", max_mud:"4 flaques au maximum", max_portal:"3 portails au maximum", need_node:"Pose au moins un nœud", loaded:"Grille chargée", ach_toast:"Succès · {n}",
  code_k:"Code de la grille", code_t:"Partage.", code_msg:"Copie ce code pour partager ta grille, ou colle un code reçu puis touche Charger.", copy:"Copier", load:"Charger", close:"Fermer", copied:"Copié", selected:"Sélectionné, copie-le", bad_code:"Code illisible", a_text:"Texte",
- mk_pulse:"+1 impulsion", mk_wrong:"fausse note", mk_broken:"brisé", mk_off:"éteint", mk_frozen:"figé", mk_beat:"pile !", mk_miss:"raté",
+ mk_perfect:"PARFAIT", mk_pulse:"+1 impulsion", mk_wrong:"fausse note", mk_broken:"brisé", mk_off:"éteint", mk_frozen:"figé", mk_beat:"pile !", mk_miss:"raté",
  bn_harmony:"Harmonie", bn_newgrid:"Nouvelle grille", bn_gridfull:"Grille complète", bn_step:"Étape {n}", bn_next:"Suivante", bn_tutodone:"Tutoriel terminé", bn_solved:"Résolu",
  bn_puz:"Puzzle {k} · {n} essai|Puzzle {k} · {n} essais", bn_melody:"Mélodie {n}", bn_wrongs:"{n} fausse note|{n} fausses notes", bn_clean:"Sans fausse note", bn_level:"Niveau {n}", bn_coop:"Coop {n}", bn_replay:"Rejeu ×2", bn_kept:"+{n} · impulsions gardées", bn_full:"Résonance complète", bn_almost:"Presque", bn_retry:"On recommence", bn_missed:"Raté",
  e_nopulse:"Plus d'impulsions", e_silence:"Silence.", e_left:"{n} nœud encore éteint.|{n} nœuds encore éteints.", e_score:"Score : {n}.", replay_lvl:"Rejouer le niveau", retry:"Réessayer", map:"Carte", replay:"Rejouer",

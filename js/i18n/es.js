@@ -23,7 +23,7 @@ I18N.es = {
  nt:["Nodo simple","Nodo de tres arcos","Batería","Nodo agudo","Nodo grave","Nodo frágil","Nodo con cuenta atrás"],
  max_nodes:"14 nodos como máximo", max_mud:"4 charcos como máximo", max_portal:"3 portales como máximo", need_node:"Coloca al menos un nodo", loaded:"Cuadrícula cargada", ach_toast:"Logro · {n}",
  code_k:"Código de la cuadrícula", code_t:"Compartir.", code_msg:"Copia este código para compartir tu cuadrícula, o pega un código recibido y toca Cargar.", copy:"Copiar", load:"Cargar", close:"Cerrar", copied:"Copiado", selected:"Seleccionado, cópialo", bad_code:"Código ilegible", a_text:"Texto",
- mk_pulse:"+1 impulso", mk_wrong:"nota falsa", mk_broken:"roto", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"¡a tiempo!", mk_miss:"fallo",
+ mk_perfect:"PERFECTO", mk_pulse:"+1 impulso", mk_wrong:"nota falsa", mk_broken:"roto", mk_off:"apagado", mk_frozen:"congelado", mk_beat:"¡a tiempo!", mk_miss:"fallo",
  bn_harmony:"Armonía", bn_newgrid:"Nueva cuadrícula", bn_gridfull:"Cuadrícula completa", bn_step:"Paso {n}", bn_next:"Siguiente", bn_tutodone:"Tutorial completado", bn_solved:"Resuelto",
  bn_puz:"Puzle {k} · {n} intento|Puzle {k} · {n} intentos", bn_melody:"Melodía {n}", bn_wrongs:"{n} nota falsa|{n} notas falsas", bn_clean:"Sin notas falsas", bn_level:"Nivel {n}", bn_coop:"Coop {n}", bn_replay:"Repetición ×2", bn_kept:"+{n} · impulsos ahorrados", bn_full:"Resonancia completa", bn_almost:"Casi", bn_retry:"Otra vez", bn_missed:"Fallo",
  e_nopulse:"Sin impulsos", e_silence:"Silencio.", e_left:"Queda {n} nodo apagado.|Quedan {n} nodos apagados.", e_score:"Puntos: {n}.", replay_lvl:"Repetir nivel", retry:"Reintentar", map:"Mapa", replay:"Jugar otra vez",

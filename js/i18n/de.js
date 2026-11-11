@@ -23,7 +23,7 @@ I18N.de = {
  nt:["Einfacher Knoten","Knoten mit drei Bögen","Batterie","Hoher Knoten","Tiefer Knoten","Zerbrechlicher Knoten","Countdown-Knoten"],
  max_nodes:"Höchstens 14 Knoten", max_mud:"Höchstens 4 Pfützen", max_portal:"Höchstens 3 Portale", need_node:"Setze mindestens einen Knoten", loaded:"Feld geladen", ach_toast:"Erfolg · {n}",
  code_k:"Feld-Code", code_t:"Teilen.", code_msg:"Kopiere diesen Code, um dein Feld zu teilen, oder füge einen erhaltenen Code ein und tippe auf Laden.", copy:"Kopieren", load:"Laden", close:"Schließen", copied:"Kopiert", selected:"Markiert, jetzt kopieren", bad_code:"Code nicht lesbar", a_text:"Text",
- mk_pulse:"+1 Impuls", mk_wrong:"falscher Ton", mk_broken:"zerbrochen", mk_off:"erloschen", mk_frozen:"eingefroren", mk_beat:"im Takt!", mk_miss:"verpasst",
+ mk_perfect:"PERFEKT", mk_pulse:"+1 Impuls", mk_wrong:"falscher Ton", mk_broken:"zerbrochen", mk_off:"erloschen", mk_frozen:"eingefroren", mk_beat:"im Takt!", mk_miss:"verpasst",
  bn_harmony:"Harmonie", bn_newgrid:"Neues Feld", bn_gridfull:"Feld komplett", bn_step:"Schritt {n}", bn_next:"Weiter", bn_tutodone:"Tutorial abgeschlossen", bn_solved:"Gelöst",
  bn_puz:"Rätsel {k} · {n} Versuch|Rätsel {k} · {n} Versuche", bn_melody:"Melodie {n}", bn_wrongs:"{n} falscher Ton|{n} falsche Töne", bn_clean:"Ohne falschen Ton", bn_level:"Level {n}", bn_coop:"Koop {n}", bn_replay:"Wiederholung ×2", bn_kept:"+{n} · gesparte Impulse", bn_full:"Volle Resonanz", bn_almost:"Fast", bn_retry:"Noch mal", bn_missed:"Daneben",
  e_nopulse:"Keine Impulse mehr", e_silence:"Stille.", e_left:"{n} Knoten noch dunkel.|{n} Knoten noch dunkel.", e_score:"Punkte: {n}.", replay_lvl:"Level wiederholen", retry:"Erneut versuchen", map:"Karte", replay:"Nochmal spielen",

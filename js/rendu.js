@@ -170,7 +170,16 @@ function draw(){
   S.marks=S.marks.filter(m=>tt-m.t<1.2);
   for(const m of S.marks){
     const k=(tt-m.t)/1.2;
-    if(m.txt){ ctx.fillStyle=`rgba(${m.bad?C.rose:C.saffron},${1-k})`; ctx.font='700 13px Unbounded, sans-serif'; ctx.textAlign='center'; ctx.fillText(m.txt,m.x,m.y-30-k*24); }
+    if(m.chain){ // R1 : compteur de chaîne, ressort 150 % -> 100 %, couleur qui chauffe
+      const sc=reduce?1:1+0.5*Math.exp(-k*9)*Math.cos(k*14), c=m.chain>=7?C.rose:m.chain>=5?C.bone:C.saffron;
+      ctx.save(); ctx.translate(m.x,m.y-52-k*16); ctx.scale(sc,sc); ctx.fillStyle=`rgba(${c},${1-k*k})`; ctx.font=`700 ${15+Math.min(m.chain,8)*2}px Unbounded, sans-serif`; ctx.textAlign='center'; ctx.fillText('×'+m.chain,0,0); ctx.restore();
+    } else if(m.perfect){ // R2 : 3 anneaux qui se resserrent, point central, flash blanc, pastille
+      const q=(tt-m.t)/0.5;
+      if(q<1){ for(let i=0;i<3;i++){ const p=Math.min(1,Math.max(0,q*1.5-i*0.2)); if(p<=0||p>=1) continue; ctx.beginPath(); ctx.arc(m.x,m.y,R*(2-p),0,TAU); ctx.strokeStyle=`rgba(${C.saffron},${0.9*(1-p)})`; ctx.lineWidth=2; ctx.stroke(); }
+        ctx.beginPath(); ctx.arc(m.x,m.y,3+(1-q)*3,0,TAU); ctx.fillStyle=`rgba(${C.bone},${1-q})`; ctx.fill(); }
+      if(!reduce && tt-m.t<0.034){ ctx.fillStyle='rgba(255,255,255,0.25)'; ctx.fillRect(0,0,W,H); }
+      ctx.fillStyle=`rgba(${C.saffron},${1-k})`; ctx.font='700 11px Unbounded, sans-serif'; ctx.textAlign='center'; ctx.fillText(t('mk_perfect'),m.x,m.y+R+18+k*10);
+    } else if(m.txt){ ctx.fillStyle=`rgba(${m.bad?C.rose:C.saffron},${1-k})`; ctx.font='700 13px Unbounded, sans-serif'; ctx.textAlign='center'; ctx.fillText(m.txt,m.x,m.y-30-k*24); }
     else { ctx.beginPath(); ctx.arc(m.x,m.y,4+k*6,0,TAU); ctx.fillStyle=`rgba(${m.owner===2?C.p2:m.owner===1?C.saffron:C.bone},${0.8*(1-k)})`; ctx.fill(); }
   }
   if(S.hold){

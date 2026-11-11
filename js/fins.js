@@ -102,9 +102,16 @@ function endReplay(){
   showEnd({ kicker:t('rp_k'), title:t('rp_t'), msg:t('rp_msg',{n:S.replay.score}),
     btns:[ {label:t('watch_again'), fn:startReplay}, {label:t('menu'), ghost:true, fn:toMenu} ] });
 }
-function showEnd({kicker,bad,title,msg,btns,box}){
+function showEnd({kicker,bad,title,msg,btns,box,stars}){
   $('endKicker').textContent=kicker; $('endKicker').style.color=bad?'var(--rose)':'var(--saffron)';
-  $('endTitle').textContent=title; $('endMsg').textContent=msg;
+  const et=$('endTitle'); et.textContent=title; et.removeAttribute('role'); et.removeAttribute('aria-label');
+  if(stars){ // R5 : étoiles à ressort + étincelles ; le texte reste pour les lecteurs d'écran
+    et.setAttribute('role','img'); et.setAttribute('aria-label',title); et.textContent='';
+    for(let i=0;i<3;i++){ const s=document.createElement('span'); s.className='star'+(i<stars?' on':''); s.setAttribute('aria-hidden','true'); s.style.setProperty('--d',(i*0.25)+'s'); s.textContent=i<stars?'★':'☆';
+      if(i<stars&&!reduce) for(let j=0;j<6;j++){ const p=document.createElement('i'); p.style.setProperty('--a',(j*60)+'deg'); s.appendChild(p); }
+      et.appendChild(s); }
+  }
+  $('endMsg').textContent=msg;
   const sb=$('shareBox'); sb.hidden=!box; if(box){ sb.readOnly=!!box.readOnly; sb.value=box.value||''; }
   $('sharePrev').hidden=true; $('endExtra').hidden=true; $('shareLbl').hidden=true; $('shareStatus').textContent='';
   const row=$('endBtns'); row.innerHTML='';

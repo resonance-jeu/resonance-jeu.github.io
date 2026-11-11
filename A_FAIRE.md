@@ -29,6 +29,8 @@
 - **05/11/2026** : adresse officielle resonance.aulit42369.fr ; github.io en secours ; appli Android à recompiler par Olivier. Canonical, Open Graph, JSON-LD, sitemap, robots, `SHARE_URL`, `AUTRES_JEUX` (echo./lumen./fragments.aulit42369.fr), lien du Site (`aulit42369.fr/Site/`) ; GoatCounter compte aussi sur `*.aulit42369.fr` (empreinte CSP recalculée) ; cache `resonance-1.3.9`. `assets\` de l'appli recopiés (32 fichiers, aucun `?v=`).
 - **05/11/2026** : `privacy.html` (6 langues) : hébergeur OVH SAS (Roubaix ; serveur à Beauharnois, Canada, aucun journal des visites), GitHub Pages en copie de secours ; date 05/11/2026 ; cache `resonance-1.3.10` ; recopiée dans `assets\` de l'appli. Puis (audit légal) : serveur « situé au Canada » + décision d'adéquation UE 2002/2/CE dans les 6 langues, recopiée de nouveau dans `assets\` (prise en compte à la prochaine compilation Android).
 
+- **11/11/2026** : animations R1 (compteur « ×N » à ressort dès 3 de profondeur, un seul par image), R2 (coup parfait : 3 anneaux, point, flash blanc 25 %, pastille `mk_perfect` dans les 6 langues), R5 (étoiles de campagne à ressort + 6 étincelles, texte conservé en `aria-label`) ; `S.marks` étendu (`chain`, `perfect`), option `stars` de `showEnd` ; `prefers-reduced-motion` respecté ; cache `resonance-1.3.12` ; 53 tests verts. Appli Android : recopier `css/`, `js/` dans `assets\` à la prochaine version.
+
 ## En cours
 
 ## À faire

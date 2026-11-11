@@ -57,7 +57,8 @@ function onEvent(type,nd){
     if(m==='melody') note=nd.note;
     tone(note,0.7,null,0.09); tone(note*1.5,0.5,null,0.035,0.06); buzz(d>1?[12,30,12]:15);
     STATS.lit++; STATS.chain=Math.max(STATS.chain,d);
-    if(nd.spread!=null){ STATS.precSum+=Math.max(0,1-nd.spread/G.win); STATS.precN++; if(nd.spread<0.015) award('perfect'); }
+    if(nd.spread!=null){ STATS.precSum+=Math.max(0,1-nd.spread/G.win); STATS.precN++; if(nd.spread<0.015){ award('perfect'); S.marks.push({x:nd.x,y:nd.y,t:G.t,perfect:true}); } }
+    if(d>=3){ S.marks=S.marks.filter(o=>!(o.chain&&o.t===G.t&&o.chain<d)); if(!S.marks.some(o=>o.chain&&o.t===G.t)) S.marks.push({x:nd.x,y:nd.y,t:G.t,chain:d}); } // un seul compteur par image
     award('first'); if(d>=3) award('chain3'); if(d>=5) award('chain5'); if(d>=7) award('chain7');
     if(nd.need===3) award('triple'); if(nd.byVia) award('mirror'); if(nd.byPortal) award('portal');
     if(nd.battery && S.max!==Infinity && m!=='duel'){ S.pulses++; S.max=Math.max(S.max,S.pulses); STATS.batt++; if(STATS.batt>=10) award('batt10'); S.marks.push({x:nd.x,y:nd.y+18,t:G.t,txt:t('mk_pulse')}); }
@@ -143,7 +144,7 @@ function campClear(){
   if(i===9 && w===0) award('world1'); if(i===9 && w===WORLDS.length-1) award('camp'); if(campStars()>=100) award('stars100');
   S.phase='over';
   const next = i<9 ? {w,i:i+1} : (w<WORLDS.length-1 ? {w:w+1,i:0} : null);
-  showEnd({ kicker:`${worldName(w)} · ${i===9?t('cp_boss'):t('cp_grid',{n:i+1})}`, title:'★'.repeat(stars)+'☆'.repeat(3-stars),
+  showEnd({ kicker:`${worldName(w)} · ${i===9?t('cp_boss'):t('cp_grid',{n:i+1})}`, title:'★'.repeat(stars)+'☆'.repeat(3-stars), stars,
     msg: stars===3 ? t('cp_3') : t('cp_keep',{n:need3}),
     btns:[ ...(next?[{label:t(i===9?'next_sea':'next_grid'), fn:()=>playCamp(next.w,next.i)}]:[]),
            {label:t('replay'), ghost:true, fn:()=>playCamp(w,i)}, {label:t('map'), ghost:true, fn:openCamp} ] });

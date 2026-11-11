@@ -23,7 +23,7 @@ I18N.it = {
  nt:["Nodo semplice","Nodo a tre archi","Batteria","Nodo acuto","Nodo grave","Nodo fragile","Nodo a tempo"],
  max_nodes:"Al massimo 14 nodi", max_mud:"Al massimo 4 pozze", max_portal:"Al massimo 3 portali", need_node:"Piazza almeno un nodo", loaded:"Griglia caricata", ach_toast:"Obiettivo · {n}",
  code_k:"Codice della griglia", code_t:"Condividi.", code_msg:"Copia questo codice per condividere la tua griglia, oppure incolla un codice ricevuto e tocca Carica.", copy:"Copia", load:"Carica", close:"Chiudi", copied:"Copiato", selected:"Selezionato, copialo", bad_code:"Codice illeggibile", a_text:"Testo",
- mk_pulse:"+1 impulso", mk_wrong:"nota stonata", mk_broken:"rotto", mk_off:"spento", mk_frozen:"congelato", mk_beat:"a tempo!", mk_miss:"mancato",
+ mk_perfect:"PERFETTO", mk_pulse:"+1 impulso", mk_wrong:"nota stonata", mk_broken:"rotto", mk_off:"spento", mk_frozen:"congelato", mk_beat:"a tempo!", mk_miss:"mancato",
  bn_harmony:"Armonia", bn_newgrid:"Nuova griglia", bn_gridfull:"Griglia completa", bn_step:"Passo {n}", bn_next:"Avanti", bn_tutodone:"Tutorial completato", bn_solved:"Risolto",
  bn_puz:"Puzzle {k} · {n} tentativo|Puzzle {k} · {n} tentativi", bn_melody:"Melodia {n}", bn_wrongs:"{n} nota stonata|{n} note stonate", bn_clean:"Nessuna nota stonata", bn_level:"Livello {n}", bn_coop:"Coop {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · impulsi risparmiati", bn_full:"Risonanza completa", bn_almost:"Quasi", bn_retry:"Si ricomincia", bn_missed:"Mancato",
  e_nopulse:"Impulsi finiti", e_silence:"Silenzio.", e_left:"{n} nodo ancora spento.|{n} nodi ancora spenti.", e_score:"Punti: {n}.", replay_lvl:"Rigioca il livello", retry:"Riprova", map:"Mappa", replay:"Rigioca",

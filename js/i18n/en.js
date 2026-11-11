@@ -23,7 +23,7 @@ I18N.en = {
  nt:["Simple node","Three-arc node","Battery","High node","Low node","Fragile node","Countdown node"],
  max_nodes:"14 nodes at most", max_mud:"4 mud pools at most", max_portal:"3 portals at most", need_node:"Place at least one node", loaded:"Grid loaded", ach_toast:"Achievement · {n}",
  code_k:"Grid code", code_t:"Share.", code_msg:"Copy this code to share your grid, or paste a code you received and tap Load.", copy:"Copy", load:"Load", close:"Close", copied:"Copied", selected:"Selected, copy it", bad_code:"Unreadable code", a_text:"Text",
- mk_pulse:"+1 pulse", mk_wrong:"wrong note", mk_broken:"broken", mk_off:"out", mk_frozen:"frozen", mk_beat:"on beat!", mk_miss:"missed",
+ mk_perfect:"PERFECT", mk_pulse:"+1 pulse", mk_wrong:"wrong note", mk_broken:"broken", mk_off:"out", mk_frozen:"frozen", mk_beat:"on beat!", mk_miss:"missed",
  bn_harmony:"Harmony", bn_newgrid:"New grid", bn_gridfull:"Grid complete", bn_step:"Step {n}", bn_next:"Next", bn_tutodone:"Tutorial complete", bn_solved:"Solved",
  bn_puz:"Puzzle {k} · {n} try|Puzzle {k} · {n} tries", bn_melody:"Melody {n}", bn_wrongs:"{n} wrong note|{n} wrong notes", bn_clean:"No wrong notes", bn_level:"Level {n}", bn_coop:"Co-op {n}", bn_replay:"Replay ×2", bn_kept:"+{n} · pulses saved", bn_full:"Full resonance", bn_almost:"Almost", bn_retry:"Try again", bn_missed:"Missed",
  e_nopulse:"Out of pulses", e_silence:"Silence.", e_left:"{n} node still unlit.|{n} nodes still unlit.", e_score:"Score: {n}.", replay_lvl:"Replay level", retry:"Try again", map:"Map", replay:"Play again",
